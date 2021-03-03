@@ -6,3 +6,5 @@ The encoder used in this project is a Scancon 2RMHF industrial encoder that outp
 ![Encoder](assets_encoder/R441340fdc17f4c1f707a9a396ddd1c2d.jpg)
 
 Encoders on the robot uses separate eQEP pins on the Beaglebone, so each encoder gets its own interface file in their own folder in the /ocp file system
+
+## Code explanation

@@ -6,4 +6,4 @@ This is the reposatory for our Bachelor's thesis. It will be updated continously
 
 Anyways this project is about a thin and simple robot that can't walk. We will teach it to walk. How? Through C++ and ROS. Each part of the robot will have it's own floder where we explain the code associated with that part. 
 
-Shoutout to the two previous groups that worked on this project. Most of the information and explanation in the earlier stages of the repository will be gathered from their theises. 
+Shoutout to the two previous groups that worked on this project. Most of the information and explanation in the earlier stages of the repository will be gathered from their theses. 

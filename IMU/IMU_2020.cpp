@@ -1,17 +1,9 @@
-#include "ros/ros.h"
-#include "std_msgs/String.h"
-#include "sensor_msgs/JointState.h"
-
-
 #include <iostream>
-#include <sstream>
 #include <unistd.h>
 #include <cmath>
 #include <linux/i2c-dev.h>
-#include <linux/i2c.h>
 #include <sys/ioctl.h>
 #include <fcntl.h>
-#include <math.h>
 
 #define g_sens_accs 0.061 //value from datasheet page 12
 #define PI 3.14159 // constant pi
@@ -22,8 +14,6 @@
 class LSM9DS1
 {
     private :
-
-
     int file;
     char addr;
     float ax,ay,az;
@@ -31,30 +21,31 @@ class LSM9DS1
     float pitch,roll;
 
     char dataBuffer[5] = {0};
-    char dataBuffer[5] = {0};
 
-    void convertAccelData()
+    void convertData()
     {
-        s_ax = ((dataBuffer2[1] << 8) | dataBuffer2[0]); 
-        s_ay = ((dataBuffer2[3] << 8) | dataBuffer2[2]);
-        s_az = ((dataBuffer2[5] << 8) | dataBuffer2[4]);
+        s_ax = ((dataBuffer[1] << 8) | dataBuffer[0]); 
+        s_ay = ((dataBuffer[3] << 8) | dataBuffer[2]);
+        s_az = ((dataBuffer[5] << 8) | dataBuffer[4]);
         ax = (s_ax*g_sens_accs)/1000;
         ay = (s_ay*g_sens_accs)/1000;
         az = (s_az*g_sens_accs)/1000;
         
-        roll = atan2(ay,ax);
+        roll = atan2(ay,az);
+        pitch = atan2(-ax, sqrt(ay * ay + az * az));
 
+        //convert from radians to degrees
+        pitch *= 180.0 / PI;
         roll  *= 180.0 / PI;
-    }
+        
+        // print converted axis values
+        printf("\033[2J\033[1;1H");
+        printf("X-axis: %f \n", ax);
+        printf("Y-axis: %f \n", ay);
+        printf("Z-axis: %f \n", az);
 
-    void convertGyroData()
-    {
-        s_gx = ((dataBuffer[1] << 8) | dataBuffer[0]); 
-        s_gy = ((dataBuffer[3] << 8) | dataBuffer[2]);
-        s_gz = ((dataBuffer[5] << 8) | dataBuffer[4]);
-        gx = s_gx * 0.0175;
-        gy = s_gy * 0.0175;
-        gz = s_gz * 0.0175;
+        printf("roll : %f \n", roll);
+        printf("pitch : %f \n", pitch);
     }
 
     public :
@@ -85,11 +76,9 @@ class LSM9DS1
         printf("sucessful init \n");
 
     }
-
-
     void ReadSensor()
     {
-        char regis[1] = {0x18};
+        char regis[1] = {0x28};
         write(file, regis, 1);
     
         if(read(file, dataBuffer, 6) != 6)
@@ -97,101 +86,29 @@ class LSM9DS1
             printf("Input/Output error \n");
             exit(1);
         }
-        convertGyroData();
-
-
-        char regis2[1] = {0x28};
-        write(file, regis2, 1);
-
-        if(read(file, dataBuffer2, 6) != 6)
-        {
-            printf("Input/Output error \n");
-            exit(1);
-        }
-
-        convertAccelData();
-
+        convertData();
     }
-
-
     void closeSensor()
     {
         close(file);
     }
-
-    float GetAccelerationX(){ return ax;}
-    float GetAccelerationY(){ return ay;}
-    float GetAccelerationZ(){ return az;}
-    float GetGRotationX(){ return gx;}
-    float GetGRotationY(){ return gy;}
-    float GetGRotationZ(){ return gz;}
-    float GetRotation(){ return roll;}
 };
 
 int main(int argc, char* argv[])
 {
-    //init
-    ros::init(argc, argv, "IMUpublisher");
-    //message code
-    ros::NodeHandle n;
-    ros::publisher chatter_pub = n.advertise<sensor_msgs::JointState>("joint_states", 1);
-    ros::Rate loop_rate(60);
-    sensor_msgs::JointState jointState;
+    char addresse = 0x6b;
+    LSM9DS1 acceleration(addresse);
+    char aksereg = 0x20;
+    char setBit  = 0xc0;
+    acceleration.setRegSensor(aksereg,setBit);
+    int count = 0;
 
-    jointState.name.push_back("base_to_leg_01");
-    jointState.name.push_back("base_to_leg_02");
-
-    jointState.position.push_back(0.0);
-    jointState.position.push_back(0.0);
-
-    //IMU code
-    char addresse = 0x6a;
-    LSM9DS1 IMU1(addresse);
-    addresse = 0x6b;
-    LSM9DS1 IMU2(addresse);
-
-
-    char aksereg = 0x10;
-    char setBit  = 0x49;
-    IMU1.setRegSensor(aksereg,setBit);
-    IMU2.setRegSensor(aksereg,setBit);
-    aksereg = 0x11;
-    setBit  = 0x01;
-    IMU1.setRegSensor(aksereg,setBit);
-    IMU2.setRegSensor(aksereg,setBit);
-    aksereg = 0x12;
-    setBit  = 0x42;
-    IMU1.setRegSensor(aksereg,setBit);
-    IMU2.setRegSensor(aksereg,setBit);
-    aksereg = 0x20;
-    setBit  = 0x00;
-    IMU1.setRegSensor(aksereg,setBit);
-    IMU2.setRegSensor(aksereg,setBit);
-
-    float gyro_rotation = 0.0;
-    float acceleration_rotation = 0.0;
-    float total_rotaion = 0.0;
-
-    while (ros::ok())
+    while(count < 10)
     {
-
-        IMU1.ReadSensor();
-        IMU2.ReadSensor();
-
-        JointState.header.stamp = ros::Time::now();
-
-        acceleration_rotation = IMU2.GetRotation()*180/PI;
-        gyro_rotation += (IMU2.GetGRotationZ()/60);
-
-        jointState.position[0] = acceleration_rotation;
-        jointState.position[1] = gyro_rotation;
-
-        chatter_pub.publish(jointState);
-
-        ros::spinOnce();
-        loop_rate.sleep();
-
+        acceleration.ReadSensor();    
     }
+    acceleration.closeSensor();
 
+    std::cin.get();
     return 0;
 }

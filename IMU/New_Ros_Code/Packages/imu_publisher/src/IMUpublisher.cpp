@@ -140,7 +140,13 @@ int main(int argc, char* argv[])
 
     jointState.name.push_back("base_to_leg_01");
     jointState.name.push_back("base_to_leg_02");
+    jointState.name.push_back("base_to_leg_03");
+    jointState.name.push_back("base_to_leg_04");
+    jointState.name.push_back("base_to_leg_05");
 
+    jointState.position.push_back(0.0);
+    jointState.position.push_back(0.0);
+    jointState.position.push_back(0.0);
     jointState.position.push_back(0.0);
     jointState.position.push_back(0.0);
 
@@ -156,11 +162,11 @@ int main(int argc, char* argv[])
     IMU1.setRegSensor(aksereg,setBit);
     IMU2.setRegSensor(aksereg,setBit);
     aksereg = 0x11;
-    setBit  = 0x00;
+    setBit  = 0x02;
     IMU1.setRegSensor(aksereg,setBit);
     IMU2.setRegSensor(aksereg,setBit);
     aksereg = 0x12;
-    setBit  = 0x48;
+    setBit  = 0x49;
     IMU1.setRegSensor(aksereg,setBit);
     IMU2.setRegSensor(aksereg,setBit);
     aksereg = 0x20;
@@ -172,6 +178,19 @@ int main(int argc, char* argv[])
     float acceleration_rotation = 0.0;
     float total_rotaion = 0.0;
 
+    std::vector<float> accelerationAngleList;
+    accelerationAngleList.resize(60);
+    std::vector<float> gyroAngleList;
+    gyroAngleList.resize(60);
+    
+    float gyroAverege = 0.0;
+    float accelerationAverege = 0.0;
+    float offset = 0.0;
+    float finalAngle = 0.0;
+
+    accelerationAngleList.assign(60, 0.0);
+    gyroAngleList.assign(60, 0.0);
+
     while (ros::ok())
     {
 
@@ -180,11 +199,31 @@ int main(int argc, char* argv[])
 
         jointState.header.stamp = ros::Time::now();
 
-        acceleration_rotation = IMU1.GetRotation()*180/PI;
-        gyro_rotation += (IMU1.GetGRotationZ());
+
+        acceleration_rotation = IMU1.GetRotation();
+        gyro_rotation += (IMU1.GetGRotationZ()/60);
+
+        accelerationAngleList.insert(accelerationAngleList.begin() ,IMU1.GetRotation());
+        accelerationAverege += IMU1.GetRotation();
+        accelerationAverege -= accelerationAngleList[60];
+        accelerationAngleList.resize(60);
+        gyroAngleList.insert(gyroAngleList.begin() ,gyro_rotation);
+        gyroAverege += gyro_rotation;
+        gyroAverege -= gyroAngleList[60];
+        gyroAngleList.resize(60);
+
+        offset = (gyroAverege - accelerationAverege)/60;
+        
+
+        //ROS_INFO("%f ", accelerationAngleList[60]);
+        finalAngle = gyro_rotation - offset;
+
 
         jointState.position[0] = acceleration_rotation;
         jointState.position[1] = gyro_rotation;
+        jointState.position[2] = (accelerationAverege/60);
+        jointState.position[3] = (gyroAverege/60);
+        jointState.position[4] = finalAngle;
 
         chatter_pub.publish(jointState);
 

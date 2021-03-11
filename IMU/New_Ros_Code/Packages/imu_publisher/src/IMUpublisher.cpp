@@ -15,6 +15,7 @@
 
 #define g_sens_accs 0.061 //value from datasheet page 12
 #define PI 3.14159 // constant pi
+#define LPS 60 // Loops per second
 
 
 
@@ -62,6 +63,8 @@ class LSM9DS1
     {
         addr = address;
     }
+
+
     void setRegSensor(char reg,char value)
     {
         char *bus ="/dev/i2c-2";
@@ -128,6 +131,38 @@ class LSM9DS1
     float GetRotation(){ return roll;}
 };
 
+class pi_reg
+{
+    private:
+    float _Kp;
+    float _Ki;
+    float _integral;
+    float pout;
+    float iout;
+    float error;
+
+    public:
+    void pi_reg(float Kp, float Ki)
+    {
+        _Kp = Kp;
+        _Ki = Ki;
+    }
+
+    void pi_regulate(float value, float setPoint)
+    {
+        error = setPoint - value;
+
+        pout = error * _Kp;
+
+        _integral += error / LPS;
+        iout = _integral * _Ki;
+
+        return(pout + iout);
+    }
+};
+
+
+
 int main(int argc, char* argv[])
 {
     //init
@@ -135,7 +170,7 @@ int main(int argc, char* argv[])
     //message code
     ros::NodeHandle n;
     ros::Publisher chatter_pub = n.advertise<sensor_msgs::JointState>("joint_states", 1);
-    ros::Rate loop_rate(60);
+    ros::Rate loop_rate(LPS);
     sensor_msgs::JointState jointState;
 
     jointState.name.push_back("base_to_leg_01");
@@ -179,17 +214,20 @@ int main(int argc, char* argv[])
     float total_rotaion = 0.0;
 
     std::vector<float> accelerationAngleList;
-    accelerationAngleList.resize(60);
+    accelerationAngleList.resize(LPS);
     std::vector<float> gyroAngleList;
-    gyroAngleList.resize(60);
+    gyroAngleList.resize(LPS);
     
     float gyroAverege = 0.0;
     float accelerationAverege = 0.0;
     float offset = 0.0;
     float finalAngle = 0.0;
 
-    accelerationAngleList.assign(60, 0.0);
-    gyroAngleList.assign(60, 0.0);
+    accelerationAngleList.assign(LPS, 0.0);
+    gyroAngleList.assign(LPS, 0.0);
+
+
+    pi_reg offsetRegulator(0.001, 0.10);
 
     while (ros::ok())
     {
@@ -201,28 +239,32 @@ int main(int argc, char* argv[])
 
 
         acceleration_rotation = IMU1.GetRotation();
-        gyro_rotation += (IMU1.GetGRotationZ()/60);
+        gyro_rotation += (IMU1.GetGRotationZ()/LPS);
 
+        offset = offsetRegulator.pi_regulate(gyro_rotation, acceleration_rotation);
+
+        /*
         accelerationAngleList.insert(accelerationAngleList.begin() ,IMU1.GetRotation());
         accelerationAverege += IMU1.GetRotation();
-        accelerationAverege -= accelerationAngleList[60];
-        accelerationAngleList.resize(60);
+        accelerationAverege -= accelerationAngleList[LPS];
+        accelerationAngleList.resize(LPS);
         gyroAngleList.insert(gyroAngleList.begin() ,gyro_rotation);
         gyroAverege += gyro_rotation;
-        gyroAverege -= gyroAngleList[60];
-        gyroAngleList.resize(60);
+        gyroAverege -= gyroAngleList[LPS];
+        gyroAngleList.resize(LPS);
 
-        offset = (gyroAverege - accelerationAverege)/60;
+        offset = (gyroAverege - accelerationAverege)/LPS;
         
+        */
 
-        //ROS_INFO("%f ", accelerationAngleList[60]);
+        //ROS_INFO("%f ", accelerationAngleList[LPS]);
         finalAngle = gyro_rotation - offset;
 
 
         jointState.position[0] = acceleration_rotation;
         jointState.position[1] = gyro_rotation;
-        jointState.position[2] = (accelerationAverege/60);
-        jointState.position[3] = (gyroAverege/60);
+        jointState.position[2] = (accelerationAverege/LPS);
+        jointState.position[3] = (gyroAverege/LPS);
         jointState.position[4] = finalAngle;
 
         chatter_pub.publish(jointState);

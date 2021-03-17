@@ -111,7 +111,7 @@ class Encoder
 int main(int argc, char **argv)
 {
     Encoder encoder(2); //encoder number 2
-    encoder.initEncoder(0, 10000000L);
+    encoder.initEncoder(0, 1L);
 
     //ROS code
     ros::init(argc,argv,"ServoPublisher");

@@ -1,10 +1,7 @@
-#include "ros/ros.h"
-#include "std_msgs/Int32.h"
-
+#include <cstdlib>
 #include <iostream>
 #include <fstream>
 #include <string>
-
 
 
 class motor
@@ -48,19 +45,13 @@ class motor
         pinstream << state;
         pinstream.close();
     }
-    void toggleMotorPin(int state)
+    void toggleCurrentGPIOPin(int state)
     {
           // Toggeling pin
         std::ofstream pinstream;
-        std::ofstream pinstream2;
-
-        pinstream.open("/sys/class/gpio/gpio49/value");
+        pinstream.open("/sys/class/gpio/gpio"+ m_GPIONumber + "/value");
         pinstream << state;
         pinstream.close();
-        pinstream2.open("/sys/class/gpio/gpio117/value");
-        pinstream2 << state;
-        pinstream2.close();
-
     }
     void motorInit()
     {   
@@ -248,48 +239,25 @@ class motor
         
 
 };
-motor control(29);
-
-void chatterCallback(const std_msgs::Int32::ConstPtr& msg)
+int main()
 {
-    //ros code
-    ROS_INFO("servo_recive : %d", msg->data);
-    int encoderPos = msg->data;
-
-    //servo code
-
-    if (encoderPos < 1000)
-    {
-        control.toggleMotorPin(0);  //set GPIO pin 25 on cape 9 to 0
-        //control.GPIOtoggle(9,23,0);  //set GPIO pin 23 on cape 9 to 0   counterclockwise   
-        //ROS_INFO("inside if : [%s]", encoderPos);
-    }
-    else
-    {
-        control.toggleMotorPin(1);
-        //control.GPIOtoggle(9,25,1); //set GPIO pin 25 on cape 9 to 1
-        //control.GPIOtoggle(9,23,1); //set GPIO pin 25 on cape 9 to 1    clockwise
-       // ROS_INFO("outside if : [%s]", encoderPos);
-    }
-    
-}
-
-
-int main(int argc, char **argv)
-{
-
-    
+    int pinN = 29;          //pin_29 beaglebone cape set to pwm
+    motor control(pinN);
     control.motorInit();
-    control.setDutyCycle(8000000);  // 80%
-    control.setPWMfreq(10000000);   //100Hz
+
+    
+    control.setDutyCycle(1000000);  // 80%
+    control.setPWMfreq(80000000);   //100Hz
     control.GPIOtoggle(9,23,1); // MOTOR OFF
-    control.GPIOtoggle(9,25,0); // MOTOR OFF
 
-
-    //ros code
-    ros::init(argc, argv, "motor_subscriber");
-    ros::NodeHandle n;
-    ros::Subscriber sub = n.subscribe("chatter", 1000, chatterCallback);
-    ros::spin();
+    while(1)
+    {
+    control.GPIOtoggle(9,25,0);  //set GPIO pin 25 on cape 9 to 0
+    control.GPIOtoggle(9,23,0);  //set GPIO pin 23 on cape 9 to 0   counterclockwise
+    std::cin.get();
+    control.GPIOtoggle(9,25,1); //set GPIO pin 25 on cape 9 to 1
+    control.GPIOtoggle(9,23,1); //set GPIO pin 25 on cape 9 to 1    clockwise
+    std::cin.get();
+    }
     return 0;
 }

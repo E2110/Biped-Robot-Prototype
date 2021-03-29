@@ -28,3 +28,31 @@ From windows OS. For flashing the new image we used following:
 4. Remove the Micro-SD from computer and insert it into the Beaglebone.
 
 5. Hold the S3-botton down while powering up the Beaglebone. Hold until the four lights left of the ethernet input lights up at the same time, then let go of the button. The Beaglebone will then boot for quite some time until its done.
+
+# Connect to the BeagleBone through SSH.
+
+
+# Enable the PWM-pins
+This depends on your device tree overlay. There are quite a bunch out there, this one follows the one we got from the flashed image above.
+
+1. Change to root user.
+
+```
+sudo su
+```
+2. Go to the ocp folder for the pin you want use. In this example P9_16.
+
+```
+cd /sys/devices/platform/ocp/ocp:P9_16_pinmux
+```
+
+3. Use cat state to see what pin-mode is currently in use. Use echo to change to PWM.
+
+```
+echo pwm > state
+```
+
+
+
+
+

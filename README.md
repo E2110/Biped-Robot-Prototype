@@ -19,8 +19,7 @@ From windows OS. For flashing the new image we used following:
 1 . Download prebuilt image from https://elinux.org/BeagleBoardUbuntu. As of writing the direct link to the image is https://rcn-ee.com/rootfs/2020-03-12/flasher/bone-eMMC-flasher-ubuntu-18.04.4-console-armhf-2020-03-12-2gb.img.xz and the downloaded file is called.
 
 ```
-bone-eMMC-flasher-ubuntu-18.04.4-console-armhf-2020-03-12-2gb*
-2bc7f92df84dbd89c1cdd790ec794926a5d6b0f0b891143085d77141170518e2  bone-eMMC-flasher-ubuntu-18.04.4-console-armhf-2020-03-12-2gb.img.xz
+ bone-eMMC-flasher-ubuntu-18.04.4-console-armhf-2020-03-12-2gb.img.xz
 ```
 2. Extract the file using 7-zip. This will remove the .xz at the end of the file.
 

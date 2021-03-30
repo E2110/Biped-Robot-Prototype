@@ -52,6 +52,10 @@ cd /sys/devices/platform/ocp/ocp:P9_16_pinmux
 echo pwm > state
 ```
 
+# Write to the PWM-pins with terminal
+
+After changing the state to PWM you can change the different PWM-values in /sys/class/pwm/-folder. This is done by echoing different values. 
+
 
 
 

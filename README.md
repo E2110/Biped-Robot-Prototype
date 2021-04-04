@@ -56,6 +56,14 @@ echo pwm > state
 
 After changing the state to PWM you can change the different PWM-values in /sys/class/pwm/-folder. This is done by echoing different values. 
 
+# Write to the GPIO-pins with terminal
+
+# Install ROS-melodic
+
+http://wiki.ros.org/melodic/Installation/Ubuntu
+
+
+
 
 
 

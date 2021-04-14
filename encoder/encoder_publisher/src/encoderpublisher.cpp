@@ -1,5 +1,5 @@
 #include "ros/ros.h"
-#include "std_msgs/String.h"
+#include "std_msgs/Float32MultiArray.h"
 
 // Language dependencies
 #include <cstdint>
@@ -16,8 +16,14 @@
 #define eQEP0 "/sys/devices/platform/ocp/48300000.epwmss/48300180.eqep"
 #define eQEP1 "/sys/devices/platform/ocp/48302000.epwmss/48302180.eqep"
 #define eQEP2 "/sys/devices/platform/ocp/48304000.epwmss/48304180.eqep"
+#define eQEP1PinApath "/sys/devices/platform/ocp/ocp:P8_33_pinmux"
+#define eQEP1PinBpath "/sys/devices/platform/ocp/ocp:P8_35_pinmux"
+#define eQEP2PinApath "/sys/devices/platform/ocp/ocp:P8_12_pinmux"
+#define eQEP2PinBpath "/sys/devices/platform/ocp/ocp:P8_11_pinmux"
+#define gearRatio 6
+#define pulsesPrRev 3000 
 
- 
+
 // Constructor for eQEP driver interface object
 class Encoder
 {
@@ -31,9 +37,13 @@ class Encoder
             break;
             case 1:
             path = eQEP1;
+            pinApath = eQEP1PinApath;
+            pinBpath = eQEP1PinBpath;
             break;
             case 2:
             path = eQEP2;
+            pinApath = eQEP2PinApath;
+            pinBpath = eQEP2PinBpath;
             break;
             default :
             std::cout << "invalid Encoder number" << std::endl;
@@ -66,6 +76,8 @@ class Encoder
 
  private :
     std::string path;
+    std::string pinApath;
+    std::string pinBpath;
 
     void setMode()
     {  
@@ -77,6 +89,24 @@ class Encoder
         }
         fprintf(setmode, "%u\n", 0); //absolute mode
         fclose(setmode);
+
+        FILE* setPinA = fopen((this->pinApath + "/state").c_str(), "w");
+        if(setPinA == NULL)
+        {
+            std::cerr << "[eQEP " << this->pinApath << "] Unable to open mode for write" << std::endl;
+            return;
+        }
+        fprintf(setPinA, "qep");
+        fclose(setPinA);        
+        
+        FILE* setPinB = fopen((this->pinBpath + "/state").c_str(), "w");
+        if(setPinB == NULL)
+        {
+            std::cerr << "[eQEP " << this->pinBpath << "] Unable to open mode for write" << std::endl;
+            return;
+        }
+        fprintf(setPinB, "qep");
+        fclose(setPinB);
     }
 
     void setPosition(int32_t position)
@@ -110,28 +140,41 @@ class Encoder
 
 int main(int argc, char **argv)
 {
-    Encoder encoder(2); //encoder number 2
-    encoder.initEncoder(0, 10000000L);
+    Encoder encoder1(2); //encoder number 1
+    Encoder encoder2(1); //encoder number 2
+    encoder1.initEncoder(0, 10000000L);
+    encoder2.initEncoder(0, 10000000L);
 
     //ROS code
-    ros::init(argc,argv,"ServoPublisher");
+    ros::init(argc,argv,"encoder_publisher");
     ros::NodeHandle n;
-    ros::Publisher chatter_pub = n.advertise<std_msgs::String>("chatter", 1000);
+    ros::Publisher chatter_pub = n.advertise<std_msgs::Float32MultiArray>("leg_torso_angles", 1);
     ros::Rate loop_rate(100);
 
+
+
     int count = 0;
+    float leg1Angle;
+    float leg2Angle;
+
+        
+    std_msgs::Float32MultiArray flt;
+    flt.data.push_back(0.0);
+    flt.data.push_back(0.0);
 
     while (ros::ok())
     {
-        std_msgs::String msg;
-        std::stringstream ss;
-        ss << encoder.getPosition()*0.03<< std::endl;   
-        ss << "[ Count ] : " << count << std::endl; 
-        msg.data = ss.str();
-        ROS_INFO("%s", msg.data.c_str());
+        
 
+        leg1Angle = (float)encoder1.getPosition()*360/(pulsesPrRev * 4 * gearRatio);
+        leg2Angle = (float)encoder2.getPosition()*360/(pulsesPrRev * 4 * gearRatio);
 
-        chatter_pub.publish(msg);
+        flt.data[0] = leg1Angle;
+        flt.data[1] = leg2Angle;
+
+        ROS_INFO("%f", leg1Angle);
+
+        chatter_pub.publish(flt);
         ros::spinOnce();
         loop_rate.sleep();
         ++count;

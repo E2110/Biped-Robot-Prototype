@@ -1,4 +1,9 @@
 <launch>
-
-
-<\launch>
+    <!--
+    <node name="motor" pkg= type= />
+    <node name="servo" pkg= type= />
+    <node name="imu" pkg= type= />
+    <node name="encoder" pkg= type= />
+    <node name="robot_state" pkg= type= />
+    -->
+</launch>

@@ -60,9 +60,9 @@ After changing the state to PWM you can change the different PWM-values in /sys/
 cd /sys/class/pwm/pwm-4:0
 ```
 The three parameters we care about:
-*enable: Turn on and of the pin.
-*period: Decides the frequency. 
-*duty_cycle: Time high during the period. If you put it the same as the period it will be constant high.
+* enable: Turn on and of the pin.
+* period: Decides the frequency. 
+* duty_cycle: Time high during the period. If you put it the same as the period it will be constant high.
 
 ```
 echo 1000000 > period
@@ -87,14 +87,27 @@ Now cd into the gpio you want to change.
 cd gpio115
 ```
 The two paramteres you should care about:
-*direction: either in or out
-*value: high or low
-
+* direction: either in or out
+* value: high or low
 
 # Install ROS-melodic
 
 http://wiki.ros.org/melodic/Installation/Ubuntu
 
+# Transfering files to the BeagleBone
+## Linux
+To do this we use scp command in the terminal
+
+```
+scp localfile.cpp ubuntu@192.168.7.2:/folder
+```
+Eclipse is also a common tool you can use for this and cross compiling.
+
+## Windows
+To transfer from windows we use WinSCP. Its pretty straight forward to use,kinda like the windows version of eclipse. 
+
+1. Go to https://winscp.net/eng/download.php and install Winscp.
+2. Wh
 
 
 

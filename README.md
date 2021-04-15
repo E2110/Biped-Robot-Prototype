@@ -109,12 +109,15 @@ To transfer from windows we use WinSCP. Its pretty straight forward to use,kinda
 1. Go to https://winscp.net/eng/download.php and install Winscp.
 
 2. Connect the Beaglebone to your computer and open Winscp. This should pop up.
-![Winscp_01](assets/Winscp_01_zoom.PNG){:height="50%" width="50%"}
+
+![Winscp_01](assets/Winscp_01_zoom.PNG)
 
 3.Write ubuntu@192.168.7.2 into Host name. Port Number should stay at 22.
-![Winscp_02](assets/Winscp_02.PNG){:height="50%" width="50%"}|![Winscp_03](assets/winscp_03.PNG){:height="50%" width="50%"}
+
+![Winscp_02](assets/Winscp_02.PNG)![Winscp_03](assets/winscp_03.PNG)
 
 4. When connected you can easily drag end drop between the Beaglebone and the pc. You can also edit the different files on beaglebone.
+
 ![Winscp_04](assets/Winscp_04.PNG)
 
 

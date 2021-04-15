@@ -1,6 +1,5 @@
 #include "ros/ros.h"
-#include "std_msgs/String.h"
-#include "sensor_msgs/JointState.h"
+#include "std_msgs/Float32MultiArray.h"
 
 
 #include <iostream>
@@ -169,23 +168,12 @@ int main(int argc, char* argv[])
     ros::init(argc, argv, "IMUpublisher");
     //message code
     ros::NodeHandle n;
-    ros::Publisher chatter_pub = n.advertise<sensor_msgs::JointState>("joint_states", 1);
+    ros::Publisher chatter_pub = n.advertise<std_msgs::Float32MultiArray>("leg_ground_angles", 1);
     ros::Rate loop_rate(LPS);
-    sensor_msgs::JointState jointState;
+    std_msgs::Float32MultiArray angles;
 
-    jointState.name.push_back("base_to_leg_01");
-    jointState.name.push_back("base_to_leg_02");
-    jointState.name.push_back("base_to_leg_03");
-    jointState.name.push_back("base_to_leg_04");
-    jointState.name.push_back("base_to_leg_05");
-    jointState.name.push_back("base_to_leg_06");
-
-    jointState.position.push_back(0.0);
-    jointState.position.push_back(0.0);
-    jointState.position.push_back(0.0);
-    jointState.position.push_back(0.0);
-    jointState.position.push_back(0.0);
-    jointState.position.push_back(0.0);
+    angles.data.push_back(0.0);
+    angles.data.push_back(0.0);
 
     //IMU code
     char addresse = 0x6a;
@@ -237,9 +225,6 @@ int main(int argc, char* argv[])
         IMU1.ReadSensor();
         IMU2.ReadSensor();
 
-        jointState.header.stamp = ros::Time::now();
-
-
         acceleration_rotation1 = IMU1.GetRotation();
         gyro_rotation1 += (IMU1.GetGRotationZ()/LPS);
         acceleration_rotation2 = IMU2.GetRotation();
@@ -254,14 +239,10 @@ int main(int argc, char* argv[])
         finalAngle2 = gyro_rotation2 - offset2;
 
 
-        jointState.position[0] = finalAngle1;
-        jointState.position[1] = finalAngle2;
-        jointState.position[2] = offsetRegulator1.getError();
-        jointState.position[3] = offsetRegulator2.getError();
-        jointState.position[4] = IMU2.GetRotation();
-        jointState.position[5] = gyro_rotation2;
+        angles.data[0] = finalAngle1;
+        angles.data[1] = finalAngle2;
 
-        chatter_pub.publish(jointState);
+        chatter_pub.publish(angles);
 
         ros::spinOnce();
         loop_rate.sleep();

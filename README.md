@@ -54,9 +54,42 @@ echo pwm > state
 
 # Write to the PWM-pins with terminal
 
-After changing the state to PWM you can change the different PWM-values in /sys/class/pwm/-folder. This is done by echoing different values. 
+After changing the state to PWM you can change the different PWM-values in /sys/class/pwm/-folder. This is done by echoing different values to the parameters you want to change. In the example under we do this to pin P9.14
+
+```
+cd /sys/class/pwm/pwm-4:0
+```
+The three parameters we care about:
+*enable: Turn on and of the pin.
+*period: Decides the frequency. 
+*duty_cycle: Time high during the period. If you put it the same as the period it will be constant high.
+
+```
+echo 1000000 > period
+echo 200000 > duty_cycle
+echo 1 > enable
+```
 
 # Write to the GPIO-pins with terminal
+Go to the GPIO-folder
+```
+cd /sys/class/gpio
+```
+With the current Device Three Overlay the ls commando will show us a lot of gpio-pins to begin with. Even though only the current exported gpios should show up, we noticed that a lot of the pins were not exported. So if you can't change the paramters of a certain pin, we recommend trying to unexport and export that pin. This is done by echoing the number of the gpio to the unexport and export.
+
+```
+echo 114 > unexport
+echo 114 > unexport
+```
+Now cd into the gpio you want to change.
+
+```
+cd gpio115
+```
+The two paramteres you should care about:
+*direction: either in or out
+*value: high or low
+
 
 # Install ROS-melodic
 

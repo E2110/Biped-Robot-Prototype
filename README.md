@@ -107,7 +107,8 @@ Eclipse is also a common tool you can use for this and cross compiling.
 To transfer from windows we use WinSCP. Its pretty straight forward to use,kinda like the windows version of eclipse. 
 
 1. Go to https://winscp.net/eng/download.php and install Winscp.
-2. Wh
+2. Connect the Beaglebone to your computer and open Winscp.
+![Winscp](assets/Winscp_01_zoom.PNG)
 
 
 

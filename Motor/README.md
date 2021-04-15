@@ -10,6 +10,10 @@ Maxon Motor 14887            |   ESCON 70/10 Servocontroller
 Before the code for the motor is run its important to configure the servo controller with the ESCON studio software. Work done by a prior bachelor thesis group determined that the maximum required amperage for the motor should be 8.3A, this should be configured with the ESCON software including preforming a autotuning.
 
 
+# Configure the servo-controller
+
+# Connection and pins
+
 ## Code
 The purpose of the code is to control direction of the motors, through two GPIO pins, and to change the trque of the motor, through a PWM pin.
 

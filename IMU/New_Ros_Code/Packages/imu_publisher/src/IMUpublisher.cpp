@@ -2,6 +2,7 @@
 #include "std_msgs/Float32MultiArray.h"
 #include "std_msgs/String.h"
 #include "imu_publisher/IMU_settings.h"
+#include "imu_publisher/Angles.h"
 
 #include <iostream>
 #include <sstream>
@@ -127,6 +128,9 @@ class LSM9DS1
     float GetRotation(){ return roll;}
 };
 
+float KP = 0.0;
+float KI = 2.0;
+
 class pi_reg
 {
     private :
@@ -146,7 +150,7 @@ class pi_reg
         _Ki = Ki;
     }
 
-    change_PI(float Kp, float Ki)
+    void change_PI(float Kp, float Ki)
     {
         _Kp = Kp;
         _Ki = Ki;
@@ -168,16 +172,16 @@ class pi_reg
     float getError(){ return error;}
 };
 
+
+pi_reg offsetRegulator1(KP, KI);
+pi_reg offsetRegulator2(KP, KI);
+
 void chatterCallback(const imu_publisher::IMU_settings msg)
 {
     offsetRegulator1.change_PI(msg.KP, msg.KI);
     offsetRegulator2.change_PI(msg.KP, msg.KI);
 }
 
-float KP = 0.0;
-float KI = 2.0;
-pi_reg offsetRegulator1(KP, KI);
-pi_reg offsetRegulator2(KP, KI);
 
 
 int main(int argc, char* argv[])
@@ -186,15 +190,12 @@ int main(int argc, char* argv[])
     ros::init(argc, argv, "IMUpublisher");
     //message code
     ros::NodeHandle n;
-    ros::Publisher chatter_pub = n.advertise<std_msgs::Float32MultiArray>("leg_ground_angles", 1);
+    ros::Publisher chatter_pub = n.advertise<imu_publisher::Angles>("leg_ground_angles", 1);
     ros::Subscriber sub = n.subscribe("IMU_settings",1 ,chatterCallback);
     ros::Rate loop_rate(LPS);
-    std_msgs::Float32MultiArray angles;
+    imu_publisher::Angles angles;
 
     
-
-    angles.data.push_back(0.0);
-    angles.data.push_back(0.0);
 
     //IMU code
     char addresse = 0x6a;
@@ -258,8 +259,8 @@ int main(int argc, char* argv[])
         finalAngle2 = gyro_rotation2 - offset2;
 
 
-        angles.data[0] = finalAngle1;
-        angles.data[1] = finalAngle2;
+        angles.leg1_angle = finalAngle1;
+        angles.leg2_angle = finalAngle2;
 
         chatter_pub.publish(angles);
 

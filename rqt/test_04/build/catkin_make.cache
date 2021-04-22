@@ -1,0 +1,2 @@
+rqt_mypkg:test_subscriber
+-DCATKIN_DEVEL_PREFIX=/home/bachelor/Downloads/bachelor/test_04/devel -DCMAKE_INSTALL_PREFIX=/home/bachelor/Downloads/bachelor/test_04/install -G Unix Makefiles

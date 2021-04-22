@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<robot name="origins">
+  <link name="base_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://robot_description/STL/body_link.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="gray">
+        <color rgba="0.4 0.4 0.4 2"/>
+      </material>
+      <origin rpy="1.57075 0 0" xyz="0 0 0.7"/>
+    </visual>
+  </link>
+
+  <link name="leg_01">
+    <visual>
+      <geometry>
+        <mesh filename="package://robot_description/STL/leg_01.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="gray">
+        <color rgba="0.4 0.4 0.4 0.2"/>
+      </material>
+      <origin rpy="1.57075 0 0" xyz="0 0 0"/>
+    </visual>
+  </link>  
+  
+  <link name="leg_02">
+    <visual>
+      <geometry>
+        <mesh filename="package://robot_description/STL/leg_02.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="gray">
+        <color rgba="0.4 0.4 0.4 1.0"/>
+      </material>
+      <origin rpy="1.57075 0 0" xyz="0 0 0"/>
+    </visual>
+  </link>
+
+  <joint name="base_to_leg_01" type="revolute">
+    <parent link="base_link"/>
+    <child link="leg_01"/>
+    <origin xyz="0 0 0.7"/>
+    <limit lower="-1.5708" upper="1.5708" effort="10" velocity="3"/>
+  </joint>
+
+  <joint name="base_to_leg_02" type="revolute">
+    <parent link="base_link"/>
+    <child link="leg_02"/>
+    <origin xyz="0 0 0.7"/>
+    <limit lower="-1.5708" upper="1.5708" effort="10" velocity="3"/>
+  </joint>
+
+</robot>

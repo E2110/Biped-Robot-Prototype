@@ -5,7 +5,7 @@ The motor used in the embedded system of the robot are the Maxon 14887 DC motor 
 
 Maxon Motor 14887            |   ESCON 70/10 Servocontroller
 :-------------------------:|:-------------------------:
-![Maxon_motor](assets_motor/176682329_3791733154215068_5268941636711901361_n.jpg)  |  ![Escon](assets_motor/ESCON_7010_Servocontroller.jpg)
+<img src="assets_motor/176682329_3791733154215068_5268941636711901361_n.jpg" width="400" height="400"/> |  ![Escon](assets_motor/ESCON_7010_Servocontroller.jpg)
 
 Before the code for the motor is run its important to configure the servo controller with the ESCON studio software. Work done by a prior bachelor thesis group determined that the maximum required amperage for the motor should be 8.3A, this should be configured with the ESCON software including preforming a autotuning.
 

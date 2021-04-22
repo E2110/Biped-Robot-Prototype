@@ -129,7 +129,7 @@ class LSM9DS1
 };
 
 float KP = 0.0;
-float KI = 2.0;
+float KI = 0.0001;
 
 class pi_reg
 {
@@ -162,7 +162,7 @@ class pi_reg
 
         pout = error * _Kp;
 
-        _integral += error * KI / LPS;
+        _integral += error * _Ki / LPS;
         iout = _integral;
 
         return (pout + iout);
@@ -226,11 +226,7 @@ int main(int argc, char* argv[])
     float gyro_rotation2 = 0.0;
     float acceleration_rotation2 = 0.0;
     float total_rotaion = 0.0;
-
-    std::vector<float> accelerationAngleList;
-    accelerationAngleList.resize(LPS);
-    std::vector<float> gyroAngleList;
-    gyroAngleList.resize(LPS);
+    
     
     float offset1 = 0.0;
     float offset2 = 0.0;

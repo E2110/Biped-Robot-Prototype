@@ -378,10 +378,10 @@ int main(int argc, char **argv)
 
     while (ros::ok())
     {
-        flt.leg1TorsoAngle = (float)encoder1.getPosition()*360/(pulsesPrRev * 4 * gearRatio);
-        flt.leg2TorsoAngle = (float)encoder2.getPosition()*360/(pulsesPrRev * 4 * gearRatio);
+        flt.leg1_torso_angle = (float)encoder1.getPosition()*360/(pulsesPrRev * 4 * gearRatio);
+        flt.leg2_torso_angle = (float)encoder2.getPosition()*360/(pulsesPrRev * 4 * gearRatio);
 
-        //chatter_pub.publish(flt.leg1TorsoAngle);
+        chatter_pub.publish(flt);
         ros::spinOnce();
         loop_rate.sleep();
         ++count;

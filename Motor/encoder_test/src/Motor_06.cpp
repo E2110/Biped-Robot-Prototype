@@ -24,8 +24,8 @@ class motor
     motor(int pinNumber)
     {
         m_dutyCycle = 1000000;
-        setpwmPin (14);
-        std::cout<< "Running with pin 14" << std::endl;
+        setpwmPin (pinNumber);
+        std::cout<< "Running with pin " << pinNumber << std::end1;
     }
     void setDutyCycle(int dutyC)
     {
@@ -111,13 +111,28 @@ class motor
                         m_GPIONumber = "115";
                         break;
 
+                        case 23:
+                        m_IOpinpath = "P9_23_pinmux";
+                        m_GPIONumber = "49";
+                        break;
+
                         default:
                         std::cout<<IO_pin << " is not an implemented pin"<< std::endl;
                         break;
 
                     }
                 break;
-              
+
+                case 8
+                    switch (IO_pin)
+                    {
+                    case 34:
+                        m_IOpinpath = "P8_34_pinmux";
+                        m_GPIONumber = "81";
+                        break;
+                    }
+                break;
+
                 default:
                 std::cout<<"pin : " <<cape_nr << " is an invalid cape_nr !" <<std::endl;
                 break;
@@ -329,9 +344,7 @@ void chatterCallback(const std_msgs::Int32::ConstPtr& msg)
     //ros code
     ROS_INFO("servo_recive : %d", msg->data);
     int encoderPos = msg->data;
-
     //servo code
-
     if (encoderPos < 1000)
     {
         control.toggleMotorPin(0);  //set GPIO pin 25 on cape 9 to 0
@@ -361,14 +374,14 @@ int main(int argc, char **argv)
     control.setDutyCycle(8000000);  // 80%
     control.setPWMfreq(10000000);   //100Hz
     control.GPIOtoggle(9,27,1); // MOTOR OFF
-    control.GPIOtoggle(9,25,0); // MOTOR OFF
+    control.GPIOtoggle(9,25,1); // MOTOR OFF
     
 
     int count = 0;
     float leg1Angle;
     float leg2Angle;
         
-    encoder_test::encoder_angles flt;
+   encoder_test::encoder_angles flt;
 
     //ros code
     ros::init(argc, argv, "motor_subscriber");
@@ -378,8 +391,8 @@ int main(int argc, char **argv)
 
     while (ros::ok())
     {
-        flt.leg1_torso_angle = (float)encoder1.getPosition()*360/(pulsesPrRev * 4 * gearRatio);
-        flt.leg2_torso_angle = (float)encoder2.getPosition()*360/(pulsesPrRev * 4 * gearRatio);
+        flt.leg1_torso_angle = (float)encoder1.getPosition() * 360 / (pulsesPrRev * 4 * gearRatio);
+        flt.leg2_torso_angle = (float)encoder2.getPosition() * 360 / (pulsesPrRev * 4 * gearRatio);
 
         chatter_pub.publish(flt);
         ros::spinOnce();

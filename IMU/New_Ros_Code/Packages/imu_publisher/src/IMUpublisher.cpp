@@ -2,7 +2,7 @@
 #include "std_msgs/Float32MultiArray.h"
 #include "std_msgs/String.h"
 #include "imu_publisher/IMU_settings.h"
-#include "imu_publisher/Angles.h"
+#include "imu_publisher/imu_angles.h"
 
 #include <iostream>
 #include <sstream>
@@ -190,10 +190,10 @@ int main(int argc, char* argv[])
     ros::init(argc, argv, "IMUpublisher");
     //message code
     ros::NodeHandle n;
-    ros::Publisher chatter_pub = n.advertise<imu_publisher::Angles>("leg_ground_angles", 1);
+    ros::Publisher chatter_pub = n.advertise<imu_publisher::imu_angles>("leg_ground_angles", 1);
     ros::Subscriber sub = n.subscribe("IMU_settings",1 ,chatterCallback);
     ros::Rate loop_rate(LPS);
-    imu_publisher::Angles angles;
+    imu_publisher::imu_angles angles;
 
     
 

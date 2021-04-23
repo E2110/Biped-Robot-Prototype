@@ -1,5 +1,6 @@
 #include "ros/ros.h"
 #include "std_msgs/Float32MultiArray.h"
+#include "encoder_test/encoder_angles.h"
 
 #include <iostream>
 #include <fstream>
@@ -367,29 +368,20 @@ int main(int argc, char **argv)
     float leg1Angle;
     float leg2Angle;
         
-    std_msgs::Float32MultiArray flt;
-    flt.data.push_back(0.0);
-    flt.data.push_back(0.0);
+    encoder_test::encoder_angles flt;
 
     //ros code
     ros::init(argc, argv, "motor_subscriber");
     ros::NodeHandle n;
-    ros::Publisher chatter_pub = n.advertise<std_msgs::Float32MultiArray>("leg_torso_angles", 1);
+    ros::Publisher chatter_pub = n.advertise<encoder_test::encoder_angles>("leg_torso_angles", 1);
     ros::Rate loop_rate(100);
 
     while (ros::ok())
     {
-        
+        flt.leg1TorsoAngle = (float)encoder1.getPosition()*360/(pulsesPrRev * 4 * gearRatio);
+        flt.leg2TorsoAngle = (float)encoder2.getPosition()*360/(pulsesPrRev * 4 * gearRatio);
 
-        leg1Angle = (float)encoder1.getPosition()*360/(pulsesPrRev * 4 * gearRatio);
-        leg2Angle = (float)encoder2.getPosition()*360/(pulsesPrRev * 4 * gearRatio);
-
-        flt.data[0] = leg1Angle;
-        flt.data[1] = leg2Angle;
-
-        ROS_INFO("%f", leg1Angle);
-
-        chatter_pub.publish(flt);
+        //chatter_pub.publish(flt.leg1TorsoAngle);
         ros::spinOnce();
         loop_rate.sleep();
         ++count;

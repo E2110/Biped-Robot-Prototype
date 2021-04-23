@@ -2,6 +2,15 @@
 <robot name="origins">
   <link name="base_link">
     <visual>
+      <material name="gray">
+        <color rgba="0.4 0.4 0.4 2"/>
+      </material>
+      <origin rpy="1.57075 0 0" xyz="0 0 0.7"/>
+    </visual>
+  </link>  
+  
+  <link name="torso">
+    <visual>
       <geometry>
         <mesh filename="package://robot_description/STL/body_link.stl" scale="0.001 0.001 0.001"/>
       </geometry>
@@ -50,4 +59,10 @@
     <limit lower="-1.5708" upper="1.5708" effort="10" velocity="3"/>
   </joint>
 
+  <joint name="base_to_torso" type="revolute">
+    <parent link="base_link"/>
+    <child link="torso"/>
+    <origin xyz="0 0 0.7"/>
+    <limit lower="-1.5708" upper="1.5708" effort="10" velocity="3"/>
+  </joint>
 </robot>

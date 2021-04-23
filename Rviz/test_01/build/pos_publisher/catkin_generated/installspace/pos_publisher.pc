@@ -1,8 +1,0 @@
-prefix=/home/bachelor/Downloads/bachelor/test_01/install
-
-Name: pos_publisher
-Description: Description of pos_publisher
-Version: 0.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 

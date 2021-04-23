@@ -7,9 +7,7 @@
 # new environment variables
 
 # modified environment variables
-export CMAKE_PREFIX_PATH="/home/bachelor/Downloads/bachelor/test_01/devel:$CMAKE_PREFIX_PATH"
-export LD_LIBRARY_PATH="/home/bachelor/Downloads/bachelor/test_01/devel/lib:$LD_LIBRARY_PATH"
-export PKG_CONFIG_PATH="/home/bachelor/Downloads/bachelor/test_01/devel/lib/pkgconfig:$PKG_CONFIG_PATH"
-export PWD='/home/bachelor/Downloads/bachelor/test_01/build'
-export ROSLISP_PACKAGE_DIRECTORIES='/home/bachelor/Downloads/bachelor/test_01/devel/share/common-lisp'
-export ROS_PACKAGE_PATH="/home/bachelor/Downloads/bachelor/test_01/src:$ROS_PACKAGE_PATH"
+export CMAKE_PREFIX_PATH="/home/bachelor/GIT/Biped-Robot-Prototype/Rviz/test_01/devel:$CMAKE_PREFIX_PATH"
+export PWD='/home/bachelor/GIT/Biped-Robot-Prototype/Rviz/test_01/build'
+export ROSLISP_PACKAGE_DIRECTORIES='/home/bachelor/GIT/Biped-Robot-Prototype/Rviz/test_01/devel/share/common-lisp'
+export ROS_PACKAGE_PATH="/home/bachelor/GIT/Biped-Robot-Prototype/Rviz/test_01/src:$ROS_PACKAGE_PATH"

@@ -1,8 +1,8 @@
-# Install script for directory: /home/bachelor/Downloads/bachelor/test_01/src/robot_description
+# Install script for directory: /home/bachelor/GIT/Biped-Robot-Prototype/Rviz/test_01/src/robot_description
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/bachelor/Downloads/bachelor/test_01/install")
+  set(CMAKE_INSTALL_PREFIX "/home/bachelor/GIT/Biped-Robot-Prototype/Rviz/test_01/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -38,17 +38,17 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/bachelor/Downloads/bachelor/test_01/build/robot_description/catkin_generated/installspace/robot_description.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/bachelor/GIT/Biped-Robot-Prototype/Rviz/test_01/build/robot_description/catkin_generated/installspace/robot_description.pc")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/robot_description/cmake" TYPE FILE FILES
-    "/home/bachelor/Downloads/bachelor/test_01/build/robot_description/catkin_generated/installspace/robot_descriptionConfig.cmake"
-    "/home/bachelor/Downloads/bachelor/test_01/build/robot_description/catkin_generated/installspace/robot_descriptionConfig-version.cmake"
+    "/home/bachelor/GIT/Biped-Robot-Prototype/Rviz/test_01/build/robot_description/catkin_generated/installspace/robot_descriptionConfig.cmake"
+    "/home/bachelor/GIT/Biped-Robot-Prototype/Rviz/test_01/build/robot_description/catkin_generated/installspace/robot_descriptionConfig-version.cmake"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/robot_description" TYPE FILE FILES "/home/bachelor/Downloads/bachelor/test_01/src/robot_description/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/robot_description" TYPE FILE FILES "/home/bachelor/GIT/Biped-Robot-Prototype/Rviz/test_01/src/robot_description/package.xml")
 endif()
 

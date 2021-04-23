@@ -1,0 +1,2 @@
+float32 leg1TorsoAngle
+float32 leg2TorsoAngle

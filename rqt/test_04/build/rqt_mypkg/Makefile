@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/bachelor/Downloads/bachelor/test_04/src
+CMAKE_SOURCE_DIR = /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/bachelor/Downloads/bachelor/test_04/build
+CMAKE_BINARY_DIR = /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -92,17 +92,6 @@ install/fast: preinstall/fast
 	/usr/bin/cmake -P cmake_install.cmake
 .PHONY : install/fast
 
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
-
 # Special rule for the target test
 test:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
@@ -135,16 +124,27 @@ list_install_components/fast: list_install_components
 
 .PHONY : list_install_components/fast
 
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
+
 # The main all target
 all: cmake_check_build_system
-	cd /home/bachelor/Downloads/bachelor/test_04/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/bachelor/Downloads/bachelor/test_04/build/CMakeFiles /home/bachelor/Downloads/bachelor/test_04/build/rqt_mypkg/CMakeFiles/progress.marks
-	cd /home/bachelor/Downloads/bachelor/test_04/build && $(MAKE) -f CMakeFiles/Makefile2 rqt_mypkg/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/bachelor/Downloads/bachelor/test_04/build/CMakeFiles 0
+	cd /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build/CMakeFiles /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build/rqt_mypkg/CMakeFiles/progress.marks
+	cd /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build && $(MAKE) -f CMakeFiles/Makefile2 rqt_mypkg/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/bachelor/Downloads/bachelor/test_04/build && $(MAKE) -f CMakeFiles/Makefile2 rqt_mypkg/clean
+	cd /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build && $(MAKE) -f CMakeFiles/Makefile2 rqt_mypkg/clean
 .PHONY : clean
 
 # The main clean target
@@ -154,22 +154,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/bachelor/Downloads/bachelor/test_04/build && $(MAKE) -f CMakeFiles/Makefile2 rqt_mypkg/preinstall
+	cd /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build && $(MAKE) -f CMakeFiles/Makefile2 rqt_mypkg/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/bachelor/Downloads/bachelor/test_04/build && $(MAKE) -f CMakeFiles/Makefile2 rqt_mypkg/preinstall
+	cd /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build && $(MAKE) -f CMakeFiles/Makefile2 rqt_mypkg/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/bachelor/Downloads/bachelor/test_04/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_py.dir/rule:
-	cd /home/bachelor/Downloads/bachelor/test_04/build && $(MAKE) -f CMakeFiles/Makefile2 rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_py.dir/rule
+	cd /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build && $(MAKE) -f CMakeFiles/Makefile2 rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_py.dir/rule
 .PHONY : rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_py.dir/rule
 
 # Convenience name for target.
@@ -179,192 +179,12 @@ rqt_mypkg_generate_messages_py: rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages
 
 # fast build rule for target.
 rqt_mypkg_generate_messages_py/fast:
-	cd /home/bachelor/Downloads/bachelor/test_04/build && $(MAKE) -f rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_py.dir/build.make rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_py.dir/build
+	cd /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build && $(MAKE) -f rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_py.dir/build.make rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_py.dir/build
 .PHONY : rqt_mypkg_generate_messages_py/fast
 
 # Convenience name for target.
-rqt_mypkg/CMakeFiles/rqt_mypkg_gennodejs.dir/rule:
-	cd /home/bachelor/Downloads/bachelor/test_04/build && $(MAKE) -f CMakeFiles/Makefile2 rqt_mypkg/CMakeFiles/rqt_mypkg_gennodejs.dir/rule
-.PHONY : rqt_mypkg/CMakeFiles/rqt_mypkg_gennodejs.dir/rule
-
-# Convenience name for target.
-rqt_mypkg_gennodejs: rqt_mypkg/CMakeFiles/rqt_mypkg_gennodejs.dir/rule
-
-.PHONY : rqt_mypkg_gennodejs
-
-# fast build rule for target.
-rqt_mypkg_gennodejs/fast:
-	cd /home/bachelor/Downloads/bachelor/test_04/build && $(MAKE) -f rqt_mypkg/CMakeFiles/rqt_mypkg_gennodejs.dir/build.make rqt_mypkg/CMakeFiles/rqt_mypkg_gennodejs.dir/build
-.PHONY : rqt_mypkg_gennodejs/fast
-
-# Convenience name for target.
-rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages.dir/rule:
-	cd /home/bachelor/Downloads/bachelor/test_04/build && $(MAKE) -f CMakeFiles/Makefile2 rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages.dir/rule
-.PHONY : rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages.dir/rule
-
-# Convenience name for target.
-rqt_mypkg_generate_messages: rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages.dir/rule
-
-.PHONY : rqt_mypkg_generate_messages
-
-# fast build rule for target.
-rqt_mypkg_generate_messages/fast:
-	cd /home/bachelor/Downloads/bachelor/test_04/build && $(MAKE) -f rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages.dir/build.make rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages.dir/build
-.PHONY : rqt_mypkg_generate_messages/fast
-
-# Convenience name for target.
-rqt_mypkg/CMakeFiles/std_msgs_generate_messages_py.dir/rule:
-	cd /home/bachelor/Downloads/bachelor/test_04/build && $(MAKE) -f CMakeFiles/Makefile2 rqt_mypkg/CMakeFiles/std_msgs_generate_messages_py.dir/rule
-.PHONY : rqt_mypkg/CMakeFiles/std_msgs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-std_msgs_generate_messages_py: rqt_mypkg/CMakeFiles/std_msgs_generate_messages_py.dir/rule
-
-.PHONY : std_msgs_generate_messages_py
-
-# fast build rule for target.
-std_msgs_generate_messages_py/fast:
-	cd /home/bachelor/Downloads/bachelor/test_04/build && $(MAKE) -f rqt_mypkg/CMakeFiles/std_msgs_generate_messages_py.dir/build.make rqt_mypkg/CMakeFiles/std_msgs_generate_messages_py.dir/build
-.PHONY : std_msgs_generate_messages_py/fast
-
-# Convenience name for target.
-rqt_mypkg/CMakeFiles/rqt_mypkg_genpy.dir/rule:
-	cd /home/bachelor/Downloads/bachelor/test_04/build && $(MAKE) -f CMakeFiles/Makefile2 rqt_mypkg/CMakeFiles/rqt_mypkg_genpy.dir/rule
-.PHONY : rqt_mypkg/CMakeFiles/rqt_mypkg_genpy.dir/rule
-
-# Convenience name for target.
-rqt_mypkg_genpy: rqt_mypkg/CMakeFiles/rqt_mypkg_genpy.dir/rule
-
-.PHONY : rqt_mypkg_genpy
-
-# fast build rule for target.
-rqt_mypkg_genpy/fast:
-	cd /home/bachelor/Downloads/bachelor/test_04/build && $(MAKE) -f rqt_mypkg/CMakeFiles/rqt_mypkg_genpy.dir/build.make rqt_mypkg/CMakeFiles/rqt_mypkg_genpy.dir/build
-.PHONY : rqt_mypkg_genpy/fast
-
-# Convenience name for target.
-rqt_mypkg/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule:
-	cd /home/bachelor/Downloads/bachelor/test_04/build && $(MAKE) -f CMakeFiles/Makefile2 rqt_mypkg/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
-.PHONY : rqt_mypkg/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-std_msgs_generate_messages_lisp: rqt_mypkg/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
-
-.PHONY : std_msgs_generate_messages_lisp
-
-# fast build rule for target.
-std_msgs_generate_messages_lisp/fast:
-	cd /home/bachelor/Downloads/bachelor/test_04/build && $(MAKE) -f rqt_mypkg/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make rqt_mypkg/CMakeFiles/std_msgs_generate_messages_lisp.dir/build
-.PHONY : std_msgs_generate_messages_lisp/fast
-
-# Convenience name for target.
-rqt_mypkg/CMakeFiles/_rqt_mypkg_generate_messages_check_deps_Angles.dir/rule:
-	cd /home/bachelor/Downloads/bachelor/test_04/build && $(MAKE) -f CMakeFiles/Makefile2 rqt_mypkg/CMakeFiles/_rqt_mypkg_generate_messages_check_deps_Angles.dir/rule
-.PHONY : rqt_mypkg/CMakeFiles/_rqt_mypkg_generate_messages_check_deps_Angles.dir/rule
-
-# Convenience name for target.
-_rqt_mypkg_generate_messages_check_deps_Angles: rqt_mypkg/CMakeFiles/_rqt_mypkg_generate_messages_check_deps_Angles.dir/rule
-
-.PHONY : _rqt_mypkg_generate_messages_check_deps_Angles
-
-# fast build rule for target.
-_rqt_mypkg_generate_messages_check_deps_Angles/fast:
-	cd /home/bachelor/Downloads/bachelor/test_04/build && $(MAKE) -f rqt_mypkg/CMakeFiles/_rqt_mypkg_generate_messages_check_deps_Angles.dir/build.make rqt_mypkg/CMakeFiles/_rqt_mypkg_generate_messages_check_deps_Angles.dir/build
-.PHONY : _rqt_mypkg_generate_messages_check_deps_Angles/fast
-
-# Convenience name for target.
-rqt_mypkg/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule:
-	cd /home/bachelor/Downloads/bachelor/test_04/build && $(MAKE) -f CMakeFiles/Makefile2 rqt_mypkg/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
-.PHONY : rqt_mypkg/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-std_msgs_generate_messages_cpp: rqt_mypkg/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
-
-.PHONY : std_msgs_generate_messages_cpp
-
-# fast build rule for target.
-std_msgs_generate_messages_cpp/fast:
-	cd /home/bachelor/Downloads/bachelor/test_04/build && $(MAKE) -f rqt_mypkg/CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make rqt_mypkg/CMakeFiles/std_msgs_generate_messages_cpp.dir/build
-.PHONY : std_msgs_generate_messages_cpp/fast
-
-# Convenience name for target.
-rqt_mypkg/CMakeFiles/rqt_mypkg_genlisp.dir/rule:
-	cd /home/bachelor/Downloads/bachelor/test_04/build && $(MAKE) -f CMakeFiles/Makefile2 rqt_mypkg/CMakeFiles/rqt_mypkg_genlisp.dir/rule
-.PHONY : rqt_mypkg/CMakeFiles/rqt_mypkg_genlisp.dir/rule
-
-# Convenience name for target.
-rqt_mypkg_genlisp: rqt_mypkg/CMakeFiles/rqt_mypkg_genlisp.dir/rule
-
-.PHONY : rqt_mypkg_genlisp
-
-# fast build rule for target.
-rqt_mypkg_genlisp/fast:
-	cd /home/bachelor/Downloads/bachelor/test_04/build && $(MAKE) -f rqt_mypkg/CMakeFiles/rqt_mypkg_genlisp.dir/build.make rqt_mypkg/CMakeFiles/rqt_mypkg_genlisp.dir/build
-.PHONY : rqt_mypkg_genlisp/fast
-
-# Convenience name for target.
-rqt_mypkg/CMakeFiles/std_msgs_generate_messages_eus.dir/rule:
-	cd /home/bachelor/Downloads/bachelor/test_04/build && $(MAKE) -f CMakeFiles/Makefile2 rqt_mypkg/CMakeFiles/std_msgs_generate_messages_eus.dir/rule
-.PHONY : rqt_mypkg/CMakeFiles/std_msgs_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-std_msgs_generate_messages_eus: rqt_mypkg/CMakeFiles/std_msgs_generate_messages_eus.dir/rule
-
-.PHONY : std_msgs_generate_messages_eus
-
-# fast build rule for target.
-std_msgs_generate_messages_eus/fast:
-	cd /home/bachelor/Downloads/bachelor/test_04/build && $(MAKE) -f rqt_mypkg/CMakeFiles/std_msgs_generate_messages_eus.dir/build.make rqt_mypkg/CMakeFiles/std_msgs_generate_messages_eus.dir/build
-.PHONY : std_msgs_generate_messages_eus/fast
-
-# Convenience name for target.
-rqt_mypkg/CMakeFiles/_rqt_mypkg_generate_messages_check_deps_Motor_settings.dir/rule:
-	cd /home/bachelor/Downloads/bachelor/test_04/build && $(MAKE) -f CMakeFiles/Makefile2 rqt_mypkg/CMakeFiles/_rqt_mypkg_generate_messages_check_deps_Motor_settings.dir/rule
-.PHONY : rqt_mypkg/CMakeFiles/_rqt_mypkg_generate_messages_check_deps_Motor_settings.dir/rule
-
-# Convenience name for target.
-_rqt_mypkg_generate_messages_check_deps_Motor_settings: rqt_mypkg/CMakeFiles/_rqt_mypkg_generate_messages_check_deps_Motor_settings.dir/rule
-
-.PHONY : _rqt_mypkg_generate_messages_check_deps_Motor_settings
-
-# fast build rule for target.
-_rqt_mypkg_generate_messages_check_deps_Motor_settings/fast:
-	cd /home/bachelor/Downloads/bachelor/test_04/build && $(MAKE) -f rqt_mypkg/CMakeFiles/_rqt_mypkg_generate_messages_check_deps_Motor_settings.dir/build.make rqt_mypkg/CMakeFiles/_rqt_mypkg_generate_messages_check_deps_Motor_settings.dir/build
-.PHONY : _rqt_mypkg_generate_messages_check_deps_Motor_settings/fast
-
-# Convenience name for target.
-rqt_mypkg/CMakeFiles/_rqt_mypkg_generate_messages_check_deps_IMU_settings.dir/rule:
-	cd /home/bachelor/Downloads/bachelor/test_04/build && $(MAKE) -f CMakeFiles/Makefile2 rqt_mypkg/CMakeFiles/_rqt_mypkg_generate_messages_check_deps_IMU_settings.dir/rule
-.PHONY : rqt_mypkg/CMakeFiles/_rqt_mypkg_generate_messages_check_deps_IMU_settings.dir/rule
-
-# Convenience name for target.
-_rqt_mypkg_generate_messages_check_deps_IMU_settings: rqt_mypkg/CMakeFiles/_rqt_mypkg_generate_messages_check_deps_IMU_settings.dir/rule
-
-.PHONY : _rqt_mypkg_generate_messages_check_deps_IMU_settings
-
-# fast build rule for target.
-_rqt_mypkg_generate_messages_check_deps_IMU_settings/fast:
-	cd /home/bachelor/Downloads/bachelor/test_04/build && $(MAKE) -f rqt_mypkg/CMakeFiles/_rqt_mypkg_generate_messages_check_deps_IMU_settings.dir/build.make rqt_mypkg/CMakeFiles/_rqt_mypkg_generate_messages_check_deps_IMU_settings.dir/build
-.PHONY : _rqt_mypkg_generate_messages_check_deps_IMU_settings/fast
-
-# Convenience name for target.
-rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_cpp.dir/rule:
-	cd /home/bachelor/Downloads/bachelor/test_04/build && $(MAKE) -f CMakeFiles/Makefile2 rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_cpp.dir/rule
-.PHONY : rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-rqt_mypkg_generate_messages_cpp: rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_cpp.dir/rule
-
-.PHONY : rqt_mypkg_generate_messages_cpp
-
-# fast build rule for target.
-rqt_mypkg_generate_messages_cpp/fast:
-	cd /home/bachelor/Downloads/bachelor/test_04/build && $(MAKE) -f rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_cpp.dir/build.make rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_cpp.dir/build
-.PHONY : rqt_mypkg_generate_messages_cpp/fast
-
-# Convenience name for target.
 rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_nodejs.dir/rule:
-	cd /home/bachelor/Downloads/bachelor/test_04/build && $(MAKE) -f CMakeFiles/Makefile2 rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_nodejs.dir/rule
+	cd /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build && $(MAKE) -f CMakeFiles/Makefile2 rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_nodejs.dir/rule
 .PHONY : rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_nodejs.dir/rule
 
 # Convenience name for target.
@@ -374,72 +194,192 @@ rqt_mypkg_generate_messages_nodejs: rqt_mypkg/CMakeFiles/rqt_mypkg_generate_mess
 
 # fast build rule for target.
 rqt_mypkg_generate_messages_nodejs/fast:
-	cd /home/bachelor/Downloads/bachelor/test_04/build && $(MAKE) -f rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_nodejs.dir/build.make rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_nodejs.dir/build
+	cd /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build && $(MAKE) -f rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_nodejs.dir/build.make rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_nodejs.dir/build
 .PHONY : rqt_mypkg_generate_messages_nodejs/fast
 
 # Convenience name for target.
-rqt_mypkg/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule:
-	cd /home/bachelor/Downloads/bachelor/test_04/build && $(MAKE) -f CMakeFiles/Makefile2 rqt_mypkg/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule
-.PHONY : rqt_mypkg/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule
+rqt_mypkg/CMakeFiles/rqt_mypkg_gennodejs.dir/rule:
+	cd /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build && $(MAKE) -f CMakeFiles/Makefile2 rqt_mypkg/CMakeFiles/rqt_mypkg_gennodejs.dir/rule
+.PHONY : rqt_mypkg/CMakeFiles/rqt_mypkg_gennodejs.dir/rule
 
 # Convenience name for target.
-std_msgs_generate_messages_nodejs: rqt_mypkg/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule
+rqt_mypkg_gennodejs: rqt_mypkg/CMakeFiles/rqt_mypkg_gennodejs.dir/rule
 
-.PHONY : std_msgs_generate_messages_nodejs
+.PHONY : rqt_mypkg_gennodejs
 
 # fast build rule for target.
-std_msgs_generate_messages_nodejs/fast:
-	cd /home/bachelor/Downloads/bachelor/test_04/build && $(MAKE) -f rqt_mypkg/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build.make rqt_mypkg/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build
-.PHONY : std_msgs_generate_messages_nodejs/fast
+rqt_mypkg_gennodejs/fast:
+	cd /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build && $(MAKE) -f rqt_mypkg/CMakeFiles/rqt_mypkg_gennodejs.dir/build.make rqt_mypkg/CMakeFiles/rqt_mypkg_gennodejs.dir/build
+.PHONY : rqt_mypkg_gennodejs/fast
 
 # Convenience name for target.
-rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_lisp.dir/rule:
-	cd /home/bachelor/Downloads/bachelor/test_04/build && $(MAKE) -f CMakeFiles/Makefile2 rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_lisp.dir/rule
-.PHONY : rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_lisp.dir/rule
+rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages.dir/rule:
+	cd /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build && $(MAKE) -f CMakeFiles/Makefile2 rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages.dir/rule
+.PHONY : rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages.dir/rule
 
 # Convenience name for target.
-rqt_mypkg_generate_messages_lisp: rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_lisp.dir/rule
+rqt_mypkg_generate_messages: rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages.dir/rule
 
-.PHONY : rqt_mypkg_generate_messages_lisp
+.PHONY : rqt_mypkg_generate_messages
 
 # fast build rule for target.
-rqt_mypkg_generate_messages_lisp/fast:
-	cd /home/bachelor/Downloads/bachelor/test_04/build && $(MAKE) -f rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_lisp.dir/build.make rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_lisp.dir/build
-.PHONY : rqt_mypkg_generate_messages_lisp/fast
+rqt_mypkg_generate_messages/fast:
+	cd /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build && $(MAKE) -f rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages.dir/build.make rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages.dir/build
+.PHONY : rqt_mypkg_generate_messages/fast
 
 # Convenience name for target.
-rqt_mypkg/CMakeFiles/rqt_mypkg_gencpp.dir/rule:
-	cd /home/bachelor/Downloads/bachelor/test_04/build && $(MAKE) -f CMakeFiles/Makefile2 rqt_mypkg/CMakeFiles/rqt_mypkg_gencpp.dir/rule
-.PHONY : rqt_mypkg/CMakeFiles/rqt_mypkg_gencpp.dir/rule
+rqt_mypkg/CMakeFiles/std_msgs_generate_messages_py.dir/rule:
+	cd /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build && $(MAKE) -f CMakeFiles/Makefile2 rqt_mypkg/CMakeFiles/std_msgs_generate_messages_py.dir/rule
+.PHONY : rqt_mypkg/CMakeFiles/std_msgs_generate_messages_py.dir/rule
 
 # Convenience name for target.
-rqt_mypkg_gencpp: rqt_mypkg/CMakeFiles/rqt_mypkg_gencpp.dir/rule
+std_msgs_generate_messages_py: rqt_mypkg/CMakeFiles/std_msgs_generate_messages_py.dir/rule
 
-.PHONY : rqt_mypkg_gencpp
+.PHONY : std_msgs_generate_messages_py
 
 # fast build rule for target.
-rqt_mypkg_gencpp/fast:
-	cd /home/bachelor/Downloads/bachelor/test_04/build && $(MAKE) -f rqt_mypkg/CMakeFiles/rqt_mypkg_gencpp.dir/build.make rqt_mypkg/CMakeFiles/rqt_mypkg_gencpp.dir/build
-.PHONY : rqt_mypkg_gencpp/fast
+std_msgs_generate_messages_py/fast:
+	cd /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build && $(MAKE) -f rqt_mypkg/CMakeFiles/std_msgs_generate_messages_py.dir/build.make rqt_mypkg/CMakeFiles/std_msgs_generate_messages_py.dir/build
+.PHONY : std_msgs_generate_messages_py/fast
 
 # Convenience name for target.
-rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_eus.dir/rule:
-	cd /home/bachelor/Downloads/bachelor/test_04/build && $(MAKE) -f CMakeFiles/Makefile2 rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_eus.dir/rule
-.PHONY : rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_eus.dir/rule
+rqt_mypkg/CMakeFiles/rqt_mypkg_genpy.dir/rule:
+	cd /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build && $(MAKE) -f CMakeFiles/Makefile2 rqt_mypkg/CMakeFiles/rqt_mypkg_genpy.dir/rule
+.PHONY : rqt_mypkg/CMakeFiles/rqt_mypkg_genpy.dir/rule
 
 # Convenience name for target.
-rqt_mypkg_generate_messages_eus: rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_eus.dir/rule
+rqt_mypkg_genpy: rqt_mypkg/CMakeFiles/rqt_mypkg_genpy.dir/rule
 
-.PHONY : rqt_mypkg_generate_messages_eus
+.PHONY : rqt_mypkg_genpy
 
 # fast build rule for target.
-rqt_mypkg_generate_messages_eus/fast:
-	cd /home/bachelor/Downloads/bachelor/test_04/build && $(MAKE) -f rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_eus.dir/build.make rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_eus.dir/build
-.PHONY : rqt_mypkg_generate_messages_eus/fast
+rqt_mypkg_genpy/fast:
+	cd /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build && $(MAKE) -f rqt_mypkg/CMakeFiles/rqt_mypkg_genpy.dir/build.make rqt_mypkg/CMakeFiles/rqt_mypkg_genpy.dir/build
+.PHONY : rqt_mypkg_genpy/fast
+
+# Convenience name for target.
+rqt_mypkg/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule:
+	cd /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build && $(MAKE) -f CMakeFiles/Makefile2 rqt_mypkg/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
+.PHONY : rqt_mypkg/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+std_msgs_generate_messages_lisp: rqt_mypkg/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
+
+.PHONY : std_msgs_generate_messages_lisp
+
+# fast build rule for target.
+std_msgs_generate_messages_lisp/fast:
+	cd /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build && $(MAKE) -f rqt_mypkg/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make rqt_mypkg/CMakeFiles/std_msgs_generate_messages_lisp.dir/build
+.PHONY : std_msgs_generate_messages_lisp/fast
+
+# Convenience name for target.
+rqt_mypkg/CMakeFiles/_rqt_mypkg_generate_messages_check_deps_Angles.dir/rule:
+	cd /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build && $(MAKE) -f CMakeFiles/Makefile2 rqt_mypkg/CMakeFiles/_rqt_mypkg_generate_messages_check_deps_Angles.dir/rule
+.PHONY : rqt_mypkg/CMakeFiles/_rqt_mypkg_generate_messages_check_deps_Angles.dir/rule
+
+# Convenience name for target.
+_rqt_mypkg_generate_messages_check_deps_Angles: rqt_mypkg/CMakeFiles/_rqt_mypkg_generate_messages_check_deps_Angles.dir/rule
+
+.PHONY : _rqt_mypkg_generate_messages_check_deps_Angles
+
+# fast build rule for target.
+_rqt_mypkg_generate_messages_check_deps_Angles/fast:
+	cd /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build && $(MAKE) -f rqt_mypkg/CMakeFiles/_rqt_mypkg_generate_messages_check_deps_Angles.dir/build.make rqt_mypkg/CMakeFiles/_rqt_mypkg_generate_messages_check_deps_Angles.dir/build
+.PHONY : _rqt_mypkg_generate_messages_check_deps_Angles/fast
+
+# Convenience name for target.
+rqt_mypkg/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule:
+	cd /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build && $(MAKE) -f CMakeFiles/Makefile2 rqt_mypkg/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
+.PHONY : rqt_mypkg/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+std_msgs_generate_messages_cpp: rqt_mypkg/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
+
+.PHONY : std_msgs_generate_messages_cpp
+
+# fast build rule for target.
+std_msgs_generate_messages_cpp/fast:
+	cd /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build && $(MAKE) -f rqt_mypkg/CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make rqt_mypkg/CMakeFiles/std_msgs_generate_messages_cpp.dir/build
+.PHONY : std_msgs_generate_messages_cpp/fast
+
+# Convenience name for target.
+rqt_mypkg/CMakeFiles/rqt_mypkg_genlisp.dir/rule:
+	cd /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build && $(MAKE) -f CMakeFiles/Makefile2 rqt_mypkg/CMakeFiles/rqt_mypkg_genlisp.dir/rule
+.PHONY : rqt_mypkg/CMakeFiles/rqt_mypkg_genlisp.dir/rule
+
+# Convenience name for target.
+rqt_mypkg_genlisp: rqt_mypkg/CMakeFiles/rqt_mypkg_genlisp.dir/rule
+
+.PHONY : rqt_mypkg_genlisp
+
+# fast build rule for target.
+rqt_mypkg_genlisp/fast:
+	cd /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build && $(MAKE) -f rqt_mypkg/CMakeFiles/rqt_mypkg_genlisp.dir/build.make rqt_mypkg/CMakeFiles/rqt_mypkg_genlisp.dir/build
+.PHONY : rqt_mypkg_genlisp/fast
+
+# Convenience name for target.
+rqt_mypkg/CMakeFiles/std_msgs_generate_messages_eus.dir/rule:
+	cd /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build && $(MAKE) -f CMakeFiles/Makefile2 rqt_mypkg/CMakeFiles/std_msgs_generate_messages_eus.dir/rule
+.PHONY : rqt_mypkg/CMakeFiles/std_msgs_generate_messages_eus.dir/rule
+
+# Convenience name for target.
+std_msgs_generate_messages_eus: rqt_mypkg/CMakeFiles/std_msgs_generate_messages_eus.dir/rule
+
+.PHONY : std_msgs_generate_messages_eus
+
+# fast build rule for target.
+std_msgs_generate_messages_eus/fast:
+	cd /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build && $(MAKE) -f rqt_mypkg/CMakeFiles/std_msgs_generate_messages_eus.dir/build.make rqt_mypkg/CMakeFiles/std_msgs_generate_messages_eus.dir/build
+.PHONY : std_msgs_generate_messages_eus/fast
+
+# Convenience name for target.
+rqt_mypkg/CMakeFiles/_rqt_mypkg_generate_messages_check_deps_Motor_settings.dir/rule:
+	cd /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build && $(MAKE) -f CMakeFiles/Makefile2 rqt_mypkg/CMakeFiles/_rqt_mypkg_generate_messages_check_deps_Motor_settings.dir/rule
+.PHONY : rqt_mypkg/CMakeFiles/_rqt_mypkg_generate_messages_check_deps_Motor_settings.dir/rule
+
+# Convenience name for target.
+_rqt_mypkg_generate_messages_check_deps_Motor_settings: rqt_mypkg/CMakeFiles/_rqt_mypkg_generate_messages_check_deps_Motor_settings.dir/rule
+
+.PHONY : _rqt_mypkg_generate_messages_check_deps_Motor_settings
+
+# fast build rule for target.
+_rqt_mypkg_generate_messages_check_deps_Motor_settings/fast:
+	cd /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build && $(MAKE) -f rqt_mypkg/CMakeFiles/_rqt_mypkg_generate_messages_check_deps_Motor_settings.dir/build.make rqt_mypkg/CMakeFiles/_rqt_mypkg_generate_messages_check_deps_Motor_settings.dir/build
+.PHONY : _rqt_mypkg_generate_messages_check_deps_Motor_settings/fast
+
+# Convenience name for target.
+rqt_mypkg/CMakeFiles/_rqt_mypkg_generate_messages_check_deps_IMU_settings.dir/rule:
+	cd /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build && $(MAKE) -f CMakeFiles/Makefile2 rqt_mypkg/CMakeFiles/_rqt_mypkg_generate_messages_check_deps_IMU_settings.dir/rule
+.PHONY : rqt_mypkg/CMakeFiles/_rqt_mypkg_generate_messages_check_deps_IMU_settings.dir/rule
+
+# Convenience name for target.
+_rqt_mypkg_generate_messages_check_deps_IMU_settings: rqt_mypkg/CMakeFiles/_rqt_mypkg_generate_messages_check_deps_IMU_settings.dir/rule
+
+.PHONY : _rqt_mypkg_generate_messages_check_deps_IMU_settings
+
+# fast build rule for target.
+_rqt_mypkg_generate_messages_check_deps_IMU_settings/fast:
+	cd /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build && $(MAKE) -f rqt_mypkg/CMakeFiles/_rqt_mypkg_generate_messages_check_deps_IMU_settings.dir/build.make rqt_mypkg/CMakeFiles/_rqt_mypkg_generate_messages_check_deps_IMU_settings.dir/build
+.PHONY : _rqt_mypkg_generate_messages_check_deps_IMU_settings/fast
+
+# Convenience name for target.
+rqt_mypkg/CMakeFiles/_rqt_mypkg_generate_messages_check_deps_motor_values.dir/rule:
+	cd /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build && $(MAKE) -f CMakeFiles/Makefile2 rqt_mypkg/CMakeFiles/_rqt_mypkg_generate_messages_check_deps_motor_values.dir/rule
+.PHONY : rqt_mypkg/CMakeFiles/_rqt_mypkg_generate_messages_check_deps_motor_values.dir/rule
+
+# Convenience name for target.
+_rqt_mypkg_generate_messages_check_deps_motor_values: rqt_mypkg/CMakeFiles/_rqt_mypkg_generate_messages_check_deps_motor_values.dir/rule
+
+.PHONY : _rqt_mypkg_generate_messages_check_deps_motor_values
+
+# fast build rule for target.
+_rqt_mypkg_generate_messages_check_deps_motor_values/fast:
+	cd /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build && $(MAKE) -f rqt_mypkg/CMakeFiles/_rqt_mypkg_generate_messages_check_deps_motor_values.dir/build.make rqt_mypkg/CMakeFiles/_rqt_mypkg_generate_messages_check_deps_motor_values.dir/build
+.PHONY : _rqt_mypkg_generate_messages_check_deps_motor_values/fast
 
 # Convenience name for target.
 rqt_mypkg/CMakeFiles/rqt_mypkg_geneus.dir/rule:
-	cd /home/bachelor/Downloads/bachelor/test_04/build && $(MAKE) -f CMakeFiles/Makefile2 rqt_mypkg/CMakeFiles/rqt_mypkg_geneus.dir/rule
+	cd /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build && $(MAKE) -f CMakeFiles/Makefile2 rqt_mypkg/CMakeFiles/rqt_mypkg_geneus.dir/rule
 .PHONY : rqt_mypkg/CMakeFiles/rqt_mypkg_geneus.dir/rule
 
 # Convenience name for target.
@@ -449,8 +389,83 @@ rqt_mypkg_geneus: rqt_mypkg/CMakeFiles/rqt_mypkg_geneus.dir/rule
 
 # fast build rule for target.
 rqt_mypkg_geneus/fast:
-	cd /home/bachelor/Downloads/bachelor/test_04/build && $(MAKE) -f rqt_mypkg/CMakeFiles/rqt_mypkg_geneus.dir/build.make rqt_mypkg/CMakeFiles/rqt_mypkg_geneus.dir/build
+	cd /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build && $(MAKE) -f rqt_mypkg/CMakeFiles/rqt_mypkg_geneus.dir/build.make rqt_mypkg/CMakeFiles/rqt_mypkg_geneus.dir/build
 .PHONY : rqt_mypkg_geneus/fast
+
+# Convenience name for target.
+rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_cpp.dir/rule:
+	cd /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build && $(MAKE) -f CMakeFiles/Makefile2 rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_cpp.dir/rule
+.PHONY : rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+rqt_mypkg_generate_messages_cpp: rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_cpp.dir/rule
+
+.PHONY : rqt_mypkg_generate_messages_cpp
+
+# fast build rule for target.
+rqt_mypkg_generate_messages_cpp/fast:
+	cd /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build && $(MAKE) -f rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_cpp.dir/build.make rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_cpp.dir/build
+.PHONY : rqt_mypkg_generate_messages_cpp/fast
+
+# Convenience name for target.
+rqt_mypkg/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule:
+	cd /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build && $(MAKE) -f CMakeFiles/Makefile2 rqt_mypkg/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule
+.PHONY : rqt_mypkg/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule
+
+# Convenience name for target.
+std_msgs_generate_messages_nodejs: rqt_mypkg/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule
+
+.PHONY : std_msgs_generate_messages_nodejs
+
+# fast build rule for target.
+std_msgs_generate_messages_nodejs/fast:
+	cd /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build && $(MAKE) -f rqt_mypkg/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build.make rqt_mypkg/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build
+.PHONY : std_msgs_generate_messages_nodejs/fast
+
+# Convenience name for target.
+rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_lisp.dir/rule:
+	cd /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build && $(MAKE) -f CMakeFiles/Makefile2 rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_lisp.dir/rule
+.PHONY : rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+rqt_mypkg_generate_messages_lisp: rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_lisp.dir/rule
+
+.PHONY : rqt_mypkg_generate_messages_lisp
+
+# fast build rule for target.
+rqt_mypkg_generate_messages_lisp/fast:
+	cd /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build && $(MAKE) -f rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_lisp.dir/build.make rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_lisp.dir/build
+.PHONY : rqt_mypkg_generate_messages_lisp/fast
+
+# Convenience name for target.
+rqt_mypkg/CMakeFiles/rqt_mypkg_gencpp.dir/rule:
+	cd /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build && $(MAKE) -f CMakeFiles/Makefile2 rqt_mypkg/CMakeFiles/rqt_mypkg_gencpp.dir/rule
+.PHONY : rqt_mypkg/CMakeFiles/rqt_mypkg_gencpp.dir/rule
+
+# Convenience name for target.
+rqt_mypkg_gencpp: rqt_mypkg/CMakeFiles/rqt_mypkg_gencpp.dir/rule
+
+.PHONY : rqt_mypkg_gencpp
+
+# fast build rule for target.
+rqt_mypkg_gencpp/fast:
+	cd /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build && $(MAKE) -f rqt_mypkg/CMakeFiles/rqt_mypkg_gencpp.dir/build.make rqt_mypkg/CMakeFiles/rqt_mypkg_gencpp.dir/build
+.PHONY : rqt_mypkg_gencpp/fast
+
+# Convenience name for target.
+rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_eus.dir/rule:
+	cd /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build && $(MAKE) -f CMakeFiles/Makefile2 rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_eus.dir/rule
+.PHONY : rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_eus.dir/rule
+
+# Convenience name for target.
+rqt_mypkg_generate_messages_eus: rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_eus.dir/rule
+
+.PHONY : rqt_mypkg_generate_messages_eus
+
+# fast build rule for target.
+rqt_mypkg_generate_messages_eus/fast:
+	cd /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build && $(MAKE) -f rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_eus.dir/build.make rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_eus.dir/build
+.PHONY : rqt_mypkg_generate_messages_eus/fast
 
 # Help Target
 help:
@@ -461,9 +476,9 @@ help:
 	@echo "... install/strip"
 	@echo "... install/local"
 	@echo "... install"
-	@echo "... rebuild_cache"
 	@echo "... test"
 	@echo "... rqt_mypkg_generate_messages_py"
+	@echo "... rqt_mypkg_generate_messages_nodejs"
 	@echo "... rqt_mypkg_gennodejs"
 	@echo "... rqt_mypkg_generate_messages"
 	@echo "... std_msgs_generate_messages_py"
@@ -477,13 +492,14 @@ help:
 	@echo "... std_msgs_generate_messages_eus"
 	@echo "... _rqt_mypkg_generate_messages_check_deps_Motor_settings"
 	@echo "... _rqt_mypkg_generate_messages_check_deps_IMU_settings"
+	@echo "... rebuild_cache"
+	@echo "... _rqt_mypkg_generate_messages_check_deps_motor_values"
+	@echo "... rqt_mypkg_geneus"
 	@echo "... rqt_mypkg_generate_messages_cpp"
-	@echo "... rqt_mypkg_generate_messages_nodejs"
 	@echo "... std_msgs_generate_messages_nodejs"
 	@echo "... rqt_mypkg_generate_messages_lisp"
 	@echo "... rqt_mypkg_gencpp"
 	@echo "... rqt_mypkg_generate_messages_eus"
-	@echo "... rqt_mypkg_geneus"
 .PHONY : help
 
 
@@ -495,6 +511,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/bachelor/Downloads/bachelor/test_04/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

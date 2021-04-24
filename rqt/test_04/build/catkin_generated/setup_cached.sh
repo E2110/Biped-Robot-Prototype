@@ -7,4 +7,4 @@
 # new environment variables
 
 # modified environment variables
-export PWD='/home/bachelor/Downloads/bachelor/test_04/build'
+export PWD='/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build'

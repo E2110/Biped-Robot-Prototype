@@ -54,6 +54,7 @@ add_message_files(
   IMU_settings.msg
   Motor_settings.msg
   Angles.msg
+  motor_values.msg
 )
 
 ## Generate services in the 'srv' folder

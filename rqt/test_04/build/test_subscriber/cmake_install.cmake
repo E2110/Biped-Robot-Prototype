@@ -1,8 +1,8 @@
-# Install script for directory: /home/bachelor/Downloads/bachelor/test_04/src/test_subscriber
+# Install script for directory: /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/test_subscriber
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/bachelor/Downloads/bachelor/test_04/install")
+  set(CMAKE_INSTALL_PREFIX "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -39,55 +39,55 @@ endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/test_subscriber/msg" TYPE FILE FILES
-    "/home/bachelor/Downloads/bachelor/test_04/src/test_subscriber/msg/IMU_settings.msg"
-    "/home/bachelor/Downloads/bachelor/test_04/src/test_subscriber/msg/Motor_settings.msg"
+    "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/test_subscriber/msg/IMU_settings.msg"
+    "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/test_subscriber/msg/Motor_settings.msg"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/test_subscriber/cmake" TYPE FILE FILES "/home/bachelor/Downloads/bachelor/test_04/build/test_subscriber/catkin_generated/installspace/test_subscriber-msg-paths.cmake")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/test_subscriber/cmake" TYPE FILE FILES "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build/test_subscriber/catkin_generated/installspace/test_subscriber-msg-paths.cmake")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE DIRECTORY FILES "/home/bachelor/Downloads/bachelor/test_04/devel/include/test_subscriber")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE DIRECTORY FILES "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/include/test_subscriber")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/roseus/ros" TYPE DIRECTORY FILES "/home/bachelor/Downloads/bachelor/test_04/devel/share/roseus/ros/test_subscriber")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/roseus/ros" TYPE DIRECTORY FILES "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/share/roseus/ros/test_subscriber")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/common-lisp/ros" TYPE DIRECTORY FILES "/home/bachelor/Downloads/bachelor/test_04/devel/share/common-lisp/ros/test_subscriber")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/common-lisp/ros" TYPE DIRECTORY FILES "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/share/common-lisp/ros/test_subscriber")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/gennodejs/ros" TYPE DIRECTORY FILES "/home/bachelor/Downloads/bachelor/test_04/devel/share/gennodejs/ros/test_subscriber")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/gennodejs/ros" TYPE DIRECTORY FILES "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/share/gennodejs/ros/test_subscriber")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  execute_process(COMMAND "/usr/bin/python2" -m compileall "/home/bachelor/Downloads/bachelor/test_04/devel/lib/python2.7/dist-packages/test_subscriber")
+  execute_process(COMMAND "/usr/bin/python2" -m compileall "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/lib/python2.7/dist-packages/test_subscriber")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/python2.7/dist-packages" TYPE DIRECTORY FILES "/home/bachelor/Downloads/bachelor/test_04/devel/lib/python2.7/dist-packages/test_subscriber")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/python2.7/dist-packages" TYPE DIRECTORY FILES "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/lib/python2.7/dist-packages/test_subscriber")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/bachelor/Downloads/bachelor/test_04/build/test_subscriber/catkin_generated/installspace/test_subscriber.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build/test_subscriber/catkin_generated/installspace/test_subscriber.pc")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/test_subscriber/cmake" TYPE FILE FILES "/home/bachelor/Downloads/bachelor/test_04/build/test_subscriber/catkin_generated/installspace/test_subscriber-msg-extras.cmake")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/test_subscriber/cmake" TYPE FILE FILES "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build/test_subscriber/catkin_generated/installspace/test_subscriber-msg-extras.cmake")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/test_subscriber/cmake" TYPE FILE FILES
-    "/home/bachelor/Downloads/bachelor/test_04/build/test_subscriber/catkin_generated/installspace/test_subscriberConfig.cmake"
-    "/home/bachelor/Downloads/bachelor/test_04/build/test_subscriber/catkin_generated/installspace/test_subscriberConfig-version.cmake"
+    "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build/test_subscriber/catkin_generated/installspace/test_subscriberConfig.cmake"
+    "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build/test_subscriber/catkin_generated/installspace/test_subscriberConfig-version.cmake"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/test_subscriber" TYPE FILE FILES "/home/bachelor/Downloads/bachelor/test_04/src/test_subscriber/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/test_subscriber" TYPE FILE FILES "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/test_subscriber/package.xml")
 endif()
 

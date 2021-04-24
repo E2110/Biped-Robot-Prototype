@@ -7,6 +7,7 @@ from std_msgs.msg import Header
 from rqt_mypkg.msg import IMU_settings
 from rqt_mypkg.msg import Motor_settings
 from rqt_mypkg.msg import Angles
+from rqt_mypkg.msg import motor_values
 
 from ctypes import *
 
@@ -123,7 +124,6 @@ class MyPlugin(Plugin):
         #push button
         Motor_Button = QPushButton("Push", IMU_PI_values_spinners)
         Motor_Button.clicked.connect(self.Motor_Change_PID_values)
-        
 
         #Layout
         Motor_PID_Layout.addWidget(Motor_KP_Lable)
@@ -135,24 +135,54 @@ class MyPlugin(Plugin):
         Motor_PID_Layout.addWidget(Motor_Button)
         Motor_PID_controller.setLayout(Motor_PID_Layout)
 
+                
+
+        Motor_values_sliders = QGroupBox("MotorValues", windowBox)
+        Motor_Layout = QHBoxLayout()
+
+        Motor1_value_label = QLabel("motor 1", Motor_values_sliders)
+        Motor1_Value_Slider = QSlider(Motor_values_sliders)
+        Motor1_Value_Slider.valueChanged.connect(self.changeMotor1Value)
+        Motor1_Value_Slider.setRange(-1000000,1000000)
+
+
+        Motor2_value_label = QLabel("motor 2", Motor_values_sliders)
+        Motor2_Value_Slider = QSlider(Motor_values_sliders)
+        Motor2_Value_Slider.valueChanged.connect(self.changeMotor2Value)
+        Motor2_Value_Slider.setRange(-1000000,1000000)
+
+        Motor_Layout.addWidget(Motor1_value_label)
+        Motor_Layout.addWidget(Motor1_Value_Slider)
+        Motor_Layout.addWidget(Motor2_value_label)
+        Motor_Layout.addWidget(Motor2_Value_Slider)
+        Motor_values_sliders.setLayout(Motor_Layout)
+
+
+
 
         # set the layout of the window
         windowLayout.addWidget(IMU_PI_values_spinners)
         windowLayout.addWidget(Motor_PID_controller)
+        windowLayout.addWidget(Motor_values_sliders)
         windowBox.setLayout(windowLayout)
 
 
         #node message setup      
-        global IMU_str, Motor_str, IMU_publisher, Motor_publisher
-        IMU_publisher = rospy.Publisher('IMU_settings', IMU_settings, queue_size=10)
+        global IMU_str, Motor_str, IMU_publisher, Motor_publisher, motor_values, Motor_Value_publisher
+        IMU_publisher = rospy.Publisher('IMU_settings', IMU_settings, queue_size=1)
         IMU_str = IMU_settings()
         IMU_str.KP = 0.0
         IMU_str.KI = 0.0
-        Motor_publisher = rospy.Publisher('Motor_settings', Motor_settings, queue_size=10)
+        Motor_publisher = rospy.Publisher('Motor_settings', Motor_settings, queue_size=1)
         Motor_str = Motor_settings()
         Motor_str.KP = 0.0
         Motor_str.KI = 0.0
         Motor_str.KD = 0.0
+        Motor_Value_publisher = rospy.Publisher('Motor_values', motor_values, queue_size=1)
+        motor_values = motor_values()
+        motor_values.motor1_value = 0.0
+        motor_values.motor2_value = 0.0
+
 
 
 
@@ -191,6 +221,15 @@ class MyPlugin(Plugin):
 
     def Motor_Change_PID_values(self, value):
         Motor_publisher.publish(Motor_str)
+
+    def changeMotor1Value(self, value):
+        motor_values.motor1_value = float(value) / 10000
+        Motor_Value_publisher.publish(motor_values)
+
+    def changeMotor2Value(self, value):
+        motor_values.motor2_value = float(value) / 10000
+        Motor_Value_publisher.publish(motor_values)
+
 
     #def trigger_configuration(self):
         # Comment in to signal that the plugin has a way to configure

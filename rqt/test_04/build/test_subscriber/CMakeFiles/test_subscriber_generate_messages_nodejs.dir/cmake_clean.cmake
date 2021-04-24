@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/test_subscriber_generate_messages_nodejs"
-  "/home/bachelor/Downloads/bachelor/test_04/devel/share/gennodejs/ros/test_subscriber/msg/Motor_settings.js"
-  "/home/bachelor/Downloads/bachelor/test_04/devel/share/gennodejs/ros/test_subscriber/msg/IMU_settings.js"
+  "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/share/gennodejs/ros/test_subscriber/msg/Motor_settings.js"
+  "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/share/gennodejs/ros/test_subscriber/msg/IMU_settings.js"
 )
 
 # Per-language clean rules from dependency scanning.

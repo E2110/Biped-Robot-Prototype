@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/test_subs.dir/src/test_subscribers.cpp.o"
-  "/home/bachelor/Downloads/bachelor/test_04/devel/lib/test_subscriber/test_subs.pdb"
-  "/home/bachelor/Downloads/bachelor/test_04/devel/lib/test_subscriber/test_subs"
+  "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/lib/test_subscriber/test_subs.pdb"
+  "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/lib/test_subscriber/test_subs"
 )
 
 # Per-language clean rules from dependency scanning.

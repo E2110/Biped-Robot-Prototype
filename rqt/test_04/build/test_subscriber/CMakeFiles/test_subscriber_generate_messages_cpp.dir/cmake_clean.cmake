@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/test_subscriber_generate_messages_cpp"
-  "/home/bachelor/Downloads/bachelor/test_04/devel/include/test_subscriber/Motor_settings.h"
-  "/home/bachelor/Downloads/bachelor/test_04/devel/include/test_subscriber/IMU_settings.h"
+  "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/include/test_subscriber/Motor_settings.h"
+  "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/include/test_subscriber/IMU_settings.h"
 )
 
 # Per-language clean rules from dependency scanning.

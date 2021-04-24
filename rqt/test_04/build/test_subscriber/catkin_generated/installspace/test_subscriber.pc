@@ -1,4 +1,4 @@
-prefix=/home/bachelor/Downloads/bachelor/test_04/install
+prefix=/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/install
 
 Name: test_subscriber
 Description: Description of test_subscriber

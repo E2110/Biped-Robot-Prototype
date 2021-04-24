@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/bachelor/Downloads/bachelor/test_04/src/test_subscriber/src/test_subscribers.cpp" "/home/bachelor/Downloads/bachelor/test_04/build/test_subscriber/CMakeFiles/test_subs.dir/src/test_subscribers.cpp.o"
+  "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/test_subscriber/src/test_subscribers.cpp" "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build/test_subscriber/CMakeFiles/test_subs.dir/src/test_subscribers.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -17,7 +17,7 @@ set(CMAKE_TARGET_DEFINITIONS_CXX
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
-  "/home/bachelor/Downloads/bachelor/test_04/devel/include"
+  "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/include"
   "/opt/ros/melodic/include"
   "/opt/ros/melodic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp"
   )

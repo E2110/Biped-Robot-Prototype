@@ -1,4 +1,4 @@
-prefix=/home/bachelor/Downloads/bachelor/test_04/install
+prefix=/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/install
 
 Name: rqt_mypkg
 Description: Description of rqt_mypkg

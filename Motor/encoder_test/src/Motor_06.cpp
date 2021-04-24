@@ -1,6 +1,7 @@
 #include "ros/ros.h"
 #include "std_msgs/Float32MultiArray.h"
 #include "encoder_test/encoder_angles.h"
+#include "encoder_test/motor_values.h"
 
 #include <iostream>
 #include <fstream>
@@ -17,6 +18,79 @@
 #define gearRatio 6
 #define pulsesPrRev 3000 
 
+float motor1_value;
+float motor2_value;
+
+void changeMotorValues(const encoder_test::motor_values msg)
+{
+    motor1_value = msg.motor1_value;
+    motor2_value = msg.motor2_value;
+    ROS_INFO("%f", motor1_value);
+}
+
+task PID(){
+
+float kp = 1;
+float ki = 0;
+float kd = 0.1;
+float onskavinkel1 = 0;
+float onskavinkel2 = 0;
+
+float motor1_feil;
+float motor2_feil;
+float Pverdi1;
+float Pverdi2;
+float Dverdi1;
+float Dverdi2;
+float forrige1;
+float forrige2;
+float verditilmotor1;
+float verditilmotor2;
+
+while (true){
+    float motor1_feilmargin = onskavinkel1 - motor1_value;
+    float motor2_feilmargin = onskavinkel2 - motor2_value;
+    if(motor1_feilmargin > onskavinkel1){
+        //GPIO25 value = 1
+        //GPIO23 value = 1
+    }
+    else if(motor1_feilmargin < onskavinkel1){
+        //GPIO25 value = 0
+        //GPIO23 value = 0
+    }
+    else {
+        //GPIO25 value = 1
+        //GPIO23 value = 0
+    }
+    if(motor2_feilmargin > onskavinkel2){
+        //GPIO27 value = 1
+        //GPIO34 value = 1
+    }
+    else if(motor2_feilmargin < onskavinkel2){
+        //GPIO27 value = 0
+        //GPIO34 value = 0
+    }
+    else {
+        //GPIO27 value = 1
+        //GPIO34 value = 0
+    }
+
+    Pverdi1     =   motor1_feilmargin   *kp;
+    Pverdi2     =   motor2_feilmargin   *kp; 
+    Dverdi1     =   (motor1_feilmargin - forrige1)    *kd;
+    Dverdi2     =   (motor2_feilmargin - forrige2)    *kd;
+    forrige1    =   motor1_feilmargin;
+    forrige2    =   motor2_feilmargin;
+    
+    verditilmotor1 = Pverdi1 + Dverdi1;
+    verditilmotor2 = Pverdi2 + Dverdi2;
+
+    //gjer om til duty_cycle til motor 1
+    //gjer om til duty_cycle til motor 2
+
+}
+
+}
 class motor
 {
     public:
@@ -24,7 +98,7 @@ class motor
     motor(int pinNumber)
     {
         m_dutyCycle = 1000000;
-        setpwmPin (14);
+        setpwmPin (pinNumber);
         std::cout<< "Running with pin 14" << std::endl;
     }
     void setDutyCycle(int dutyC)
@@ -89,7 +163,6 @@ class motor
         std::string m_Pinpath;
         std::string m_PinpathNumber;
         std::string m_pinChip;
-
         std::string m_GPIONumber;
         std::string m_IOpinpath;
 
@@ -111,11 +184,23 @@ class motor
                         m_GPIONumber = "115";
                         break;
 
+                        case 23:
+                        m_IOpinpath = "P9_23_pinmux";
+                        m_GPIONumber = "49";
+                        break;
+
                         default:
                         std::cout<<IO_pin << " is not an implemented pin"<< std::endl;
                         break;
 
                     }
+                case 8:
+                    switch (IO_pin)  //not GPIO but pins from beaglebone cape
+                    {
+                        case 34:
+                        m_IOpinpath = "P8_34_pinmux";
+                        m_GPIONumber = "81";
+                        break;
                 break;
               
                 default:
@@ -123,6 +208,7 @@ class motor
                 break;
             }
         }
+
         void setGPIOstate()
         {
             std::ofstream IOstateStream;
@@ -130,6 +216,7 @@ class motor
             IOstateStream << "default";
             IOstateStream.close();
         }
+
         void exportIOpin()
         {
             std::ofstream IOexportstream;
@@ -137,6 +224,7 @@ class motor
             IOexportstream << m_GPIONumber;
             IOexportstream.close();
         }
+
         void setGPIOdirection(std::string direction)
         {
             std::ofstream IOdirStream;
@@ -209,6 +297,8 @@ class motor
 
 };
 motor control(29);
+
+
 
 class Encoder
 {
@@ -323,6 +413,8 @@ class Encoder
     }
 };
 
+
+
 /*
 void chatterCallback(const std_msgs::Int32::ConstPtr& msg)
 {
@@ -361,8 +453,9 @@ int main(int argc, char **argv)
     control.setDutyCycle(8000000);  // 80%
     control.setPWMfreq(10000000);   //100Hz
     control.GPIOtoggle(9,27,1); // MOTOR OFF
-    control.GPIOtoggle(9,25,0); // MOTOR OFF
-    
+    control.GPIOtoggle(9,23,0); // MOTOR OFF
+    control.GPIOtoggle(9,25,1); // MOTOR OFF
+    control.GPIOtoggle(8,34,0); // MOTOR OFF
 
     int count = 0;
     float leg1Angle;
@@ -374,6 +467,7 @@ int main(int argc, char **argv)
     ros::init(argc, argv, "motor_subscriber");
     ros::NodeHandle n;
     ros::Publisher chatter_pub = n.advertise<encoder_test::encoder_angles>("leg_torso_angles", 1);
+    ros::subscriber values_sub = n.subscribe("Motor_values",1, changeMotorValues)
     ros::Rate loop_rate(100);
 
     while (ros::ok())

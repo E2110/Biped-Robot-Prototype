@@ -6,13 +6,13 @@
 
 #IncludeRegexTransform: 
 
-/home/bachelor/Downloads/bachelor/test_04/src/test_subscriber/src/test_subscribers.cpp
+/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/test_subscriber/src/test_subscribers.cpp
 ros/ros.h
-/home/bachelor/Downloads/bachelor/test_04/src/test_subscriber/src/ros/ros.h
+/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/test_subscriber/src/ros/ros.h
 std_msgs/String.h
-/home/bachelor/Downloads/bachelor/test_04/src/test_subscriber/src/std_msgs/String.h
+/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/test_subscriber/src/std_msgs/String.h
 test_subscriber/IMU_settings.h
-/home/bachelor/Downloads/bachelor/test_04/src/test_subscriber/src/test_subscriber/IMU_settings.h
+/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/test_subscriber/src/test_subscriber/IMU_settings.h
 
 /opt/ros/melodic/include/ros/advertise_options.h
 ros/forwards.h

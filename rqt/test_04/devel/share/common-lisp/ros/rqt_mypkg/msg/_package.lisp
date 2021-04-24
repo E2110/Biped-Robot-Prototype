@@ -7,5 +7,7 @@
    "IMU_SETTINGS"
    "<MOTOR_SETTINGS>"
    "MOTOR_SETTINGS"
+   "<MOTOR_VALUES>"
+   "MOTOR_VALUES"
   ))
 

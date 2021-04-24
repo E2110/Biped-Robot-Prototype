@@ -31,76 +31,77 @@ void changeMotorValues(const encoder_test::motor_values msg)
     ROS_INFO("%f", motor1_value);
 }
 
-task PID(){
+task PID()
+{
+    float kp = 1;
+    float ki = 0;
+    float kd = 0.1;
+    float onskavinkel1 = 0;
+    float onskavinkel2 = 0;
 
-float kp = 1;
-float ki = 0;
-float kd = 0.1;
-float onskavinkel1 = 0;
-float onskavinkel2 = 0;
+    float motor1_feil;
+    float motor2_feil;
+    float Pverdi1;
+    float Pverdi2;
+    float Dverdi1;
+    float Dverdi2;
+    float forrige1;
+    float forrige2;
+    float verditilmotor1;
+    float verditilmotor2;
+    float DutyC1;
+    float DutyC2;
 
-float motor1_feil;
-float motor2_feil;
-float Pverdi1;
-float Pverdi2;
-float Dverdi1;
-float Dverdi2;
-float forrige1;
-float forrige2;
-float verditilmotor1;
-float verditilmotor2;
-float DutyC1;
-float DutyC2;
+    while (true){
+        float motor1_feilmargin = onskavinkel1 - motor1_value;
+        float motor2_feilmargin = onskavinkel2 - motor2_value;
+        if(motor1_feilmargin > onskavinkel1){
+            control.GPIOtoggle(9,25,1);
+            control.GPIOtoggle(9,23,1);
+        }
+        else if(motor1_feilmargin < onskavinkel1){
+            control.GPIOtoggle(9,25,0);
+            control.GPIOtoggle(9,23,0);
+        }
+        else {
+            control.GPIOtoggle(9,25,1);
+            control.GPIOtoggle(9,23,0);
+        }
+        if(motor2_feilmargin > onskavinkel2){
+            control.GPIOtoggle(9,27,1);
+            control.GPIOtoggle(8,34,1);
+        }
+        else if(motor2_feilmargin < onskavinkel2){
+            control.GPIOtoggle(9,27,0);
+            control.GPIOtoggle(8,34,0);
+        }
+        else {
+            control.GPIOtoggle(9,27,1);
+            control.GPIOtoggle(8,34,0);
+        }
 
-while (true){
-    float motor1_feilmargin = onskavinkel1 - motor1_value;
-    float motor2_feilmargin = onskavinkel2 - motor2_value;
-    if(motor1_feilmargin > onskavinkel1){
-        control.GPIOtoggle(9,25,1);
-        control.GPIOtoggle(9,23,1);
-    }
-    else if(motor1_feilmargin < onskavinkel1){
-        control.GPIOtoggle(9,25,0);
-        control.GPIOtoggle(9,23,0);
-    }
-    else {
-        control.GPIOtoggle(9,25,1);
-        control.GPIOtoggle(9,23,0);
-    }
-    if(motor2_feilmargin > onskavinkel2){
-        control.GPIOtoggle(9,27,1);
-        control.GPIOtoggle(8,34,1);
-    }
-    else if(motor2_feilmargin < onskavinkel2){
-        control.GPIOtoggle(9,27,0);
-        control.GPIOtoggle(8,34,0);
-    }
-    else {
-        control.GPIOtoggle(9,27,1);
-        control.GPIOtoggle(8,34,0);
-    }
+        Pverdi1     =   motor1_feilmargin   *kp;
+        Pverdi2     =   motor2_feilmargin   *kp; 
+        Dverdi1     =   (motor1_feilmargin - forrige1)    *kd;
+        Dverdi2     =   (motor2_feilmargin - forrige2)    *kd;
+        forrige1    =   motor1_feilmargin;
+        forrige2    =   motor2_feilmargin;
+        
+        verditilmotor1 = Pverdi1 + Dverdi1;
+        verditilmotor2 = Pverdi2 + Dverdi2;
 
-    Pverdi1     =   motor1_feilmargin   *kp;
-    Pverdi2     =   motor2_feilmargin   *kp; 
-    Dverdi1     =   (motor1_feilmargin - forrige1)    *kd;
-    Dverdi2     =   (motor2_feilmargin - forrige2)    *kd;
-    forrige1    =   motor1_feilmargin;
-    forrige2    =   motor2_feilmargin;
-    
-    verditilmotor1 = Pverdi1 + Dverdi1;
-    verditilmotor2 = Pverdi2 + Dverdi2;
+        DutyC1  =   (verditilmotor1*9000000)/100;
+        DutyC2  =   (verditilmotor2*9000000)/100;
 
-    DutyC1  =   (verditilmotor1*9000000)/100;
-    DutyC2  =   (verditilmotor2*9000000)/100;
+        control.setDutyCycle(8000000); 
+        control.setPWMfreq(DutyC1); 
+        control.setPWMfreq(DutyC2); 
+        //gjer om til duty_cycle til motor 2
 
-    control.setDutyCycle(8000000); 
-    control.setPWMfreq(DutyC1); 
-    control.setPWMfreq(DutyC2); 
-    //gjer om til duty_cycle til motor 2
+    }
 
 }
 
-}
 class motor
 {
     public:
@@ -111,6 +112,7 @@ class motor
         setpwmPin (pinNumber);
         std::cout<< "Running with pin 14" << std::endl;
     }
+
     void setDutyCycle(int dutyC)
     {
         std::ofstream DCfile;
@@ -118,14 +120,15 @@ class motor
         DCfile << dutyC;
         DCfile.close();
     }
+
     void setPWMfreq(int frequency)
-        {
-            std::ofstream freqSet;
-            freqSet.open("/sys/class/pwm/pwm-" + m_PinpathNumber + "/period");
-            freqSet << frequency;
-            freqSet.close();
-            enablePWM();
-        }
+    {
+        std::ofstream freqSet;
+        freqSet.open("/sys/class/pwm/pwm-" + m_PinpathNumber + "/period");
+        freqSet << frequency;
+        freqSet.close();
+        enablePWM();
+    }
 
     void GPIOtoggle(int cape_nr,int pin_nr,int state)
     {   
@@ -141,9 +144,10 @@ class motor
         pinstream << state;
         pinstream.close();
     }
+
     void toggleMotorPin(int state)
     {
-          // Toggeling pin
+        // Toggeling pin
         std::ofstream pinstream;
         std::ofstream pinstream2;
 
@@ -161,6 +165,7 @@ class motor
         pinstream2.close();
 
     }
+
     void motorInit()
     {   
         setPWMstate();
@@ -168,131 +173,132 @@ class motor
         setDutyCycle(m_dutyCycle);
         enablePWM();  
     }
+
     private:
 
-        int m_frequency;
-        int m_dutyCycle;
-        int m_PIN;
-        int m_pinbool;
-        std::string m_Pinpath;
-        std::string m_PinpathNumber;
-        std::string m_pinChip;
-        std::string m_GPIONumber;
-        std::string m_IOpinpath;
+    int m_frequency;
+    int m_dutyCycle;
+    int m_PIN;
+    int m_pinbool;
+    std::string m_Pinpath;
+    std::string m_PinpathNumber;
+    std::string m_pinChip;
+    std::string m_GPIONumber;
+    std::string m_IOpinpath;
 
-        void setGPIOpin(int cape_nr,int IO_pin) //change to return 1 if good, 0 bad.
+    void setGPIOpin(int cape_nr,int IO_pin) //change to return 1 if good, 0 bad.
+    {
+        switch (cape_nr)
         {
-            switch (cape_nr)
-            {
-                case 9:
-                    switch (IO_pin)  //not GPIO but pins from beaglebone cape
-                    {
-                     
-                        case 25:
-                        m_IOpinpath = "P9_25_pinmux";
-                        m_GPIONumber = "117";
-                        break;
-
-                        case 27:
-                        m_IOpinpath = "P9_27_pinmux";
-                        m_GPIONumber = "115";
-                        break;
-
-                        case 23:
-                        m_IOpinpath = "P9_23_pinmux";
-                        m_GPIONumber = "49";
-                        break;
-
-                        default:
-                        std::cout<<IO_pin << " is not an implemented pin"<< std::endl;
-                        break;
-
-                    }
-                case 8:
-                    switch (IO_pin)  //not GPIO but pins from beaglebone cape
-                    {
-                        case 34:
-                        m_IOpinpath = "P8_34_pinmux";
-                        m_GPIONumber = "81";
-                        break;
-                break;
-              
-                default:
-                std::cout<<"pin : " <<cape_nr << " is an invalid cape_nr !" <<std::endl;
-                break;
-            }
-        }
-
-        void setGPIOstate()
-        {
-            std::ofstream IOstateStream;
-            IOstateStream.open("sys/devices/platform/ocp/ocp:" + m_IOpinpath + "/state");
-            IOstateStream << "default";
-            IOstateStream.close();
-        }
-
-        void exportIOpin()
-        {
-            std::ofstream IOexportstream;
-            IOexportstream.open("/sys/class/gpio/export");
-            IOexportstream << m_GPIONumber;
-            IOexportstream.close();
-        }
-
-        void setGPIOdirection(std::string direction)
-        {
-            std::ofstream IOdirStream;
-            IOdirStream.open("/sys/class/gpio/gpio" + m_GPIONumber + "/direction");
-            if (IOdirStream.fail())
-            {
-                exportIOpin();
-                setGPIOdirection(direction);
-                return;
-            }
-            IOdirStream << direction;
-            IOdirStream.close();
-        }
-
-
-        void setpwmPin(int pin)
-        {  
-            switch (pin) 
-            {
-                case 14:
-                    m_Pinpath = "P9_14_pinmux";
-                    m_PinpathNumber = "4:0";
-                    m_pinChip = "pwmchip4";
-                    m_pinbool = 0;
+            case 9:
+                switch (IO_pin)  //not GPIO but pins from beaglebone cape
+                {
+                    
+                    case 25:
+                    m_IOpinpath = "P9_25_pinmux";
+                    m_GPIONumber = "117";
                     break;
-                case 16:
-                    m_Pinpath = "P9_16_pinmux";
-                    m_PinpathNumber = "4:1";
-                    m_pinChip = "pwmchip4";
-                    m_pinbool = 1;
+
+                    case 27:
+                    m_IOpinpath = "P9_27_pinmux";
+                    m_GPIONumber = "115";
                     break;
-                default:
-                    std::cout << "Not an implemented pin"<<std::endl;
+
+                    case 23:
+                    m_IOpinpath = "P9_23_pinmux";
+                    m_GPIONumber = "49";
                     break;
-            }
-        }
+
+                    default:
+                    std::cout<<IO_pin << " is not an implemented pin"<< std::endl;
+                    break;
+
+                }
+            case 8:
+                switch (IO_pin)  //not GPIO but pins from beaglebone cape
+                {
+                    case 34:
+                    m_IOpinpath = "P8_34_pinmux";
+                    m_GPIONumber = "81";
+                    break;
+            break;
             
-        void setPWMstate()
-        {
-            std::ofstream pwmstate;
-            pwmstate.open("/sys/devices/platform/ocp/ocp:" + m_Pinpath + "/state");
-            //få inn feiltest
-            pwmstate << "pwm";
-            pwmstate.close();
+            default:
+            std::cout<<"pin : " <<cape_nr << " is an invalid cape_nr !" <<std::endl;
+            break;
         }
+    }
 
-        void enablePWM()
+    void setGPIOstate()
+    {
+        std::ofstream IOstateStream;
+        IOstateStream.open("sys/devices/platform/ocp/ocp:" + m_IOpinpath + "/state");
+        IOstateStream << "default";
+        IOstateStream.close();
+    }
+
+    void exportIOpin()
+    {
+        std::ofstream IOexportstream;
+        IOexportstream.open("/sys/class/gpio/export");
+        IOexportstream << m_GPIONumber;
+        IOexportstream.close();
+    }
+
+    void setGPIOdirection(std::string direction)
+    {
+        std::ofstream IOdirStream;
+        IOdirStream.open("/sys/class/gpio/gpio" + m_GPIONumber + "/direction");
+        if (IOdirStream.fail())
         {
-            std::ofstream pwmEnable;
-            pwmEnable.open("/sys/class/pwm/pwm-" + m_PinpathNumber + "/enable");
-            pwmEnable << 1;
-            pwmEnable.close();
+            exportIOpin();
+            setGPIOdirection(direction);
+            return;
         }
+        IOdirStream << direction;
+        IOdirStream.close();
+    }
+
+
+    void setpwmPin(int pin)
+    {  
+        switch (pin) 
+        {
+            case 14:
+                m_Pinpath = "P9_14_pinmux";
+                m_PinpathNumber = "4:0";
+                m_pinChip = "pwmchip4";
+                m_pinbool = 0;
+                break;
+            case 16:
+                m_Pinpath = "P9_16_pinmux";
+                m_PinpathNumber = "4:1";
+                m_pinChip = "pwmchip4";
+                m_pinbool = 1;
+                break;
+            default:
+                std::cout << "Not an implemented pin"<<std::endl;
+                break;
+        }
+    }
         
+    void setPWMstate()
+    {
+        std::ofstream pwmstate;
+        pwmstate.open("/sys/devices/platform/ocp/ocp:" + m_Pinpath + "/state");
+        //få inn feiltest
+        pwmstate << "pwm";
+        pwmstate.close();
+    }
+
+    void enablePWM()
+    {
+        std::ofstream pwmEnable;
+        pwmEnable.open("/sys/class/pwm/pwm-" + m_PinpathNumber + "/enable");
+        pwmEnable << 1;
+        pwmEnable.close();
+    }
+    
 
 };
 motor control(29);

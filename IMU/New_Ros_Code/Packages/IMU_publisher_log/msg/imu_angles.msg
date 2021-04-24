@@ -1,0 +1,2 @@
+float64 leg1_angle
+float64 leg2_angle

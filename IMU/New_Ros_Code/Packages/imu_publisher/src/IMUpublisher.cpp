@@ -2,7 +2,7 @@
 #include "std_msgs/Float32MultiArray.h"
 #include "std_msgs/String.h"
 #include "imu_publisher/IMU_settings.h"
-#include "imu_publisher/Angles.h"
+#include "imu_publisher/imu_angles.h"
 
 #include <iostream>
 #include <sstream>
@@ -129,7 +129,7 @@ class LSM9DS1
 };
 
 float KP = 0.0;
-float KI = 2.0;
+float KI = 0.0001;
 
 class pi_reg
 {
@@ -162,7 +162,7 @@ class pi_reg
 
         pout = error * _Kp;
 
-        _integral += error * KI / LPS;
+        _integral += error * _Ki / LPS;
         iout = _integral;
 
         return (pout + iout);
@@ -190,10 +190,10 @@ int main(int argc, char* argv[])
     ros::init(argc, argv, "IMUpublisher");
     //message code
     ros::NodeHandle n;
-    ros::Publisher chatter_pub = n.advertise<imu_publisher::Angles>("leg_ground_angles", 1);
+    ros::Publisher chatter_pub = n.advertise<imu_publisher::imu_angles>("leg_ground_angles", 1);
     ros::Subscriber sub = n.subscribe("IMU_settings",1 ,chatterCallback);
     ros::Rate loop_rate(LPS);
-    imu_publisher::Angles angles;
+    imu_publisher::imu_angles angles;
 
     
 
@@ -226,11 +226,7 @@ int main(int argc, char* argv[])
     float gyro_rotation2 = 0.0;
     float acceleration_rotation2 = 0.0;
     float total_rotaion = 0.0;
-
-    std::vector<float> accelerationAngleList;
-    accelerationAngleList.resize(LPS);
-    std::vector<float> gyroAngleList;
-    gyroAngleList.resize(LPS);
+    
     
     float offset1 = 0.0;
     float offset2 = 0.0;

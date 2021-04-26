@@ -1,0 +1,8 @@
+prefix=/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel
+
+Name: rqt_mypkg
+Description: Description of rqt_mypkg
+Version: 0.0.0
+Cflags: -I/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/include
+Libs: -L${prefix}/lib 
+Requires: message_runtime

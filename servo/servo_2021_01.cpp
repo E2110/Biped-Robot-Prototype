@@ -3,7 +3,6 @@
 #include <string>
 #include <stdio.h>
 #include <stdbool.h>
-#include <td_msgs/Bool.h>
 
 class servoControl
 {

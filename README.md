@@ -88,7 +88,7 @@ cd gpio115
 ```
 The two paramteres you should care about:
 * direction: either in or out
-* value: high or low
+* value: 1 or 0
 
 # Install ROS-melodic
 

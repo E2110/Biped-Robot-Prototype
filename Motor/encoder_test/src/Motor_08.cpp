@@ -64,6 +64,7 @@ class motor
         pinstream << state;
         pinstream.close();
     }
+    /*
     void toggleMotorPin(int state)
     {
           // Toggeling pin
@@ -78,6 +79,7 @@ class motor
         pinstream2.close();
 
     }
+    */
     void motorInit()
     {   
         setPWMstate();

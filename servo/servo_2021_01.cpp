@@ -1,6 +1,8 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <stdio.h>
+#include <stdbool.h>
 
 class servoControl
 {
@@ -8,10 +10,11 @@ class servoControl
 
 private:
 
-    int m_frequency = 20006000;
+    int m_frequency = 20000000;
     int m_dutyCycle;
     int m_PIN;
     int m_pinbool;
+    bool ServoD {};
     std::string m_Pinpath;
     std::string m_PinpathNumber;
     std::string m_pinChip;
@@ -79,6 +82,7 @@ private:
         freqSet << frequency;
         freqSet.close();
     }
+    
 
 public:
      servoControl(int pinNumber)
@@ -103,35 +107,53 @@ public:
         enablePWM();
         
     }
+    /*void InputServoDown(const Bool::ConstPtr& ServoDown)
+    {
+          ServoDown = ServDown.data;
+    }/**/
 };
 
 
 
 int main()
 {
-    int pinN,pinN2;
+    
+    
+    int pinN, pinN2;
     std::cout << "Pin Nr :";
     std::cin >> pinN;
     std::cout << std::endl;
     std::cout << "Pin2 Nr :";
     std::cin >> pinN2;
-    std::cout << std::endl;;
+    std::cout << std::endl;
     servoControl servoA(pinN); //initalize with given pin nr
     servoA.servoInit();
     servoControl servoB(pinN2); //initalize with given pin nr
     servoB.servoInit();
-
-    for(int i = 0;i < 5;i++)
+    
+    std::cout << "1 for down, 0 for up:";
+    std::cin >> ServoD;
+    std::cout << std::endl;;
+   
+    
+    
+    if(/*bool?/**/ServoD = 0)
     {
+        std::cin.get();
         servoA.setDutyCycle(820000);
         servoB.setDutyCycle(820000);
-        std::cout << "trying 82" << std::endl;
         std::cin.get();
+        break;
+    }
+    else
+    {
+        /*std::cout << "trying 82" << std::endl;/**/
+        std::cin.get(); 
         servoA.setDutyCycle(1900000);
         servoB.setDutyCycle(1900000);
-        std::cout << "trying 19" << std::endl;
+        /*std::cout << "trying 19" << std::endl;/**/
         std::cin.get();
     }
-    std::cout << "end of test !"<< std::endl;
-    return 0;
+    std::cout << "Finito"<< std::endl;
+    return 0; }
 }

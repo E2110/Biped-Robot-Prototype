@@ -21,7 +21,10 @@ To configure the ESCON 70/10 Servocontroller you need:
 The config is quite simple. Just start the software and (if connected) a pop up for configuration of ESCON 70/10 will pop up. The pictures under shows what we did step for step.
 
 <img src="assets_motor/Escon_studio_01.PNG" width="100" height="100"/>|<img src="assets_motor/Escon_studio_02.PNG" width="100" height="100"/>|<img src="assets_motor/Escon_studio_03.PNG" width="100" height="100"/>|<img src="assets_motor/Escon_studio_04.PNG" width="100" height="100"/>|<img src="assets_motor/Escon_studio_05.PNG" width="100" height="100"/>|<img src="assets_motor/Escon_studio_06.PNG" width="100" height="100"/>|<img src="assets_motor/Escon_studio_07.PNG" width="100" height="100"/>|<img src="assets_motor/Escon_studio_08.PNG" width="100" height="100"/>|<img src="assets_motor/Escon_studio_09.PNG" width="100" height="100"/>|<img src="assets_motor/Escon_studio_10.PNG" width="100" height="100"/>|<img src="assets_motor/Escon_studio_11.PNG" width="100" height="100"/>|<img src="assets_motor/Escon_studio_12.PNG" width="100" height="100"/>|<img src="assets_motor/Escon_studio_13.PNG" width="100" height="100"/>|<img src="assets_motor/Escon_studio_14.PNG" width="100" height="100"/>|<img src="assets_motor/Escon_studio_15.PNG" width="100" height="100"/>|<img src="assets_motor/Escon_studio_16.PNG" width="100" height="100"/>
+
 ## Connection and pins
+Each motor is controlled by two 
+
 
 ## Code
 <i>This section will only explain the motor part, even though the code contains an encoder part. The explanation should give you enough information to understand the code, add new PWM- and GPIO-pins and change the values written on the Beaglebone, hopefully without having experience with C++. Order: Code -> where it's called -> explanation.

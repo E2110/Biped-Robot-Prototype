@@ -56,7 +56,8 @@ include rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_py.dir/progress.make
 rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_py: /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/lib/python2.7/dist-packages/rqt_mypkg/msg/_Angles.py
 rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_py: /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/lib/python2.7/dist-packages/rqt_mypkg/msg/_Motor_settings.py
 rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_py: /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/lib/python2.7/dist-packages/rqt_mypkg/msg/_IMU_settings.py
-rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_py: /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/lib/python2.7/dist-packages/rqt_mypkg/msg/_motor_values.py
+rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_py: /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/lib/python2.7/dist-packages/rqt_mypkg/msg/_Servo_values.py
+rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_py: /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/lib/python2.7/dist-packages/rqt_mypkg/msg/_Motor_values.py
 rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_py: /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/lib/python2.7/dist-packages/rqt_mypkg/msg/__init__.py
 
 
@@ -75,24 +76,31 @@ rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_py: /home/bachelor/GIT/Biped-Ro
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating Python from MSG rqt_mypkg/IMU_settings"
 	cd /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build/rqt_mypkg && ../catkin_generated/env_cached.sh /usr/bin/python2 /opt/ros/melodic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg/IMU_settings.msg -Irqt_mypkg:/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg -Istd_msgs:/opt/ros/melodic/share/std_msgs/cmake/../msg -p rqt_mypkg -o /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/lib/python2.7/dist-packages/rqt_mypkg/msg
 
-/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/lib/python2.7/dist-packages/rqt_mypkg/msg/_motor_values.py: /opt/ros/melodic/lib/genpy/genmsg_py.py
-/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/lib/python2.7/dist-packages/rqt_mypkg/msg/_motor_values.py: /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg/motor_values.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Generating Python from MSG rqt_mypkg/motor_values"
-	cd /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build/rqt_mypkg && ../catkin_generated/env_cached.sh /usr/bin/python2 /opt/ros/melodic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg/motor_values.msg -Irqt_mypkg:/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg -Istd_msgs:/opt/ros/melodic/share/std_msgs/cmake/../msg -p rqt_mypkg -o /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/lib/python2.7/dist-packages/rqt_mypkg/msg
+/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/lib/python2.7/dist-packages/rqt_mypkg/msg/_Servo_values.py: /opt/ros/melodic/lib/genpy/genmsg_py.py
+/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/lib/python2.7/dist-packages/rqt_mypkg/msg/_Servo_values.py: /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg/Servo_values.msg
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Generating Python from MSG rqt_mypkg/Servo_values"
+	cd /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build/rqt_mypkg && ../catkin_generated/env_cached.sh /usr/bin/python2 /opt/ros/melodic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg/Servo_values.msg -Irqt_mypkg:/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg -Istd_msgs:/opt/ros/melodic/share/std_msgs/cmake/../msg -p rqt_mypkg -o /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/lib/python2.7/dist-packages/rqt_mypkg/msg
+
+/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/lib/python2.7/dist-packages/rqt_mypkg/msg/_Motor_values.py: /opt/ros/melodic/lib/genpy/genmsg_py.py
+/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/lib/python2.7/dist-packages/rqt_mypkg/msg/_Motor_values.py: /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg/Motor_values.msg
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Generating Python from MSG rqt_mypkg/Motor_values"
+	cd /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build/rqt_mypkg && ../catkin_generated/env_cached.sh /usr/bin/python2 /opt/ros/melodic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg/Motor_values.msg -Irqt_mypkg:/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg -Istd_msgs:/opt/ros/melodic/share/std_msgs/cmake/../msg -p rqt_mypkg -o /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/lib/python2.7/dist-packages/rqt_mypkg/msg
 
 /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/lib/python2.7/dist-packages/rqt_mypkg/msg/__init__.py: /opt/ros/melodic/lib/genpy/genmsg_py.py
 /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/lib/python2.7/dist-packages/rqt_mypkg/msg/__init__.py: /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/lib/python2.7/dist-packages/rqt_mypkg/msg/_Angles.py
 /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/lib/python2.7/dist-packages/rqt_mypkg/msg/__init__.py: /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/lib/python2.7/dist-packages/rqt_mypkg/msg/_Motor_settings.py
 /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/lib/python2.7/dist-packages/rqt_mypkg/msg/__init__.py: /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/lib/python2.7/dist-packages/rqt_mypkg/msg/_IMU_settings.py
-/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/lib/python2.7/dist-packages/rqt_mypkg/msg/__init__.py: /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/lib/python2.7/dist-packages/rqt_mypkg/msg/_motor_values.py
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Generating Python msg __init__.py for rqt_mypkg"
+/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/lib/python2.7/dist-packages/rqt_mypkg/msg/__init__.py: /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/lib/python2.7/dist-packages/rqt_mypkg/msg/_Servo_values.py
+/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/lib/python2.7/dist-packages/rqt_mypkg/msg/__init__.py: /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/lib/python2.7/dist-packages/rqt_mypkg/msg/_Motor_values.py
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Generating Python msg __init__.py for rqt_mypkg"
 	cd /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build/rqt_mypkg && ../catkin_generated/env_cached.sh /usr/bin/python2 /opt/ros/melodic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py -o /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/lib/python2.7/dist-packages/rqt_mypkg/msg --initpy
 
 rqt_mypkg_generate_messages_py: rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_py
 rqt_mypkg_generate_messages_py: /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/lib/python2.7/dist-packages/rqt_mypkg/msg/_Angles.py
 rqt_mypkg_generate_messages_py: /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/lib/python2.7/dist-packages/rqt_mypkg/msg/_Motor_settings.py
 rqt_mypkg_generate_messages_py: /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/lib/python2.7/dist-packages/rqt_mypkg/msg/_IMU_settings.py
-rqt_mypkg_generate_messages_py: /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/lib/python2.7/dist-packages/rqt_mypkg/msg/_motor_values.py
+rqt_mypkg_generate_messages_py: /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/lib/python2.7/dist-packages/rqt_mypkg/msg/_Servo_values.py
+rqt_mypkg_generate_messages_py: /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/lib/python2.7/dist-packages/rqt_mypkg/msg/_Motor_values.py
 rqt_mypkg_generate_messages_py: /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/lib/python2.7/dist-packages/rqt_mypkg/msg/__init__.py
 rqt_mypkg_generate_messages_py: rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_py.dir/build.make
 

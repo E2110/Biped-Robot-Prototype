@@ -42,7 +42,8 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
     "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg/IMU_settings.msg"
     "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg/Motor_settings.msg"
     "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg/Angles.msg"
-    "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg/motor_values.msg"
+    "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg/Motor_values.msg"
+    "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg/Servo_values.msg"
     )
 endif()
 

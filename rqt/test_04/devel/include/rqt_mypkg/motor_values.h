@@ -25,11 +25,13 @@ struct motor_values_
 
   motor_values_()
     : motor1_value(0.0)
-    , motor2_value(0.0)  {
+    , motor2_value(0.0)
+    , OnOff(0)  {
     }
   motor_values_(const ContainerAllocator& _alloc)
     : motor1_value(0.0)
-    , motor2_value(0.0)  {
+    , motor2_value(0.0)
+    , OnOff(0)  {
   (void)_alloc;
     }
 
@@ -40,6 +42,9 @@ struct motor_values_
 
    typedef float _motor2_value_type;
   _motor2_value_type motor2_value;
+
+   typedef int16_t _OnOff_type;
+  _OnOff_type OnOff;
 
 
 
@@ -71,7 +76,8 @@ template<typename ContainerAllocator1, typename ContainerAllocator2>
 bool operator==(const ::rqt_mypkg::motor_values_<ContainerAllocator1> & lhs, const ::rqt_mypkg::motor_values_<ContainerAllocator2> & rhs)
 {
   return lhs.motor1_value == rhs.motor1_value &&
-    lhs.motor2_value == rhs.motor2_value;
+    lhs.motor2_value == rhs.motor2_value &&
+    lhs.OnOff == rhs.OnOff;
 }
 
 template<typename ContainerAllocator1, typename ContainerAllocator2>
@@ -128,12 +134,12 @@ struct MD5Sum< ::rqt_mypkg::motor_values_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "d0030d48ec79b36863e9007b5cb915eb";
+    return "12eba4c10619ee8f4c0326813788bdcb";
   }
 
   static const char* value(const ::rqt_mypkg::motor_values_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0xd0030d48ec79b368ULL;
-  static const uint64_t static_value2 = 0x63e9007b5cb915ebULL;
+  static const uint64_t static_value1 = 0x12eba4c10619ee8fULL;
+  static const uint64_t static_value2 = 0x4c0326813788bdcbULL;
 };
 
 template<class ContainerAllocator>
@@ -154,6 +160,7 @@ struct Definition< ::rqt_mypkg::motor_values_<ContainerAllocator> >
   {
     return "float32 motor1_value\n"
 "float32 motor2_value\n"
+"int16 OnOff\n"
 ;
   }
 
@@ -174,6 +181,7 @@ namespace serialization
     {
       stream.next(m.motor1_value);
       stream.next(m.motor2_value);
+      stream.next(m.OnOff);
     }
 
     ROS_DECLARE_ALLINONE_SERIALIZER
@@ -196,6 +204,8 @@ struct Printer< ::rqt_mypkg::motor_values_<ContainerAllocator> >
     Printer<float>::stream(s, indent + "  ", v.motor1_value);
     s << indent << "motor2_value: ";
     Printer<float>::stream(s, indent + "  ", v.motor2_value);
+    s << indent << "OnOff: ";
+    Printer<int16_t>::stream(s, indent + "  ", v.OnOff);
   }
 };
 

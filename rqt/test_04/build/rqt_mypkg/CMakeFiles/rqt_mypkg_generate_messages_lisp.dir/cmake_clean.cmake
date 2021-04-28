@@ -3,7 +3,8 @@ file(REMOVE_RECURSE
   "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/share/common-lisp/ros/rqt_mypkg/msg/Angles.lisp"
   "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/share/common-lisp/ros/rqt_mypkg/msg/Motor_settings.lisp"
   "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/share/common-lisp/ros/rqt_mypkg/msg/IMU_settings.lisp"
-  "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/share/common-lisp/ros/rqt_mypkg/msg/motor_values.lisp"
+  "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/share/common-lisp/ros/rqt_mypkg/msg/Servo_values.lisp"
+  "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/share/common-lisp/ros/rqt_mypkg/msg/Motor_values.lisp"
 )
 
 # Per-language clean rules from dependency scanning.

@@ -56,7 +56,8 @@ include rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_eus.dir/progress.make
 rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_eus: /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/share/roseus/ros/rqt_mypkg/msg/Angles.l
 rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_eus: /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/share/roseus/ros/rqt_mypkg/msg/Motor_settings.l
 rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_eus: /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/share/roseus/ros/rqt_mypkg/msg/IMU_settings.l
-rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_eus: /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/share/roseus/ros/rqt_mypkg/msg/motor_values.l
+rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_eus: /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/share/roseus/ros/rqt_mypkg/msg/Servo_values.l
+rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_eus: /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/share/roseus/ros/rqt_mypkg/msg/Motor_values.l
 rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_eus: /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/share/roseus/ros/rqt_mypkg/manifest.l
 
 
@@ -75,20 +76,26 @@ rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_eus: /home/bachelor/GIT/Biped-R
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating EusLisp code from rqt_mypkg/IMU_settings.msg"
 	cd /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build/rqt_mypkg && ../catkin_generated/env_cached.sh /usr/bin/python2 /opt/ros/melodic/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg/IMU_settings.msg -Irqt_mypkg:/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg -Istd_msgs:/opt/ros/melodic/share/std_msgs/cmake/../msg -p rqt_mypkg -o /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/share/roseus/ros/rqt_mypkg/msg
 
-/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/share/roseus/ros/rqt_mypkg/msg/motor_values.l: /opt/ros/melodic/lib/geneus/gen_eus.py
-/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/share/roseus/ros/rqt_mypkg/msg/motor_values.l: /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg/motor_values.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Generating EusLisp code from rqt_mypkg/motor_values.msg"
-	cd /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build/rqt_mypkg && ../catkin_generated/env_cached.sh /usr/bin/python2 /opt/ros/melodic/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg/motor_values.msg -Irqt_mypkg:/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg -Istd_msgs:/opt/ros/melodic/share/std_msgs/cmake/../msg -p rqt_mypkg -o /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/share/roseus/ros/rqt_mypkg/msg
+/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/share/roseus/ros/rqt_mypkg/msg/Servo_values.l: /opt/ros/melodic/lib/geneus/gen_eus.py
+/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/share/roseus/ros/rqt_mypkg/msg/Servo_values.l: /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg/Servo_values.msg
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Generating EusLisp code from rqt_mypkg/Servo_values.msg"
+	cd /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build/rqt_mypkg && ../catkin_generated/env_cached.sh /usr/bin/python2 /opt/ros/melodic/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg/Servo_values.msg -Irqt_mypkg:/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg -Istd_msgs:/opt/ros/melodic/share/std_msgs/cmake/../msg -p rqt_mypkg -o /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/share/roseus/ros/rqt_mypkg/msg
+
+/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/share/roseus/ros/rqt_mypkg/msg/Motor_values.l: /opt/ros/melodic/lib/geneus/gen_eus.py
+/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/share/roseus/ros/rqt_mypkg/msg/Motor_values.l: /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg/Motor_values.msg
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Generating EusLisp code from rqt_mypkg/Motor_values.msg"
+	cd /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build/rqt_mypkg && ../catkin_generated/env_cached.sh /usr/bin/python2 /opt/ros/melodic/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg/Motor_values.msg -Irqt_mypkg:/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg -Istd_msgs:/opt/ros/melodic/share/std_msgs/cmake/../msg -p rqt_mypkg -o /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/share/roseus/ros/rqt_mypkg/msg
 
 /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/share/roseus/ros/rqt_mypkg/manifest.l: /opt/ros/melodic/lib/geneus/gen_eus.py
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Generating EusLisp manifest code for rqt_mypkg"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Generating EusLisp manifest code for rqt_mypkg"
 	cd /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build/rqt_mypkg && ../catkin_generated/env_cached.sh /usr/bin/python2 /opt/ros/melodic/share/geneus/cmake/../../../lib/geneus/gen_eus.py -m -o /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/share/roseus/ros/rqt_mypkg rqt_mypkg std_msgs
 
 rqt_mypkg_generate_messages_eus: rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_eus
 rqt_mypkg_generate_messages_eus: /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/share/roseus/ros/rqt_mypkg/msg/Angles.l
 rqt_mypkg_generate_messages_eus: /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/share/roseus/ros/rqt_mypkg/msg/Motor_settings.l
 rqt_mypkg_generate_messages_eus: /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/share/roseus/ros/rqt_mypkg/msg/IMU_settings.l
-rqt_mypkg_generate_messages_eus: /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/share/roseus/ros/rqt_mypkg/msg/motor_values.l
+rqt_mypkg_generate_messages_eus: /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/share/roseus/ros/rqt_mypkg/msg/Servo_values.l
+rqt_mypkg_generate_messages_eus: /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/share/roseus/ros/rqt_mypkg/msg/Motor_values.l
 rqt_mypkg_generate_messages_eus: /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/share/roseus/ros/rqt_mypkg/manifest.l
 rqt_mypkg_generate_messages_eus: rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_eus.dir/build.make
 

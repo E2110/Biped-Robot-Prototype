@@ -25,11 +25,13 @@ struct IMU_settings_
 
   IMU_settings_()
     : KP(0.0)
-    , KI(0.0)  {
+    , KI(0.0)
+    , Ireset(0)  {
     }
   IMU_settings_(const ContainerAllocator& _alloc)
     : KP(0.0)
-    , KI(0.0)  {
+    , KI(0.0)
+    , Ireset(0)  {
   (void)_alloc;
     }
 
@@ -40,6 +42,9 @@ struct IMU_settings_
 
    typedef double _KI_type;
   _KI_type KI;
+
+   typedef int16_t _Ireset_type;
+  _Ireset_type Ireset;
 
 
 
@@ -71,7 +76,8 @@ template<typename ContainerAllocator1, typename ContainerAllocator2>
 bool operator==(const ::rqt_mypkg::IMU_settings_<ContainerAllocator1> & lhs, const ::rqt_mypkg::IMU_settings_<ContainerAllocator2> & rhs)
 {
   return lhs.KP == rhs.KP &&
-    lhs.KI == rhs.KI;
+    lhs.KI == rhs.KI &&
+    lhs.Ireset == rhs.Ireset;
 }
 
 template<typename ContainerAllocator1, typename ContainerAllocator2>
@@ -128,12 +134,12 @@ struct MD5Sum< ::rqt_mypkg::IMU_settings_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "bb3456d77fcd813e0b5edd9a6c8556d2";
+    return "d5a3580dc4de5a4fda51ba323d7d50f7";
   }
 
   static const char* value(const ::rqt_mypkg::IMU_settings_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0xbb3456d77fcd813eULL;
-  static const uint64_t static_value2 = 0x0b5edd9a6c8556d2ULL;
+  static const uint64_t static_value1 = 0xd5a3580dc4de5a4fULL;
+  static const uint64_t static_value2 = 0xda51ba323d7d50f7ULL;
 };
 
 template<class ContainerAllocator>
@@ -154,6 +160,7 @@ struct Definition< ::rqt_mypkg::IMU_settings_<ContainerAllocator> >
   {
     return "float64 KP\n"
 "float64 KI\n"
+"int16 Ireset\n"
 ;
   }
 
@@ -174,6 +181,7 @@ namespace serialization
     {
       stream.next(m.KP);
       stream.next(m.KI);
+      stream.next(m.Ireset);
     }
 
     ROS_DECLARE_ALLINONE_SERIALIZER
@@ -196,6 +204,8 @@ struct Printer< ::rqt_mypkg::IMU_settings_<ContainerAllocator> >
     Printer<double>::stream(s, indent + "  ", v.KP);
     s << indent << "KI: ";
     Printer<double>::stream(s, indent + "  ", v.KI);
+    s << indent << "Ireset: ";
+    Printer<int16_t>::stream(s, indent + "  ", v.Ireset);
   }
 };
 

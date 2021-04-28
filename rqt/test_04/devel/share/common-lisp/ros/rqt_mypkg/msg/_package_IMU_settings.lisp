@@ -3,4 +3,6 @@
           KP
           KI-VAL
           KI
+          IRESET-VAL
+          IRESET
 ))

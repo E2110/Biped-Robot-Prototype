@@ -56,7 +56,8 @@ include rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_lisp.dir/progress.make
 rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_lisp: /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/share/common-lisp/ros/rqt_mypkg/msg/Angles.lisp
 rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_lisp: /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/share/common-lisp/ros/rqt_mypkg/msg/Motor_settings.lisp
 rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_lisp: /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/share/common-lisp/ros/rqt_mypkg/msg/IMU_settings.lisp
-rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_lisp: /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/share/common-lisp/ros/rqt_mypkg/msg/motor_values.lisp
+rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_lisp: /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/share/common-lisp/ros/rqt_mypkg/msg/Servo_values.lisp
+rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_lisp: /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/share/common-lisp/ros/rqt_mypkg/msg/Motor_values.lisp
 
 
 /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/share/common-lisp/ros/rqt_mypkg/msg/Angles.lisp: /opt/ros/melodic/lib/genlisp/gen_lisp.py
@@ -74,16 +75,22 @@ rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_lisp: /home/bachelor/GIT/Biped-
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating Lisp code from rqt_mypkg/IMU_settings.msg"
 	cd /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build/rqt_mypkg && ../catkin_generated/env_cached.sh /usr/bin/python2 /opt/ros/melodic/share/genlisp/cmake/../../../lib/genlisp/gen_lisp.py /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg/IMU_settings.msg -Irqt_mypkg:/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg -Istd_msgs:/opt/ros/melodic/share/std_msgs/cmake/../msg -p rqt_mypkg -o /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/share/common-lisp/ros/rqt_mypkg/msg
 
-/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/share/common-lisp/ros/rqt_mypkg/msg/motor_values.lisp: /opt/ros/melodic/lib/genlisp/gen_lisp.py
-/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/share/common-lisp/ros/rqt_mypkg/msg/motor_values.lisp: /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg/motor_values.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Generating Lisp code from rqt_mypkg/motor_values.msg"
-	cd /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build/rqt_mypkg && ../catkin_generated/env_cached.sh /usr/bin/python2 /opt/ros/melodic/share/genlisp/cmake/../../../lib/genlisp/gen_lisp.py /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg/motor_values.msg -Irqt_mypkg:/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg -Istd_msgs:/opt/ros/melodic/share/std_msgs/cmake/../msg -p rqt_mypkg -o /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/share/common-lisp/ros/rqt_mypkg/msg
+/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/share/common-lisp/ros/rqt_mypkg/msg/Servo_values.lisp: /opt/ros/melodic/lib/genlisp/gen_lisp.py
+/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/share/common-lisp/ros/rqt_mypkg/msg/Servo_values.lisp: /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg/Servo_values.msg
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Generating Lisp code from rqt_mypkg/Servo_values.msg"
+	cd /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build/rqt_mypkg && ../catkin_generated/env_cached.sh /usr/bin/python2 /opt/ros/melodic/share/genlisp/cmake/../../../lib/genlisp/gen_lisp.py /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg/Servo_values.msg -Irqt_mypkg:/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg -Istd_msgs:/opt/ros/melodic/share/std_msgs/cmake/../msg -p rqt_mypkg -o /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/share/common-lisp/ros/rqt_mypkg/msg
+
+/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/share/common-lisp/ros/rqt_mypkg/msg/Motor_values.lisp: /opt/ros/melodic/lib/genlisp/gen_lisp.py
+/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/share/common-lisp/ros/rqt_mypkg/msg/Motor_values.lisp: /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg/Motor_values.msg
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Generating Lisp code from rqt_mypkg/Motor_values.msg"
+	cd /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build/rqt_mypkg && ../catkin_generated/env_cached.sh /usr/bin/python2 /opt/ros/melodic/share/genlisp/cmake/../../../lib/genlisp/gen_lisp.py /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg/Motor_values.msg -Irqt_mypkg:/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg -Istd_msgs:/opt/ros/melodic/share/std_msgs/cmake/../msg -p rqt_mypkg -o /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/share/common-lisp/ros/rqt_mypkg/msg
 
 rqt_mypkg_generate_messages_lisp: rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_lisp
 rqt_mypkg_generate_messages_lisp: /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/share/common-lisp/ros/rqt_mypkg/msg/Angles.lisp
 rqt_mypkg_generate_messages_lisp: /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/share/common-lisp/ros/rqt_mypkg/msg/Motor_settings.lisp
 rqt_mypkg_generate_messages_lisp: /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/share/common-lisp/ros/rqt_mypkg/msg/IMU_settings.lisp
-rqt_mypkg_generate_messages_lisp: /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/share/common-lisp/ros/rqt_mypkg/msg/motor_values.lisp
+rqt_mypkg_generate_messages_lisp: /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/share/common-lisp/ros/rqt_mypkg/msg/Servo_values.lisp
+rqt_mypkg_generate_messages_lisp: /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/share/common-lisp/ros/rqt_mypkg/msg/Motor_values.lisp
 rqt_mypkg_generate_messages_lisp: rqt_mypkg/CMakeFiles/rqt_mypkg_generate_messages_lisp.dir/build.make
 
 .PHONY : rqt_mypkg_generate_messages_lisp

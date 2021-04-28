@@ -20,6 +20,7 @@ class motor_values {
       // initObj === null is a special case for deserialization where we don't initialize fields
       this.motor1_value = null;
       this.motor2_value = null;
+      this.OnOff = null;
     }
     else {
       if (initObj.hasOwnProperty('motor1_value')) {
@@ -34,6 +35,12 @@ class motor_values {
       else {
         this.motor2_value = 0.0;
       }
+      if (initObj.hasOwnProperty('OnOff')) {
+        this.OnOff = initObj.OnOff
+      }
+      else {
+        this.OnOff = 0;
+      }
     }
   }
 
@@ -43,6 +50,8 @@ class motor_values {
     bufferOffset = _serializer.float32(obj.motor1_value, buffer, bufferOffset);
     // Serialize message field [motor2_value]
     bufferOffset = _serializer.float32(obj.motor2_value, buffer, bufferOffset);
+    // Serialize message field [OnOff]
+    bufferOffset = _serializer.int16(obj.OnOff, buffer, bufferOffset);
     return bufferOffset;
   }
 
@@ -54,11 +63,13 @@ class motor_values {
     data.motor1_value = _deserializer.float32(buffer, bufferOffset);
     // Deserialize message field [motor2_value]
     data.motor2_value = _deserializer.float32(buffer, bufferOffset);
+    // Deserialize message field [OnOff]
+    data.OnOff = _deserializer.int16(buffer, bufferOffset);
     return data;
   }
 
   static getMessageSize(object) {
-    return 8;
+    return 10;
   }
 
   static datatype() {
@@ -68,7 +79,7 @@ class motor_values {
 
   static md5sum() {
     //Returns md5sum for a message object
-    return 'd0030d48ec79b36863e9007b5cb915eb';
+    return '12eba4c10619ee8f4c0326813788bdcb';
   }
 
   static messageDefinition() {
@@ -76,6 +87,7 @@ class motor_values {
     return `
     float32 motor1_value
     float32 motor2_value
+    int16 OnOff
     `;
   }
 
@@ -97,6 +109,13 @@ class motor_values {
     }
     else {
       resolved.motor2_value = 0.0
+    }
+
+    if (msg.OnOff !== undefined) {
+      resolved.OnOff = msg.OnOff;
+    }
+    else {
+      resolved.OnOff = 0
     }
 
     return resolved;

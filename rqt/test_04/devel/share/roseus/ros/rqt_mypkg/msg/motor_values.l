@@ -14,17 +14,19 @@
 
 (defclass rqt_mypkg::motor_values
   :super ros::object
-  :slots (_motor1_value _motor2_value ))
+  :slots (_motor1_value _motor2_value _OnOff ))
 
 (defmethod rqt_mypkg::motor_values
   (:init
    (&key
     ((:motor1_value __motor1_value) 0.0)
     ((:motor2_value __motor2_value) 0.0)
+    ((:OnOff __OnOff) 0)
     )
    (send-super :init)
    (setq _motor1_value (float __motor1_value))
    (setq _motor2_value (float __motor2_value))
+   (setq _OnOff (round __OnOff))
    self)
   (:motor1_value
    (&optional __motor1_value)
@@ -32,6 +34,9 @@
   (:motor2_value
    (&optional __motor2_value)
    (if __motor2_value (setq _motor2_value __motor2_value)) _motor2_value)
+  (:OnOff
+   (&optional __OnOff)
+   (if __OnOff (setq _OnOff __OnOff)) _OnOff)
   (:serialization-length
    ()
    (+
@@ -39,6 +44,8 @@
     4
     ;; float32 _motor2_value
     4
+    ;; int16 _OnOff
+    2
     ))
   (:serialize
    (&optional strm)
@@ -48,6 +55,8 @@
        (sys::poke _motor1_value (send s :buffer) (send s :count) :float) (incf (stream-count s) 4)
      ;; float32 _motor2_value
        (sys::poke _motor2_value (send s :buffer) (send s :count) :float) (incf (stream-count s) 4)
+     ;; int16 _OnOff
+       (write-word _OnOff s)
      ;;
      (if (null strm) (get-output-stream-string s))))
   (:deserialize
@@ -56,19 +65,22 @@
      (setq _motor1_value (sys::peek buf ptr- :float)) (incf ptr- 4)
    ;; float32 _motor2_value
      (setq _motor2_value (sys::peek buf ptr- :float)) (incf ptr- 4)
+   ;; int16 _OnOff
+     (setq _OnOff (sys::peek buf ptr- :short)) (incf ptr- 2)
    ;;
    self)
   )
 
-(setf (get rqt_mypkg::motor_values :md5sum-) "d0030d48ec79b36863e9007b5cb915eb")
+(setf (get rqt_mypkg::motor_values :md5sum-) "12eba4c10619ee8f4c0326813788bdcb")
 (setf (get rqt_mypkg::motor_values :datatype-) "rqt_mypkg/motor_values")
 (setf (get rqt_mypkg::motor_values :definition-)
       "float32 motor1_value
 float32 motor2_value
+int16 OnOff
 ")
 
 
 
-(provide :rqt_mypkg/motor_values "d0030d48ec79b36863e9007b5cb915eb")
+(provide :rqt_mypkg/motor_values "12eba4c10619ee8f4c0326813788bdcb")
 
 

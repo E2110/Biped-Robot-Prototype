@@ -3,7 +3,8 @@ file(REMOVE_RECURSE
   "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/share/roseus/ros/rqt_mypkg/msg/Angles.l"
   "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/share/roseus/ros/rqt_mypkg/msg/Motor_settings.l"
   "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/share/roseus/ros/rqt_mypkg/msg/IMU_settings.l"
-  "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/share/roseus/ros/rqt_mypkg/msg/motor_values.l"
+  "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/share/roseus/ros/rqt_mypkg/msg/Servo_values.l"
+  "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/share/roseus/ros/rqt_mypkg/msg/Motor_values.l"
   "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/share/roseus/ros/rqt_mypkg/manifest.l"
 )
 

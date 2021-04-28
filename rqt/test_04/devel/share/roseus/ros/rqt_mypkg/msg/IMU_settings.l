@@ -14,17 +14,19 @@
 
 (defclass rqt_mypkg::IMU_settings
   :super ros::object
-  :slots (_KP _KI ))
+  :slots (_KP _KI _Ireset ))
 
 (defmethod rqt_mypkg::IMU_settings
   (:init
    (&key
     ((:KP __KP) 0.0)
     ((:KI __KI) 0.0)
+    ((:Ireset __Ireset) 0)
     )
    (send-super :init)
    (setq _KP (float __KP))
    (setq _KI (float __KI))
+   (setq _Ireset (round __Ireset))
    self)
   (:KP
    (&optional __KP)
@@ -32,6 +34,9 @@
   (:KI
    (&optional __KI)
    (if __KI (setq _KI __KI)) _KI)
+  (:Ireset
+   (&optional __Ireset)
+   (if __Ireset (setq _Ireset __Ireset)) _Ireset)
   (:serialization-length
    ()
    (+
@@ -39,6 +44,8 @@
     8
     ;; float64 _KI
     8
+    ;; int16 _Ireset
+    2
     ))
   (:serialize
    (&optional strm)
@@ -48,6 +55,8 @@
        (sys::poke _KP (send s :buffer) (send s :count) :double) (incf (stream-count s) 8)
      ;; float64 _KI
        (sys::poke _KI (send s :buffer) (send s :count) :double) (incf (stream-count s) 8)
+     ;; int16 _Ireset
+       (write-word _Ireset s)
      ;;
      (if (null strm) (get-output-stream-string s))))
   (:deserialize
@@ -56,19 +65,22 @@
      (setq _KP (sys::peek buf ptr- :double)) (incf ptr- 8)
    ;; float64 _KI
      (setq _KI (sys::peek buf ptr- :double)) (incf ptr- 8)
+   ;; int16 _Ireset
+     (setq _Ireset (sys::peek buf ptr- :short)) (incf ptr- 2)
    ;;
    self)
   )
 
-(setf (get rqt_mypkg::IMU_settings :md5sum-) "bb3456d77fcd813e0b5edd9a6c8556d2")
+(setf (get rqt_mypkg::IMU_settings :md5sum-) "d5a3580dc4de5a4fda51ba323d7d50f7")
 (setf (get rqt_mypkg::IMU_settings :datatype-) "rqt_mypkg/IMU_settings")
 (setf (get rqt_mypkg::IMU_settings :definition-)
       "float64 KP
 float64 KI
+int16 Ireset
 ")
 
 
 
-(provide :rqt_mypkg/IMU_settings "bb3456d77fcd813e0b5edd9a6c8556d2")
+(provide :rqt_mypkg/IMU_settings "d5a3580dc4de5a4fda51ba323d7d50f7")
 
 

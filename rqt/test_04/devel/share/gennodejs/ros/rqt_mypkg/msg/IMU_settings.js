@@ -20,6 +20,7 @@ class IMU_settings {
       // initObj === null is a special case for deserialization where we don't initialize fields
       this.KP = null;
       this.KI = null;
+      this.Ireset = null;
     }
     else {
       if (initObj.hasOwnProperty('KP')) {
@@ -34,6 +35,12 @@ class IMU_settings {
       else {
         this.KI = 0.0;
       }
+      if (initObj.hasOwnProperty('Ireset')) {
+        this.Ireset = initObj.Ireset
+      }
+      else {
+        this.Ireset = 0;
+      }
     }
   }
 
@@ -43,6 +50,8 @@ class IMU_settings {
     bufferOffset = _serializer.float64(obj.KP, buffer, bufferOffset);
     // Serialize message field [KI]
     bufferOffset = _serializer.float64(obj.KI, buffer, bufferOffset);
+    // Serialize message field [Ireset]
+    bufferOffset = _serializer.int16(obj.Ireset, buffer, bufferOffset);
     return bufferOffset;
   }
 
@@ -54,11 +63,13 @@ class IMU_settings {
     data.KP = _deserializer.float64(buffer, bufferOffset);
     // Deserialize message field [KI]
     data.KI = _deserializer.float64(buffer, bufferOffset);
+    // Deserialize message field [Ireset]
+    data.Ireset = _deserializer.int16(buffer, bufferOffset);
     return data;
   }
 
   static getMessageSize(object) {
-    return 16;
+    return 18;
   }
 
   static datatype() {
@@ -68,7 +79,7 @@ class IMU_settings {
 
   static md5sum() {
     //Returns md5sum for a message object
-    return 'bb3456d77fcd813e0b5edd9a6c8556d2';
+    return 'd5a3580dc4de5a4fda51ba323d7d50f7';
   }
 
   static messageDefinition() {
@@ -76,6 +87,7 @@ class IMU_settings {
     return `
     float64 KP
     float64 KI
+    int16 Ireset
     `;
   }
 
@@ -97,6 +109,13 @@ class IMU_settings {
     }
     else {
       resolved.KI = 0.0
+    }
+
+    if (msg.Ireset !== undefined) {
+      resolved.Ireset = msg.Ireset;
+    }
+    else {
+      resolved.Ireset = 0
     }
 
     return resolved;

@@ -9,5 +9,7 @@
    "MOTOR_SETTINGS"
    "<MOTOR_VALUES>"
    "MOTOR_VALUES"
+   "<SERVO_VALUES>"
+   "SERVO_VALUES"
   ))
 

@@ -1,0 +1,2 @@
+int16 Servo1_state
+int16 Servo2_state

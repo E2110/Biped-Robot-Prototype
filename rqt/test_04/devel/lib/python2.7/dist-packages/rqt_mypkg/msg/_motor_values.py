@@ -8,13 +8,14 @@ import struct
 
 
 class motor_values(genpy.Message):
-  _md5sum = "d0030d48ec79b36863e9007b5cb915eb"
+  _md5sum = "12eba4c10619ee8f4c0326813788bdcb"
   _type = "rqt_mypkg/motor_values"
   _has_header = False  # flag to mark the presence of a Header object
   _full_text = """float32 motor1_value
-float32 motor2_value"""
-  __slots__ = ['motor1_value','motor2_value']
-  _slot_types = ['float32','float32']
+float32 motor2_value
+int16 OnOff"""
+  __slots__ = ['motor1_value','motor2_value','OnOff']
+  _slot_types = ['float32','float32','int16']
 
   def __init__(self, *args, **kwds):
     """
@@ -24,7 +25,7 @@ float32 motor2_value"""
     changes.  You cannot mix in-order arguments and keyword arguments.
 
     The available fields are:
-       motor1_value,motor2_value
+       motor1_value,motor2_value,OnOff
 
     :param args: complete set of field values, in .msg order
     :param kwds: use keyword arguments corresponding to message field names
@@ -37,9 +38,12 @@ float32 motor2_value"""
         self.motor1_value = 0.
       if self.motor2_value is None:
         self.motor2_value = 0.
+      if self.OnOff is None:
+        self.OnOff = 0
     else:
       self.motor1_value = 0.
       self.motor2_value = 0.
+      self.OnOff = 0
 
   def _get_types(self):
     """
@@ -54,7 +58,7 @@ float32 motor2_value"""
     """
     try:
       _x = self
-      buff.write(_get_struct_2f().pack(_x.motor1_value, _x.motor2_value))
+      buff.write(_get_struct_2fh().pack(_x.motor1_value, _x.motor2_value, _x.OnOff))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -68,8 +72,8 @@ float32 motor2_value"""
       end = 0
       _x = self
       start = end
-      end += 8
-      (_x.motor1_value, _x.motor2_value,) = _get_struct_2f().unpack(str[start:end])
+      end += 10
+      (_x.motor1_value, _x.motor2_value, _x.OnOff,) = _get_struct_2fh().unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e)  # most likely buffer underfill
@@ -83,7 +87,7 @@ float32 motor2_value"""
     """
     try:
       _x = self
-      buff.write(_get_struct_2f().pack(_x.motor1_value, _x.motor2_value))
+      buff.write(_get_struct_2fh().pack(_x.motor1_value, _x.motor2_value, _x.OnOff))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -98,8 +102,8 @@ float32 motor2_value"""
       end = 0
       _x = self
       start = end
-      end += 8
-      (_x.motor1_value, _x.motor2_value,) = _get_struct_2f().unpack(str[start:end])
+      end += 10
+      (_x.motor1_value, _x.motor2_value, _x.OnOff,) = _get_struct_2fh().unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e)  # most likely buffer underfill
@@ -108,9 +112,9 @@ _struct_I = genpy.struct_I
 def _get_struct_I():
     global _struct_I
     return _struct_I
-_struct_2f = None
-def _get_struct_2f():
-    global _struct_2f
-    if _struct_2f is None:
-        _struct_2f = struct.Struct("<2f")
-    return _struct_2f
+_struct_2fh = None
+def _get_struct_2fh():
+    global _struct_2fh
+    if _struct_2fh is None:
+        _struct_2fh = struct.Struct("<2fh")
+    return _struct_2fh

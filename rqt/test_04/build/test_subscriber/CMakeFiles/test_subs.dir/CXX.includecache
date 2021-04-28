@@ -6,6 +6,22 @@
 
 #IncludeRegexTransform: 
 
+/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/include/test_subscriber/IMU_settings.h
+string
+-
+vector
+-
+map
+-
+ros/types.h
+-
+ros/serialization.h
+-
+ros/builtin_message_traits.h
+-
+ros/message_operations.h
+-
+
 /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/test_subscriber/src/test_subscribers.cpp
 ros/ros.h
 /home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/test_subscriber/src/ros/ros.h

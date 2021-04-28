@@ -3,7 +3,8 @@ file(REMOVE_RECURSE
   "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/include/rqt_mypkg/Angles.h"
   "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/include/rqt_mypkg/Motor_settings.h"
   "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/include/rqt_mypkg/IMU_settings.h"
-  "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/include/rqt_mypkg/motor_values.h"
+  "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/include/rqt_mypkg/Servo_values.h"
+  "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/include/rqt_mypkg/Motor_values.h"
 )
 
 # Per-language clean rules from dependency scanning.

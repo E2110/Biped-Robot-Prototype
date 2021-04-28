@@ -3,7 +3,8 @@ file(REMOVE_RECURSE
   "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/lib/python2.7/dist-packages/rqt_mypkg/msg/_Angles.py"
   "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/lib/python2.7/dist-packages/rqt_mypkg/msg/_Motor_settings.py"
   "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/lib/python2.7/dist-packages/rqt_mypkg/msg/_IMU_settings.py"
-  "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/lib/python2.7/dist-packages/rqt_mypkg/msg/_motor_values.py"
+  "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/lib/python2.7/dist-packages/rqt_mypkg/msg/_Servo_values.py"
+  "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/lib/python2.7/dist-packages/rqt_mypkg/msg/_Motor_values.py"
   "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/devel/lib/python2.7/dist-packages/rqt_mypkg/msg/__init__.py"
 )
 

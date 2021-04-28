@@ -1,6 +1,6 @@
 # generated from genmsg/cmake/pkg-genmsg.cmake.em
 
-message(STATUS "rqt_mypkg: 4 messages, 0 services")
+message(STATUS "rqt_mypkg: 5 messages, 0 services")
 
 set(MSG_I_FLAGS "-Irqt_mypkg:/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg;-Istd_msgs:/opt/ros/melodic/share/std_msgs/cmake/../msg")
 
@@ -32,9 +32,14 @@ add_custom_target(_rqt_mypkg_generate_messages_check_deps_${_filename}
   COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "rqt_mypkg" "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg/IMU_settings.msg" ""
 )
 
-get_filename_component(_filename "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg/motor_values.msg" NAME_WE)
+get_filename_component(_filename "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg/Motor_values.msg" NAME_WE)
 add_custom_target(_rqt_mypkg_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "rqt_mypkg" "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg/motor_values.msg" ""
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "rqt_mypkg" "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg/Motor_values.msg" ""
+)
+
+get_filename_component(_filename "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg/Servo_values.msg" NAME_WE)
+add_custom_target(_rqt_mypkg_generate_messages_check_deps_${_filename}
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "rqt_mypkg" "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg/Servo_values.msg" ""
 )
 
 #
@@ -62,7 +67,13 @@ _generate_msg_cpp(rqt_mypkg
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/rqt_mypkg
 )
 _generate_msg_cpp(rqt_mypkg
-  "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg/motor_values.msg"
+  "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg/Servo_values.msg"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/rqt_mypkg
+)
+_generate_msg_cpp(rqt_mypkg
+  "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg/Motor_values.msg"
   "${MSG_I_FLAGS}"
   ""
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/rqt_mypkg
@@ -88,7 +99,9 @@ get_filename_component(_filename "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/t
 add_dependencies(rqt_mypkg_generate_messages_cpp _rqt_mypkg_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg/IMU_settings.msg" NAME_WE)
 add_dependencies(rqt_mypkg_generate_messages_cpp _rqt_mypkg_generate_messages_check_deps_${_filename})
-get_filename_component(_filename "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg/motor_values.msg" NAME_WE)
+get_filename_component(_filename "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg/Motor_values.msg" NAME_WE)
+add_dependencies(rqt_mypkg_generate_messages_cpp _rqt_mypkg_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg/Servo_values.msg" NAME_WE)
 add_dependencies(rqt_mypkg_generate_messages_cpp _rqt_mypkg_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
@@ -119,7 +132,13 @@ _generate_msg_eus(rqt_mypkg
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/rqt_mypkg
 )
 _generate_msg_eus(rqt_mypkg
-  "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg/motor_values.msg"
+  "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg/Servo_values.msg"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/rqt_mypkg
+)
+_generate_msg_eus(rqt_mypkg
+  "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg/Motor_values.msg"
   "${MSG_I_FLAGS}"
   ""
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/rqt_mypkg
@@ -145,7 +164,9 @@ get_filename_component(_filename "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/t
 add_dependencies(rqt_mypkg_generate_messages_eus _rqt_mypkg_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg/IMU_settings.msg" NAME_WE)
 add_dependencies(rqt_mypkg_generate_messages_eus _rqt_mypkg_generate_messages_check_deps_${_filename})
-get_filename_component(_filename "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg/motor_values.msg" NAME_WE)
+get_filename_component(_filename "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg/Motor_values.msg" NAME_WE)
+add_dependencies(rqt_mypkg_generate_messages_eus _rqt_mypkg_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg/Servo_values.msg" NAME_WE)
 add_dependencies(rqt_mypkg_generate_messages_eus _rqt_mypkg_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
@@ -176,7 +197,13 @@ _generate_msg_lisp(rqt_mypkg
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/rqt_mypkg
 )
 _generate_msg_lisp(rqt_mypkg
-  "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg/motor_values.msg"
+  "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg/Servo_values.msg"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/rqt_mypkg
+)
+_generate_msg_lisp(rqt_mypkg
+  "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg/Motor_values.msg"
   "${MSG_I_FLAGS}"
   ""
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/rqt_mypkg
@@ -202,7 +229,9 @@ get_filename_component(_filename "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/t
 add_dependencies(rqt_mypkg_generate_messages_lisp _rqt_mypkg_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg/IMU_settings.msg" NAME_WE)
 add_dependencies(rqt_mypkg_generate_messages_lisp _rqt_mypkg_generate_messages_check_deps_${_filename})
-get_filename_component(_filename "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg/motor_values.msg" NAME_WE)
+get_filename_component(_filename "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg/Motor_values.msg" NAME_WE)
+add_dependencies(rqt_mypkg_generate_messages_lisp _rqt_mypkg_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg/Servo_values.msg" NAME_WE)
 add_dependencies(rqt_mypkg_generate_messages_lisp _rqt_mypkg_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
@@ -233,7 +262,13 @@ _generate_msg_nodejs(rqt_mypkg
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/rqt_mypkg
 )
 _generate_msg_nodejs(rqt_mypkg
-  "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg/motor_values.msg"
+  "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg/Servo_values.msg"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/rqt_mypkg
+)
+_generate_msg_nodejs(rqt_mypkg
+  "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg/Motor_values.msg"
   "${MSG_I_FLAGS}"
   ""
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/rqt_mypkg
@@ -259,7 +294,9 @@ get_filename_component(_filename "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/t
 add_dependencies(rqt_mypkg_generate_messages_nodejs _rqt_mypkg_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg/IMU_settings.msg" NAME_WE)
 add_dependencies(rqt_mypkg_generate_messages_nodejs _rqt_mypkg_generate_messages_check_deps_${_filename})
-get_filename_component(_filename "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg/motor_values.msg" NAME_WE)
+get_filename_component(_filename "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg/Motor_values.msg" NAME_WE)
+add_dependencies(rqt_mypkg_generate_messages_nodejs _rqt_mypkg_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg/Servo_values.msg" NAME_WE)
 add_dependencies(rqt_mypkg_generate_messages_nodejs _rqt_mypkg_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
@@ -290,7 +327,13 @@ _generate_msg_py(rqt_mypkg
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/rqt_mypkg
 )
 _generate_msg_py(rqt_mypkg
-  "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg/motor_values.msg"
+  "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg/Servo_values.msg"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/rqt_mypkg
+)
+_generate_msg_py(rqt_mypkg
+  "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg/Motor_values.msg"
   "${MSG_I_FLAGS}"
   ""
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/rqt_mypkg
@@ -316,7 +359,9 @@ get_filename_component(_filename "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/t
 add_dependencies(rqt_mypkg_generate_messages_py _rqt_mypkg_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg/IMU_settings.msg" NAME_WE)
 add_dependencies(rqt_mypkg_generate_messages_py _rqt_mypkg_generate_messages_check_deps_${_filename})
-get_filename_component(_filename "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg/motor_values.msg" NAME_WE)
+get_filename_component(_filename "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg/Motor_values.msg" NAME_WE)
+add_dependencies(rqt_mypkg_generate_messages_py _rqt_mypkg_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg/msg/Servo_values.msg" NAME_WE)
 add_dependencies(rqt_mypkg_generate_messages_py _rqt_mypkg_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility

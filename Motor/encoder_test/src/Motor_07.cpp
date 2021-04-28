@@ -207,15 +207,15 @@ public:
     }
     void toggleMotorPin2(int state)
     {
-        std::ofstream pinstream;
-        std::ofstream pinstream2;
+        std::ofstream pinstream3;
+        std::ofstream pinstream4;
 
-        pinstream.open("/sys/class/gpio/gpio117/value");
-        pinstream << state;
-        pinstream.close();
-        pinstream2.open("/sys/class/gpio/gpio49/value")
-        pinstream2 << state;
-        pinstream2.close();
+        pinstream3.open("/sys/class/gpio/gpio117/value");
+        pinstream3 << state;
+        pinstream3.close();
+        pinstream4.open("/sys/class/gpio/gpio49/value")
+        pinstream4 << state;
+        pinstream4.close();
     }
     void motorInit2()
     {
@@ -400,6 +400,8 @@ task PID()
         control.setDutyCycle1(DutyC1);
         control.setDutyCycle2(DutyC2);
 
+        motor1 control(16);
+        motor2 control(14);
         break;
     }
 }

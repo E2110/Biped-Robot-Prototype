@@ -1,6 +1,7 @@
 #include "ros/ros.h"
 #include "std_msgs/Float32MultiArray.h"
-#include "m09/msg/encoder_angles.h"
+#include "encoder_test/encoder_angles.h"
+#include "encoder_test/motor_values.h"
 
 #include <iostream>
 #include <fstream>
@@ -346,30 +347,47 @@ class Encoder
     }
 };
 
+float motor1_value = 0.0;
+float motor2_value = 0.0;
 
-
-void chatterCallback(const std_msgs::Int32::ConstPtr& msg)
+void changeMotorValues(const encoder_test::motor_values msg)
 {
-    //ros code
-    ROS_INFO("servo_recive : %d", msg->data);
-    int encoderPos = msg->data;
-    //servo code
-    if (encoderPos < 1000)
-    {
-        control.toggleMotorPin(0);  //set GPIO pin 25 on cape 9 to 0
-        //control.GPIOtoggle(9,27,0);  //set GPIO pin 23 on cape 9 to 0   counterclockwise   
-        //ROS_INFO("inside if : [%s]", encoderPos);
+    motor1_value = msg.motor1_value;
+    motor2_value = msg.motor2_value;
+    ROS_INFO("%f", motor1_value);
+    control.setDutyCycle(1000000 + abs((int)motor1_value *80000));
+    control2.setDutyCycle(1000000 + abs((int)motor2_value *80000));
+    
+    if (msg.OnOff == 1){
+        if (motor1_value > 0)
+        {
+            control.GPIOtoggle(9, 27, 1);
+            control.GPIOtoggle(8, 34, 1);
+        }
+        else
+        {
+            control.GPIOtoggle(9, 27, 0);
+            control.GPIOtoggle(8, 34, 0);
+        }    
+        if (motor2_value > 0)
+        {
+            control.GPIOtoggle(9, 25, 1);
+            control.GPIOtoggle(9, 23, 1);
+        }
+        else
+        {
+            control.GPIOtoggle(9, 25, 0);
+            control.GPIOtoggle(9, 23, 0);
+        }
     }
     else
     {
-        control.toggleMotorPin(1);
-        //control.GPIOtoggle(9,25,1); //set GPIO pin 25 on cape 9 to 1
-        //control.GPIOtoggle(9,27,1); //set GPIO pin 27 on cape 9 to 1    clockwise
-       // ROS_INFO("outside if : [%s]", encoderPos);
+        control.GPIOtoggle(9, 27, 1);
+        control.GPIOtoggle(8, 34, 0);
+        control.GPIOtoggle(9, 25, 1);
+        control.GPIOtoggle(9, 23, 0);
     }
-    
 }
-
 
 int main(int argc, char **argv)
 {
@@ -404,12 +422,14 @@ int main(int argc, char **argv)
     ros::init(argc, argv, "motor_subscriber");
     ros::NodeHandle n;
     ros::Publisher chatter_pub = n.advertise<encoder_test::encoder_angles>("leg_torso_angles", 1);
+    ros::Subscriber values_sub = n.subscribe("Motor_values",1, changeMotorValues);
     ros::Rate loop_rate(100);
 
     while (ros::ok())
     {
         flt.leg1_torso_angle = (float)encoder1.getPosition() * 360 / (pulsesPrRev * 4 * gearRatio);
         flt.leg2_torso_angle = (float)encoder2.getPosition() * 360 / (pulsesPrRev * 4 * gearRatio);
+
 
         chatter_pub.publish(flt);
         ros::spinOnce();

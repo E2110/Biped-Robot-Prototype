@@ -51,7 +51,7 @@ find_package(catkin REQUIRED COMPONENTS
 add_message_files(
   FILES
   IMU_settings.msg
-  Angles.msg
+  imu_angles.msg
 )
 
 ## Generate services in the 'srv' folder
@@ -71,7 +71,7 @@ add_message_files(
 ## Generate added messages and services with any dependencies listed here
 generate_messages(
   DEPENDENCIES
-  std_msgs
+  sensor_msgs   std_msgs
 )
 
 ################################################

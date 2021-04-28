@@ -168,6 +168,11 @@ class pi_reg
         return (pout + iout);
     }
 
+    void resetI()
+    {
+        _integral = 0.0;
+    }
+
 
     float getError(){ return error;}
 };
@@ -175,11 +180,24 @@ class pi_reg
 
 pi_reg offsetRegulator1(KP, KI);
 pi_reg offsetRegulator2(KP, KI);
+int Ireset = 0;
+float offset1 = 0.0;
+float offset2 = 0.0;
+float finalAngle1 = 0.0;
+float finalAngle2 = 0.0;
 
 void chatterCallback(const imu_publisher::IMU_settings msg)
 {
     offsetRegulator1.change_PI(msg.KP, msg.KI);
     offsetRegulator2.change_PI(msg.KP, msg.KI);
+    if (msg.Ireset != Ireset)
+    {
+        offsetRegulator1.resetI();
+        offsetRegulator2.resetI();
+        Ireset = msg.Ireset;
+        finalAngle1 = 0;
+        finalAngle2 = 0;
+    }
 }
 
 
@@ -228,10 +246,7 @@ int main(int argc, char* argv[])
     float total_rotaion = 0.0;
     
     
-    float offset1 = 0.0;
-    float offset2 = 0.0;
-    float finalAngle1 = 0.0;
-    float finalAngle2 = 0.0;
+
 
 
 
@@ -259,6 +274,8 @@ int main(int argc, char* argv[])
         angles.leg2_angle = finalAngle2;
 
         chatter_pub.publish(angles);
+
+        //printf("%f  , %f \n", gyro_rotation1, finalAngle1);
 
         ros::spinOnce();
         loop_rate.sleep();

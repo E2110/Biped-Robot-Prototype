@@ -24,7 +24,95 @@ The config is quite simple. Just start the software and (if connected) a pop up 
 ## Connection and pins
 
 ## Code
-The purpose of the code is to control direction and torque of both motors. To control the direction you change the "value" of the GPIO-pins and to manipulate the torque you change the "duty_cycle" of the pwm-pins. 
+<i>This section will only explain the motor part, even though the code contains an encoder part. The explanation should give you enough information to understand the code, add new PWM- and GPIO-pins and change the values written on the Beaglebone, hopefully without having experience with C++. Order: Code -> where it's called -> explanation.
+
+The code is written in C++. The purpose of the code is to change the direction and the torque of both motors. To control the direction you change the "value" of the GPIO-pins and to manipulate the torque you change the "duty_cycle" of the pwm-pins. Let's start with class motor.
+
+* <b>class motor</b> contains functions with pathways to different folders on the Beaglebone. These pathways might be wrong if you do not have the same device tree overlay as us. 
+
+```
+    motor(int pinNumber)
+    {
+        m_dutyCycle = 1000000;
+        setpwmPin (pinNumber);
+        std::cout<< "Running with pin " << pinNumber << std::ends;
+    }
+```
+pinNumber input:
+```
+motor control(14);
+motor control2(16);
+```
+It starts by calling the setpwmPin function and printing what pinNumber it runs with. This equals the motor input and will decide which pwm-pin that will run.
+
+```
+void setDutyCycle(int dutyC)
+    {
+        std::ofstream DCfile;
+        DCfile.open("/sys/class/pwm/pwm-" + m_PinpathNumber + "/duty_cycle");
+        DCfile << dutyC;
+        DCfile.close();
+    }
+```
+initiated:
+```
+control.setDutyCycle(5000000);
+control2.setDutyCycle(5000000);
+```
+When initiated it opens the duty_cycle folder, writes the input and closes it. m_PinpathNumber is given in the setpwmPin-function.
+
+```
+void setPWMfreq(int frequency)
+        {
+            disablePWM();
+            std::ofstream freqSet;
+            freqSet.open("/sys/class/pwm/pwm-" + m_PinpathNumber + "/period");
+            freqSet << frequency;
+            freqSet.close();
+            enablePWM();
+        }
+```
+Same concept as last function. Difference is that it calls a function to disable and enable the PWM-pin. The reason for this is that you can't change the period when the PWM-pin is enabled.
+
+```
+void GPIOtoggle(int cape_nr,int pin_nr,int state)
+    {   
+        setGPIOpin(cape_nr,pin_nr);
+        setGPIOstate();
+        setGPIOdirection("out");
+
+        std::ofstream pinstream;
+        pinstream.open("/sys/class/gpio/gpio"+ m_GPIONumber + "/value");
+        pinstream << state;
+        pinstream.close();
+    }
+```
+It first calles tree functions to select the correct pin and put the direction "out" (default it's in". This function is used to put the GPIO value to either 1 or 0. Under section <i>"Connection and pins"</i> it is explained what the different combinations will do to the motor. 
+
+
+```
+    void motorInit()
+    {   
+        setPWMstate();
+        exportPWM();
+        setPWMfreq(m_frequency);
+        setDutyCycle(m_dutyCycle);
+        enablePWM();  
+    }
+```
+
+motorInit is, as the name indicates, an initialiser. It calls function to make sure the PWM-pins are correct set up.
+
+
+
+
+
+* main() will run when initiating the program.
+
+```
+```
+
+
 
 ```
 void setDutyCycle(int dutyC)

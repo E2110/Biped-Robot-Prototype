@@ -31,6 +31,10 @@ From windows OS. For flashing the new image we used following:
 
 # Connect to the BeagleBone through SSH.
 
+```
+ssh ubuntu@192.168.7.2
+```
+passord: temppwd
 
 # Enable the PWM-pins
 This depends on your device tree overlay. There are quite a bunch out there, this one follows the one we got from the flashed image above.
@@ -120,6 +124,70 @@ To transfer from windows we use WinSCP. Its pretty straight forward to use,kinda
 
 <img src="assets/Winscp_04.PNG" width="300" height="200"/>
 
+# Make a Catkin-workspace, compile and run a C++-file with ROS
+<i> This should be failry simple if you have gone through the ROS-tutorials. We'll keep it as short as possible.</i> 
+
+1. Open one terminal and run roscore
+
+```
+roscore
+```
+2. Open another and source setup.bash
+
+```
+source /opt/ros/melodic/setup.bash
+```
+3. Make a folder and another named "src" within this one.
 
 
+```
+mkdir folder_01
+cd folder_01
+mkdir src
+```
+4. Make Cmakelists.txt vha. catkin_init_workspace
 
+```
+cd src
+catkin_init_workspace
+```
+5. Exit src and run catkin_make
+
+```
+cd ..
+catkin_make
+```
+6. source setup.bash
+
+```
+source devel/setup.bash
+```
+
+7. Make package
+
+```
+cd src
+catkin_create_pkg folder_02 roscpp std_msgs
+```
+8. Import C++-file to new src folder.
+9. To be able to run a C++-file you have to edit CMakelists.txt in folder_02
+
+```
+nano CMakeLists.txt
+```
+Under "Build"-section you can uncomment the "add_executable", "add_dependencies" and "target_link_libraries". Optionally just add:
+
+```
+add_executable(number_3 src/C++-file.cpp)
+add_dependencies(number_3 ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(number_3 ${catkin_LIBRARIES})
+```
+10. Go to folder_01 and run catkin_make. This should compile the package.
+```
+cd ../..
+catkin_make
+```
+11.Run the package
+```
+rosrun number_3 folder_02
+```

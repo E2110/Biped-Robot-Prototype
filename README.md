@@ -127,12 +127,12 @@ To transfer from windows we use WinSCP. Its pretty straight forward to use,kinda
 # Make a Catkin-workspace, compile and run a C++-file with ROS
 <i> This should be failry simple if you have gone through the ROS-tutorials. We'll keep it as short as possible.</i> 
 
-1. Open one terminal and run roscore
+1. Open one terminal (Ctrl + Alt + T) and run roscore
 
 ```
 roscore
 ```
-2. Open another and source setup.bash
+2. Open another (Ctrl + Shift + T) and source setup.bash
 
 ```
 source /opt/ros/melodic/setup.bash

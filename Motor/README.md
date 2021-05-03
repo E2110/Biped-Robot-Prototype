@@ -25,7 +25,8 @@ The config is quite simple. Just start the software and (if connected) a pop up 
 ## Connection and pins
 Each motor is controlled by two by two GPIO-pins and one PWM-pin.
 
-        |   Inner leg       |   Outer leg
+.     |   Inner leg       |   Outer leg
+:------------------------------------:|:-------------------------------------:|:-------------------------:
 GPIO 1  |   P9_23           |   P9_27
 GPIO 2  |   P9_25           |   P8_34
 PWM     |   P9_16           |   P9_14

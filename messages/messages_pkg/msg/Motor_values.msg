@@ -1,0 +1,3 @@
+float32 motor1_value
+float32 motor2_value
+int16 OnOff

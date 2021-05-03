@@ -25,11 +25,12 @@ The config is quite simple. Just start the software and (if connected) a pop up 
 ## Connection and pins
 Each motor is controlled by two by two GPIO-pins and one PWM-pin.
 
-.     |   Inner leg       |   Outer leg
-:------------------------------------:|:-------------------------------------:|:-------------------------:
-GPIO 1  |   P9_23           |   P9_27
-GPIO 2  |   P9_25           |   P8_34
-PWM     |   P9_16           |   P9_14
+Pin     |   Inner Leg     | Outer Leg |  Servo Controller
+:------------------------------------:|:-------------------------------------:|:-------------------------:|:--------:
+GPIO 1  |   P9_23           |  P9_27 |J5_1
+GPIO 2  |   P9_25           |  P8_34 |J5_2
+PWM     |   P9_16           |  P9_14 |J5_3
+
 ## Code
 <i>This section will only explain the motor part, even though the code contains an encoder part. The explanation should give you enough information to understand the code, add new PWM- and GPIO-pins and change the values written on the Beaglebone, hopefully without having experience with C++. Order: Code -> where it's called -> explanation.
 

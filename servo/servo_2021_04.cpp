@@ -14,10 +14,11 @@ private:
     int m_dutyCycle;
     int m_PIN;
     int m_pinbool;
-    bool ServoD {};
+    bool ServoP = true;
     std::string m_Pinpath;
     std::string m_PinpathNumber;
     std::string m_pinChip;
+
     
     
     void setPin(int pin)
@@ -107,10 +108,10 @@ public:
         enablePWM();
         
     }
-    /*void InputServoDown(const Bool::ConstPtr& ServoDown)
+    void ServoState(bool)/*::ConstPtr& ServoP)/**/
     {
-          ServoDown = ServDown.data;
-    }/**/
+          ServoP = true;
+    }
 };
 
 
@@ -131,19 +132,21 @@ int main()
     servoControl servoB(pinN2); //initalize with given pin nr
     servoB.servoInit();
     
+    bool ServoP;
     std::cout << "1 for down, 0 for up:";
-    std::cin >> ServoD;
+    std::cin >> ServoP;
     std::cout << std::endl;;
    
+    /* ROS_INFO("servo_recive : [%s]", msg->data.c_str());
+    std::string servoP = msg->data;
+    std::cout << servo_pos <<std::endl;/**/
     
-    
-    if(/*bool?/**/ServoD = 0)
+    if(ServoP = 0)
     {
         std::cin.get();
         servoA.setDutyCycle(820000);
         servoB.setDutyCycle(820000);
         std::cin.get();
-        break;
     }
     else
     {
@@ -156,4 +159,3 @@ int main()
     }
     std::cout << "Finito"<< std::endl;
     return 0; }
-}

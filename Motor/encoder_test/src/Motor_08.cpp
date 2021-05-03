@@ -1,7 +1,7 @@
 #include "ros/ros.h"
 #include "std_msgs/Float32MultiArray.h"
-#include "encoder_test/encoder_angles.h"
-#include "encoder_test/motor_values.h"
+#include "messages_pkg/encoder_angles.h"
+#include "messages_pkg/Motor_values.h"
 
 #include <iostream>
 #include <fstream>
@@ -352,7 +352,7 @@ class Encoder
 float motor1_value = 0.0;
 float motor2_value = 0.0;
 
-void changeMotorValues(const encoder_test::motor_values msg)
+void changeMotorValues(const messages_pkg::Motor_values msg)
 {
     motor1_value = msg.motor1_value;
     motor2_value = msg.motor2_value;
@@ -418,12 +418,12 @@ int main(int argc, char **argv)
     float leg1Angle;
     float leg2Angle;
         
-   encoder_test::encoder_angles flt;
+    messages_pkg::encoder_angles flt;
 
     //ros code
     ros::init(argc, argv, "motor_subscriber");
     ros::NodeHandle n;
-    ros::Publisher chatter_pub = n.advertise<encoder_test::encoder_angles>("leg_torso_angles", 1);
+    ros::Publisher chatter_pub = n.advertise<messages_pkg::encoder_angles>("leg_torso_angles", 1);
     ros::Subscriber values_sub = n.subscribe("Motor_values",1, changeMotorValues);
     ros::Rate loop_rate(100);
 

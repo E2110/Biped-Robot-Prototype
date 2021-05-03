@@ -108,7 +108,7 @@ scp localfile.cpp ubuntu@192.168.7.2:/folder
 Eclipse is also a common tool you can use for this and cross compiling.
 
 ## Windows
-To transfer from windows we use WinSCP. Its pretty straight forward to use,kinda like the windows version of eclipse. 
+To transfer from windows we use WinSCP. Its pretty straight forward to use, kind of like a windows version of eclipse. 
 
 1. Go to https://winscp.net/eng/download.php and install Winscp.
 

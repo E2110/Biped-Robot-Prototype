@@ -214,27 +214,27 @@ int main(int argc, char* argv[])
 
 
     char aksereg = 0x10;
-    char setBit  = 0x49;
+    char setBit  = 0x49;// 3 gyroscope data output rate, 2 fullscale selection, 1=0, 2 gyroscope bandwidth selection
     IMU1.setRegSensor(aksereg,setBit);
     IMU2.setRegSensor(aksereg,setBit);
     aksereg = 0x11;
-    setBit  = 0x03;
+    setBit  = 0x00;// 4=0, 2 interupt selsction, 2 output selection
     IMU1.setRegSensor(aksereg,setBit);
     IMU2.setRegSensor(aksereg,setBit);
     aksereg = 0x12;
-    setBit  = 0x48;
+    setBit  = 0x08; // 1 Low power mode enable, 1 high-pass filter enable, 2=0, 4 gyroscope highpass filter bandwidth selsction
     IMU1.setRegSensor(aksereg,setBit);
     IMU2.setRegSensor(aksereg,setBit);
     aksereg = 0x20;
-    setBit  = 0x00;
+    setBit  = 0x00;// 3 accelerometer output datarate, 2 accelerometer full scale selection, 1 bandwidth rate output datarate, 2 aintialiaasing filter bw rate
     IMU1.setRegSensor(aksereg,setBit);
     IMU2.setRegSensor(aksereg,setBit);
     aksereg = 0x23;
-    setBit  = 0x00;
+    setBit  = 0x00;//FIFO dissable
     IMU1.setRegSensor(aksereg,setBit);
     IMU2.setRegSensor(aksereg,setBit);
     aksereg = 0x2E;
-    setBit  = 0x00;
+    setBit  = 0x00;// FIFO dissable
     IMU1.setRegSensor(aksereg,setBit);
     IMU2.setRegSensor(aksereg,setBit);
 

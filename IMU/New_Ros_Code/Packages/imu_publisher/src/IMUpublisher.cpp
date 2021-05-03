@@ -1,8 +1,8 @@
 #include "ros/ros.h"
 #include "std_msgs/Float32MultiArray.h"
 #include "std_msgs/String.h"
-#include "imu_publisher/IMU_settings.h"
-#include "imu_publisher/imu_angles.h"
+#include "messages_pkg/IMU_settings.h"
+#include "messages_pkg/imu_angles.h"
 
 #include <iostream>
 #include <sstream>
@@ -30,6 +30,8 @@ class LSM9DS1
     float ax, ay, az, gx, gy, gz;
     short s_ax, s_ay, s_az, s_gx, s_gy, s_gz;
     float pitch,roll;
+
+    float gyroDrift;
 
     char dataBuffer[5] = {0};
     char dataBuffer2[5] = {0};
@@ -119,6 +121,12 @@ class LSM9DS1
         close(file);
     }
 
+    void setGyroDrift(float drift)
+    {
+        gyroDrift = drift;
+    }
+
+    float GetGyroDrift(){return gyroDrift;}
     float GetAccelerationX(){ return ax;}
     float GetAccelerationY(){ return ay;}
     float GetAccelerationZ(){ return az;}
@@ -131,13 +139,66 @@ class LSM9DS1
 float KP = 0.0;
 float KI = 0.0001;
 
+
+class kalmanFilter
+{
+    private :
+    //end in pre = pre update, post = post update
+    //last means it was the value in the previus run
+    float XEstimateCurrentPre;
+    float XEstimateCurrentPost;
+    float XEstimateLastPost = 0.0;
+    float UMeasuredLast = 0.0;
+    float DeltaT = 1.0/(float)LPS;
+    float PCurrentPre;
+    float PCurrentPost;
+    float PLastPost = 0.0;
+    float Q = 0.01;
+    float R = 10;
+    float YCurrent;
+    float KCurrent;
+
+    public :
+
+    kalmanFilter(float q, float r)
+    {   
+        Q = q;
+        R = r;
+    }
+
+    void set_QR(float q, float r)
+    {   
+        Q = q;
+        R = r;
+    }
+
+    float Filter(float gyro_value, float acceleration_value)
+    {
+        //prediction
+        XEstimateCurrentPre = XEstimateLastPost + UMeasuredLast * DeltaT;
+        PCurrentPre = PLastPost + Q;
+        //Update
+        YCurrent = acceleration_value - XEstimateCurrentPre;
+        KCurrent = PCurrentPre/(R + PCurrentPre);
+        XEstimateCurrentPost = XEstimateCurrentPre + KCurrent * YCurrent;
+        PCurrentPost = (1 - KCurrent) * PCurrentPre;
+        //transfer the value to the next cycle
+        XEstimateLastPost = XEstimateCurrentPost;
+        PLastPost = PCurrentPost;
+        UMeasuredLast = gyro_value;
+
+        return(XEstimateCurrentPost);
+    }
+};
+
+
 class pi_reg
 {
     private :
 
     float _Kp;
     float _Ki;
-    float _integral;
+    double _integral;
     float pout;
     float iout;
     float error;
@@ -177,6 +238,9 @@ class pi_reg
     float getError(){ return error;}
 };
 
+kalmanFilter KFilter1(0.01, 10);
+kalmanFilter KFilter2(0.01, 10);
+
 
 pi_reg offsetRegulator1(KP, KI);
 pi_reg offsetRegulator2(KP, KI);
@@ -186,10 +250,12 @@ float offset2 = 0.0;
 float finalAngle1 = 0.0;
 float finalAngle2 = 0.0;
 
-void chatterCallback(const imu_publisher::IMU_settings msg)
+void chatterCallback(const messages_pkg::IMU_settings msg)
 {
     offsetRegulator1.change_PI(msg.KP, msg.KI);
     offsetRegulator2.change_PI(msg.KP, msg.KI);
+    KFilter1.set_QR(msg.KP,msg.KI);
+    KFilter1.set_QR(msg.KP,msg.KI);
     if (msg.Ireset != Ireset)
     {
         offsetRegulator1.resetI();
@@ -208,10 +274,10 @@ int main(int argc, char* argv[])
     ros::init(argc, argv, "IMUpublisher");
     //message code
     ros::NodeHandle n;
-    ros::Publisher chatter_pub = n.advertise<imu_publisher::imu_angles>("leg_ground_angles", 1);
+    ros::Publisher chatter_pub = n.advertise<messages_pkg::imu_angles>("leg_ground_angles", 1);
     ros::Subscriber sub = n.subscribe("IMU_settings",1 ,chatterCallback);
     ros::Rate loop_rate(LPS);
-    imu_publisher::imu_angles angles;
+    messages_pkg::imu_angles angles;
 
     
 
@@ -223,19 +289,27 @@ int main(int argc, char* argv[])
 
 
     char aksereg = 0x10;
-    char setBit  = 0x49;
+    char setBit  = 0x49;// 3 gyroscope data output rate, 2 fullscale selection, 1=0, 2 gyroscope bandwidth selection
     IMU1.setRegSensor(aksereg,setBit);
     IMU2.setRegSensor(aksereg,setBit);
     aksereg = 0x11;
-    setBit  = 0x02;
+    setBit  = 0x00;// 4=0, 2 interupt selsction, 2 output selection
     IMU1.setRegSensor(aksereg,setBit);
     IMU2.setRegSensor(aksereg,setBit);
     aksereg = 0x12;
-    setBit  = 0x49;
+    setBit  = 0x08; // 1 Low power mode enable, 1 high-pass filter enable, 2=0, 4 gyroscope highpass filter bandwidth selsction
     IMU1.setRegSensor(aksereg,setBit);
     IMU2.setRegSensor(aksereg,setBit);
     aksereg = 0x20;
-    setBit  = 0x00;
+    setBit  = 0x00;// 3 accelerometer output datarate, 2 accelerometer full scale selection, 1 bandwidth rate output datarate, 2 aintialiaasing filter bw rate
+    IMU1.setRegSensor(aksereg,setBit);
+    IMU2.setRegSensor(aksereg,setBit);
+    aksereg = 0x23;
+    setBit  = 0x00;//FIFO dissable
+    IMU1.setRegSensor(aksereg,setBit);
+    IMU2.setRegSensor(aksereg,setBit);
+    aksereg = 0x2E;
+    setBit  = 0x00;// FIFO dissable
     IMU1.setRegSensor(aksereg,setBit);
     IMU2.setRegSensor(aksereg,setBit);
 
@@ -244,10 +318,29 @@ int main(int argc, char* argv[])
     float gyro_rotation2 = 0.0;
     float acceleration_rotation2 = 0.0;
     float total_rotaion = 0.0;
+
+    int calibrationLoopCounter = 0;
     
-    
+ 
 
 
+    
+    while (calibrationLoopCounter < 1000)
+    {
+        IMU1.ReadSensor();
+        IMU2.ReadSensor();
+        gyro_rotation1 += (IMU1.GetGRotationZ());
+        gyro_rotation2 += (IMU2.GetGRotationZ());
+        calibrationLoopCounter += 1;
+
+    }
+
+    IMU1.setGyroDrift(gyro_rotation1/1000);
+    IMU2.setGyroDrift(gyro_rotation2/1000);
+
+
+    gyro_rotation2 = 0.0;
+    gyro_rotation1 = 0.0;
 
 
     while (ros::ok())
@@ -256,20 +349,30 @@ int main(int argc, char* argv[])
         IMU1.ReadSensor();
         IMU2.ReadSensor();
 
+        //PID Code
+        /*
         acceleration_rotation1 = IMU1.GetRotation();
-        gyro_rotation1 += (IMU1.GetGRotationZ()/LPS);
+        gyro_rotation1 += (IMU1.GetGRotationZ()/LPS) - IMU1.GetGyroDrift();
         acceleration_rotation2 = IMU2.GetRotation();
-        gyro_rotation2 += (IMU2.GetGRotationZ()/LPS);
+        gyro_rotation2 += (IMU2.GetGRotationZ()/LPS) - IMU2.GetGyroDrift();
 
         offset1 = offsetRegulator1.pi_regulate(finalAngle1, acceleration_rotation1);
         offset2 = offsetRegulator2.pi_regulate(finalAngle2, acceleration_rotation2);
 
-
         //ROS_INFO("%f ", accelerationAngleList[LPS]);
         finalAngle1 = gyro_rotation1 - offset1;
         finalAngle2 = gyro_rotation2 - offset2;
+        */
 
+        gyro_rotation1 = (IMU1.GetGRotationZ()) - IMU1.GetGyroDrift();
+        gyro_rotation2 = (IMU2.GetGRotationZ()) - IMU2.GetGyroDrift();
+        acceleration_rotation1 = IMU1.GetRotation();
+        acceleration_rotation2 = IMU2.GetRotation();
 
+        finalAngle1 = KFilter1.Filter(gyro_rotation1, acceleration_rotation1);
+        finalAngle2 = KFilter2.Filter(gyro_rotation2, acceleration_rotation2);
+
+        
         angles.leg1_angle = finalAngle1;
         angles.leg2_angle = finalAngle2;
 

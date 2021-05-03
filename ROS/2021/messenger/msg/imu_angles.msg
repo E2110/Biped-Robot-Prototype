@@ -1,2 +1,0 @@
-float64 leg1_ground_angle
-float64 leg2_ground_angle

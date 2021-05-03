@@ -308,6 +308,9 @@ gennodejs_DIR:PATH=/opt/ros/melodic/share/gennodejs/cmake
 //The directory containing a CMake configuration file for genpy.
 genpy_DIR:PATH=/opt/ros/melodic/share/genpy/cmake
 
+//The directory containing a CMake configuration file for geometry_msgs.
+geometry_msgs_DIR:PATH=/opt/ros/melodic/share/geometry_msgs/cmake
+
 //Value Computed by CMake
 gmock_BINARY_DIR:STATIC=/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build/gtest/googlemock
 
@@ -366,6 +369,14 @@ message_generation_DIR:PATH=/opt/ros/melodic/share/message_generation/cmake
 //The directory containing a CMake configuration file for message_runtime.
 message_runtime_DIR:PATH=/opt/ros/melodic/share/message_runtime/cmake
 
+//Value Computed by CMake
+messages_pkg_BINARY_DIR:STATIC=/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/build/messages_pkg
+
+messages_pkg_DIR:PATH=
+
+//Value Computed by CMake
+messages_pkg_SOURCE_DIR:STATIC=/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/messages_pkg
+
 //The directory containing a CMake configuration file for rosconsole.
 rosconsole_DIR:PATH=/opt/ros/melodic/share/rosconsole/cmake
 
@@ -398,6 +409,9 @@ rqt_mypkg_BINARY_DIR:STATIC=/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04
 
 //Value Computed by CMake
 rqt_mypkg_SOURCE_DIR:STATIC=/home/bachelor/GIT/Biped-Robot-Prototype/rqt/test_04/src/rqt_mypkg
+
+//The directory containing a CMake configuration file for sensor_msgs.
+sensor_msgs_DIR:PATH=/opt/ros/melodic/share/sensor_msgs/cmake
 
 //The directory containing a CMake configuration file for std_msgs.
 std_msgs_DIR:PATH=/opt/ros/melodic/share/std_msgs/cmake

@@ -1,0 +1,8 @@
+<launch>
+    <node name="Computer_launch"  type="Computer_launch.sh" pkg="launch_pkg"
+    />
+    <!-- Run RVIZ launch file -->
+    <include file="$(find robot_description)/launch/display.launch"
+    />
+
+</launch>

@@ -1,0 +1,12 @@
+<launch>
+    <!-- Change ip -->
+    <arg name="ip" default="192.168.7.2" />
+    <!-- Run bash setup file-->
+    <node name="BBB_shell_script" type="BBB_launch.sh" pkg="launch_pkg" />
+    <!-- Launch main nodes-->
+   
+    <node name="servo" pkg="servo_pkg" type="servo_publisher" />
+    <node name="motor" pkg="encoder_test" type="motor_encoder_test" />
+    <node name="imu" pkg="imu_publisher" type="imupublisher" />
+
+</launch>

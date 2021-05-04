@@ -1,8 +1,14 @@
+#include "ros/ros.h"
+#include "std_msgs/String.h"
+#include "messages_pkg/Servo_values.h"
 #include <iostream>
 #include <fstream>
 #include <string>
-#include <stdio.h>
-#include <stdbool.h>
+
+
+#define fullyExtendedDutyCycle 2000000
+#define fullyRetractedDutyCycle 1000000
+#define period 25000000
 
 class servoControl
 {
@@ -10,15 +16,13 @@ class servoControl
 
 private:
 
-    int m_frequency = 20000000;
+    int m_frequency = 20006000;
     int m_dutyCycle;
     int m_PIN;
     int m_pinbool;
-    bool ServoP = true;
     std::string m_Pinpath;
     std::string m_PinpathNumber;
     std::string m_pinChip;
-
     
     
     void setPin(int pin)
@@ -83,7 +87,6 @@ private:
         freqSet << frequency;
         freqSet.close();
     }
-    
 
 public:
      servoControl(int pinNumber)
@@ -108,54 +111,50 @@ public:
         enablePWM();
         
     }
-    void ServoState(bool servoP)/*::ConstPtr& ServoDown)/**/
-    {
-          ServoP = true;
-    }
 };
+    //servocode
+    servoControl servoA(13); //initalize with pin 19
+    servoControl servoB(19); //initalize with pin 19
+    
+    
 
-
-
-int main()
+void changeServoValues(const messages_pkg::Servo_values msg)
 {
-    
-    
-    int pinN, pinN2;
-    std::cout << "Pin Nr :";
-    std::cin >> pinN;
-    std::cout << std::endl;
-    std::cout << "Pin2 Nr :";
-    std::cin >> pinN2;
-    std::cout << std::endl;
-    servoControl servoA(pinN); //initalize with given pin nr
+    //ros code
+
+    if (msg.Servo1_state == 0)
+    {
+        servoA.setDutyCycle(fullyExtendedDutyCycle);
+        ROS_INFO("servo 1 in");
+    }
+    else if(msg.Servo1_state == 1 )
+    {
+        servoA.setDutyCycle(fullyRetractedDutyCycle);
+        ROS_INFO("servo 1 out");
+    }
+
+    if (msg.Servo2_state == 0)
+    {
+        servoB.setDutyCycle(fullyExtendedDutyCycle);
+        ROS_INFO("servo 2 in");
+    }
+    else if(msg.Servo2_state == 1 )
+    {
+        servoB.setDutyCycle(fullyRetractedDutyCycle);
+        ROS_INFO("servo 2 out");
+    }
+}
+
+
+int main(int argc, char **argv)
+{
+    //servo code
     servoA.servoInit();
-    servoControl servoB(pinN2); //initalize with given pin nr
     servoB.servoInit();
-    
-    bool ServoP;
-    std::cout << "1 for down, 0 for up:";
-    std::cin >> ServoP;
-    std::cout << std::endl;;
-   
-    /* ROS_INFO("servo_recive : [%s]", msg->data.c_str());
-    std::string servoP = msg->data;
-    std::cout << servo_pos <<std::endl;/**/
-    
-    if(/*bool?/**/ServoP = 0)
-    {
-        std::cin.get();
-        servoA.setDutyCycle(820000);
-        servoB.setDutyCycle(820000);
-        std::cin.get();
-    }
-    else
-    {
-        /*std::cout << "trying 82" << std::endl;/**/
-        std::cin.get(); 
-        servoA.setDutyCycle(1900000);
-        servoB.setDutyCycle(1900000);
-        /*std::cout << "trying 19" << std::endl;/**/
-        std::cin.get();
-    }
-    std::cout << "Finito"<< std::endl;
-    return 0; }
+    //ros code
+    ros::init(argc, argv, "Servo_subscriber");
+    ros::NodeHandle n;
+    ros::Subscriber values_sub = n.subscribe("Servo_values",1, changeServoValues);
+    ros::spin();
+    return 0;
+}

@@ -16,12 +16,12 @@ float torso_ground_angle;
 
 void printLegGroundAngle(const messages_pkg::imu_angles msg)
 {
-    ROS_INFO("Leg to ground angle = %f \n Leg to ground angle = %f", msg.leg1_ground_angle, msg.leg2_ground_angle);
-    leg1_ground_angle = msg.leg1_ground_angle;
-    leg2_ground_angle = msg.leg2_ground_angle;
+    ROS_INFO("Leg to ground angle = %f \n Leg to ground angle = %f", msg.leg1_angle, msg.leg2_angle);
+    leg1_ground_angle = msg.leg1_angle;
+    leg2_ground_angle = msg.leg2_angle;
 }
 
-void printLegTorsoAngle(const messages::encoder_angles msg)
+void printLegTorsoAngle(const messages_pkg::encoder_angles msg)
 {
     ROS_INFO("Leg to encoder angle = %f \n Leg to ground angle = %f", msg.leg1_torso_angle, msg.leg2_torso_angle);
     leg1_torso_angle = msg.leg1_torso_angle;

@@ -2,11 +2,9 @@
 
 ![NTNU_logo](assets/NTNU_logo.png)
 
-This is the reposatory for our Bachelor's thesis. It will be updated continously the next months :lying_face:... or at least as often as we manage. The project has a deadline in May, that will also be the deadline to finish the git. Up until then this reposatory may or may not be a complete mess.
+This is the reposatory for our Bachelor's thesis. The target group for this git is other electrical engeneering students at NTNU. Therefor knowledge acquired during the course of study is to be expected. The documentaions and explanaitons in this git should give enough information to be a foundation for further work. 
 
-Anyways this project is about a thin and simple robot that can't walk. We will teach it to walk. How? Through C++ and ROS. Each part of the robot will have it's own floder where we explain the code associated with that part. 
-
-Shoutout to the two previous groups that worked on this project. Most of the information and explanation in the earlier stages of the repository will be gathered from their theses. 
+Anyways this project is about a thin and simple robot that can't walk. We will teach it to walk. How? Through C++ and ROS. Each part of the robot will have it's own floder where we explain the code and everything? associated with that part. 
 
 
 # Flashing Ubuntu 18.04

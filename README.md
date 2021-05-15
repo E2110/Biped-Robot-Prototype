@@ -7,6 +7,10 @@ This is the reposatory for our Bachelor's thesis. The target group for this git 
 Anyways this project is about a thin and simple robot that can't walk. We will teach it to walk. How? Through C++ and ROS. Each part of the robot will have it's own floder where we explain the code and everything? associated with that part. 
 
 
+https://user-images.githubusercontent.com/78819338/118373048-e83d3c00-b5b4-11eb-93af-3f74fb1a81d0.mp4
+
+
+
 # Flashing Ubuntu 18.04
 From windows OS. For flashing the new image we used following:
 

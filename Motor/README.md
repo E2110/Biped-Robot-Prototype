@@ -31,6 +31,9 @@ GPIO 1  |   P9_23           |  P9_27 |J5_1
 GPIO 2  |   P9_25           |  P8_34 |J5_2
 PWM     |   P9_16           |  P9_14 |J5_3
 
+Ground  |   Current     |   Motor - |   Motor   +
+:---------:|:------:|:-----:|:------:
+J1_-    |   J1_+    |   J2_1    |   J2_2
 ## Code
 <i>This section will only explain the motor part, even though the code contains an encoder part. The explanation should give you enough information to understand the code, add new PWM- and GPIO-pins and change the values written on the Beaglebone, hopefully without having experience with C++. Order: Code -> where it's called -> explanation.
 

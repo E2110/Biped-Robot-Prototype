@@ -119,18 +119,5 @@ motorInit is, as the name indicates, an initialiser. It calls function to make s
 
 
 * main() will run when initiating the program.
+* motor control(14); and motor control(16); calls different motors
 
-```
-```
-
-
-
-```
-void setDutyCycle(int dutyC)
-{
-  std::ofsteam DCfile;
-  DCfile.open("/sys/class/pwm/pwm-" + m_PinpathNumber + "/duty_cycle");
-  DCfile << dutyC;
-  DCfile.close();
-}
-```
